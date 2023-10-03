@@ -1,0 +1,15 @@
+
+@import "../../app/style.scss";
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 28px;
+
+  @include md-screen {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include sm-screen {
+    grid-template-columns: 1fr;
+  }
+}
