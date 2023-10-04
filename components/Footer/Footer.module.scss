@@ -1,9 +1,10 @@
+@import '../../app/style.scss';
 .root {
   min-height: 194px;
   padding: 0 30px 50px;
   display: flex;
   justify-content: space-between;
-  font-family: Roboto_Slab;
+  font-family: var(--font-roboto-slab);
   font-style: normal;
   font-weight: 300;
 
@@ -59,6 +60,16 @@
     gap: 20px;
     justify-content: flex-end;
     align-items: flex-end;
+    @include md-screen {
+      gap: 25px;
+      background-color: red;
+      border: 1px solid red;
+    }
+    @include sm-screen {
+      gap: 25px;
+      background-color: green;
+      border: 1px solid red;
+    }
 
     .info {
       display: flex;
