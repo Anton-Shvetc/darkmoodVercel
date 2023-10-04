@@ -2,15 +2,18 @@ import styles from './Footer.module.scss';
 import Image from 'next/image';
 import Inst from '../../public/inst.svg';
 import Logo from '../../public/logo-footer.svg';
-
 import Visa from '../../public/visa.svg';
 import Mastercard from '../../public/mastercard.png';
 import Privat from '../../public/privat.png';
 import Wayforpay from '../../public/wayforpay.png';
+import { RobotoSlabFont } from '@/app/layout';
+import classNames from 'classnames';
+import Link from 'next/link';
 
 export const Footer = () => {
   return (
-    <footer className={styles.root}>
+    <footer
+      className={classNames(`${RobotoSlabFont.variable}`, `${styles.root}`)}>
       <div className={styles.left}>
         <ul className={styles.link}>
           <li>FAQ</li>
@@ -34,7 +37,12 @@ export const Footer = () => {
           <ul>
             <li>
               <h3>e-mail:</h3>
-              <p>support@jolybell.com</p>
+              <p>
+                <Link href="mailto: support@jolybell.com">
+                  {' '}
+                  support@jolybell.com
+                </Link>
+              </p>
             </li>
             <li>
               <h3>service hours:</h3>

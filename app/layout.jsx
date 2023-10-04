@@ -9,6 +9,12 @@ export const metadata = {
   description: 'Darkmode shop',
 };
 
+export const RobotoSlabFont = Roboto_Slab({
+  weight: ['300', '400'],
+  subsets: ['latin'],
+  variable: '--font-roboto-slab',
+});
+
 export default function RootLayout({ children }) {
   return (
     <html lang="ru">
