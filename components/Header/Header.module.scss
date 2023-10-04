@@ -1,3 +1,33 @@
 .root {
-  height: 152px;
+  // min-height: 152px;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0 0;
+  position: relative;
+  .logo {
+    width: 104px;
+    height: 100px;
+    flex-shrink: 0;
+    position: absolute;
+    // // top: 0;
+    // left: 50%;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  ul {
+    display: flex;
+    padding: 0 50px 30px;
+    gap: 50px;
+    border-bottom: 1px solid #ebebeb;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
