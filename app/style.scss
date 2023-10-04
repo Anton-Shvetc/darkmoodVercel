@@ -1,3 +1,5 @@
+@import url('../vendor/fonts/fonts.css');
+
 @mixin md-screen {
   @media (min-width: 1024px) {
     @content;
@@ -8,3 +10,31 @@
     @content;
   }
 }
+
+// html,
+// body {
+//   height: 100%;
+// }
+
+// .header {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   height: 50px;
+// }
+
+// .footer {
+//   position: fixed;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   height: 50px;
+// }
+
+// .content {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-grow: 1;
+// }
