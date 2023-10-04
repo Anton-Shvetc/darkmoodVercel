@@ -17,6 +17,13 @@
 }
 
 body {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+  /* height: 100%; */
   color: #ebebeb;
   background-color: #232323;
+  background-image: url('../public/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
