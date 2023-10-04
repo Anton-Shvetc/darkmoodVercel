@@ -5,11 +5,10 @@
 /assets
 /.pnp
 .pnp.js
-/backend
 .env
 # testing
 /coverage
-
+/backend
 # next.js
 /.next/
 /out/
