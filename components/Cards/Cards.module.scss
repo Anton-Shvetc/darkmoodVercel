@@ -1,20 +1,26 @@
-
 @import "../../app/style.scss";
 
 .container {
   width: 90%;
   margin: 0 auto;
+  max-width: 1332px;
 }
 .cards {
-  display: flex;
-  // grid-template-columns: 1fr 1fr 1fr 1fr;
-  align-items: flex-start;
-  gap: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+
+column-gap: 28px;
+row-gap: 50px;
+
 
   @include md-screen {
     grid-template-columns: 1fr 1fr;
+
   }
   @include sm-screen {
     grid-template-columns: 1fr;
+
+
   }
 }
