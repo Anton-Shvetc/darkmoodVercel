@@ -1,6 +1,79 @@
- @import "../../app/style.scss";
+@import "../../app/style.scss";
 
- .card {
-    border: 1px solid #fff;
-	max-width: 312px;
+.card {
+  max-width: 312px;
+  max-height: 421px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  border-radius: 24px;
+
+  &__moreLink {
+    display: flex;
+    width: 312px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    border-radius: 24px;
+    background: #232323;
+    box-shadow: 4px 4px 4px 0px rgba(192, 192, 192, 0.1),
+      -4px -4px 4px 0px rgba(192, 192, 192, 0.1);
   }
+
+  &__price {
+    display: flex;
+    padding: 12px 25px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 24px 0px;
+    background: #d9d9d9;
+  }
+  &__img {
+    border-radius: 24px;
+    width: 312px;
+    height: 297px;
+    position: relative;
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: inline-flex;
+      padding: 5px 20px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 12px;
+      border: 1px solid #d9d9d9;
+      background: #d9d9d9;
+    }
+  }
+
+  &__button {
+    display: flex;
+    padding: 15px 80px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background: #d9d9d9;
+    color: #000000;
+    box-shadow: 2px -4px 8px 0px rgba(192, 192, 192, 0.25),
+      -2px 4px 8px 0px rgba(192, 192, 192, 0.25);
+  }
+
+  &:hover {
+    .card__price {
+      border-radius: 24px 0px;
+      background: rgba(217, 217, 217, 0.5);
+    }
+    .card__button {
+      background: #000000;
+      color: #d9d9d9;
+    }
+  }
+}
