@@ -8,19 +8,14 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-
-
-column-gap: 28px;
-row-gap: 50px;
-
+  column-gap: 28px;
+  row-gap: 50px;
 
   @include md-screen {
     grid-template-columns: 1fr 1fr;
-
   }
+
   @include sm-screen {
     grid-template-columns: 1fr;
-
-
   }
 }
