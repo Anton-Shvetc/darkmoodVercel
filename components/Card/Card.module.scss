@@ -7,9 +7,15 @@
   border-radius: 24px;
   gap: 20px;
 
+  @include sm-screen {
+  height: 445px;
+   min-width: 312px;
+  }
+
   &__moreLink {
     display: flex;
     width: 100%;
+    height: 100%;
     position: relative;
     flex-direction: column;
     align-items: flex-start;
@@ -27,6 +33,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 5px 20px;
+    min-width: 145px;
     gap: 10px;
     border-radius: 12px;
     border: 1px solid var(--color-primary);
@@ -42,21 +49,27 @@
 
   &__price {
     display: flex;
-    padding: 12px 25px;
+    padding: 9px 25px;
     justify-content: center;
     align-items: center;
     gap: 10px;
     border-radius: 24px 0px;
     font-family: var(--font-ubuntu);
     background-color: var(--color-primary);
-    color: var(--color-blackSecondary)
+    color: var(--color-blackSecondary);
+
+    @include sm-screen {
+      font-size: 24px;
+    }
   }
   &__img {
     border-radius: 24px;
     width: 100%;
+    height: 100%;
     position: relative;
     img {
       margin: 0 auto;
+      height: 100%;
     }
   }
 
