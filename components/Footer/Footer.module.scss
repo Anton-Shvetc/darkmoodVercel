@@ -1,20 +1,47 @@
 @import '../../app/style.scss';
-.root {
-  min-height: 194px;
+.footer {
   padding: 0 30px 50px;
   display: flex;
-  justify-content: space-between;
+  flex: 0 0 auto;
+  gap: 21px;
+  flex-direction: column;
   font-family: var(--font-roboto-slab);
   font-style: normal;
   font-weight: 300;
 
-  .left {
+  @include tb-screen {
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    @include tb-screen {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      color: #9d9d9d;
+      text-align: right;
+      font-size: 13px;
+      line-height: 20px;
+    }
+  }
+
+  &__left {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-
-    justify-content: flex-end;
-    align-items: flex-start;
+    justify-content: space-between;
   }
 
   ul {
@@ -27,93 +54,100 @@
     color: #fff;
   }
 
-  .images {
-    display: flex;
-    gap: 30px;
-    justify-content: flex-start;
-
+  &__images {
     img {
       width: 48px;
-      height: 48px;
-      // flex: 1 0 0;
+      @include tb-screen {
+        width: 62px;
+        height: 59px;
+      }
     }
   }
 
-  .link {
+  ul.footer__links {
     li {
       font-size: 16px;
       line-height: 24px;
       letter-spacing: 1px;
     }
+    @include tb-screen {
+      display: none;
+    }
   }
 
-  .list {
+  ul.footer__pay {
+    @include tb-screen {
+      display: none;
+    }
+  }
+
+  ul.footer__offering {
     li {
       font-size: 14px;
       line-height: 21px;
     }
+    @include tb-screen {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
   }
 
-  .right {
+  &__right {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: flex-end;
-    align-items: flex-end;
-    @include md-screen {
-      gap: 25px;
-      background-color: red;
-      border: 1px solid red;
-    }
-    @include sm-screen {
-      gap: 25px;
-      background-color: green;
-      border: 1px solid red;
-    }
+    gap: 71px;
 
-    .info {
+    ul {
       display: flex;
-      justify-content: flex-start;
-      gap: 71px;
-
-      ul {
-        display: flex;
-        flex-direction: column;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      @include tb-screen {
         gap: 20px;
-        justify-content: end;
-        align-items: end;
       }
-
-      .box {
-        display: flex;
-        gap: 9px;
-        justify-content: end;
+      li {
+        @include tb-screen {
+          gap: 10px;
+          display: flex;
+          flex-direction: column;
+        }
       }
+    }
 
-      h3 {
-        color: #9d9d9d;
-        font-size: 11px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 16px;
-        text-transform: uppercase;
-        margin-bottom: 5px;
-        text-align: right;
-        width: 100%;
-      }
+    &__box {
+      display: flex;
+      gap: 9px;
+      justify-content: flex-end;
+      margin-top: 5px;
+    }
 
-      p {
-        color: #fff;
-        font-size: 14px;
-        line-height: 21px;
+    h3 {
+      color: #9d9d9d;
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+      text-transform: uppercase;
+      text-align: right;
+      width: 100%;
+      @include tb-screen {
+        text-align: center;
       }
     }
 
     p {
-      color: #9d9d9d;
-      text-align: right;
-      font-size: 13px;
-      line-height: 20px;
+      color: #fff;
+      font-size: 14px;
+      line-height: 21px;
+      @include tb-screen {
+        text-align: center;
+      }
+    }
+  }
+  &__el_of {
+    @include tb-screen {
+      display: none;
     }
   }
 }

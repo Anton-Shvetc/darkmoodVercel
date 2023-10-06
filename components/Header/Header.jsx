@@ -9,42 +9,83 @@ import { usePathname } from 'next/navigation';
 
 export const Header = () => {
   const pathname = usePathname();
-
-  console.log(pathname);
   return (
-    <header className={styles.root}>
+    <header className={styles.header}>
       <ul>
-        <li>
-          <Link href="#">FAQ</Link>
+        <li className={styles.header__el_of}>
+          <Link
+            href="/questions"
+            className={` ${
+              pathname === '/questions' ? styles.header__link_active : ''
+            }`}>
+            FAQ
+          </Link>
         </li>
-        <li>
-          <Link href="#">ВАШ ЗАКАЗ</Link>
+        <li className={styles.header__el_of}>
+          <Link
+            href="/order"
+            className={` ${
+              pathname === '/order' ? styles.header__link_active : ''
+            }`}>
+            ВАШ ЗАКАЗ
+          </Link>
         </li>
-        <li>
+        <li className={styles.header__el_of}>
           <Link
             href="/catalog"
-            className={`link ${pathname === '/' ? 'active' : ''}`}>
+            className={` ${
+              pathname === '/catalog' ? styles.header__link_active : ''
+            }`}>
             КАТАЛОГ
           </Link>
         </li>
+        <Link href="/">
+          <Image
+            className={styles.header__logo}
+            src={Logo}
+            width="104px"
+            height="100px"
+            alt="Logo icon"
+          />
+        </Link>
       </ul>
-      <Image
-        className={styles.logo}
-        src={Logo}
-        width="104px"
-        height="100px"
-        alt="Logo icon"
-      />
 
       <ul>
         <li>
-          <Image src={User} width="24px" height="24px" alt="User icon" />
+          <Link
+            href="/profile"
+            className={` ${
+              pathname === '/profile' ? styles.header__icon_active : ''
+            }`}>
+            <Image
+              className={styles.header__icon}
+              src={User}
+              width="24px"
+              height="24px"
+              alt="User icon"
+            />
+          </Link>
         </li>
         <li>
-          <Image src={Cart} width="24px" height="24px" alt="Cart icon" />
+          <Link
+            href="/cart"
+            className={` ${
+              pathname === '/cart' ? styles.header__icon_active : ''
+            }`}>
+            <Image
+              className={styles.header__icon}
+              src={Cart}
+              width="24px"
+              height="24px"
+              alt="Cart icon"
+            />
+          </Link>
         </li>
-        <li>USD</li>
-        <li>РУС</li>
+        <li className={styles.burger}>
+          <div>fff</div>
+        </li>
+        <li className={styles.header__el_of}>USD</li>
+        <li className={styles.header__el_of}>РУС</li>
       </ul>
     </header>
   );

@@ -13,43 +13,48 @@ import Link from 'next/link';
 export const Footer = () => {
   return (
     <footer
-      className={classNames(`${RobotoSlabFont.variable}`, `${styles.root}`)}>
-      <div className={styles.left}>
-        <ul className={styles.link}>
-          <li>FAQ</li>
-          <li>ВАШ ЗАКАЗ</li>
-          <li>КАТАЛОГ</li>
-        </ul>
+      className={classNames(`${RobotoSlabFont.variable}`, `${styles.footer}`)}>
+      <div className={styles.footer__top}>
+        <div className={styles.footer__left}>
+          <ul className={styles.footer__links}>
+            <li>
+              <Link href="/questions">FAQ</Link>
+            </li>
+            <li>
+              <Link href="/order">ВАШ ЗАКАЗ</Link>
+            </li>
+            <li>
+              <Link href="/catalog">КАТАЛОГ</Link>
+            </li>
+          </ul>
 
-        <div className={styles.images}>
-          <Image src={Inst} width="48px" height="48px" alt="Inst icon" />
-          <Image src={Logo} width="48px" height="48px" alt="Logo icon" />
+          <ul className={styles.footer__images}>
+            <li className={styles.footer__el_of}>
+              <Link href="#">
+                <Image src={Inst} width="48px" height="48px" alt="Inst icon" />
+              </Link>
+            </li>
+            <li>
+              <Image src={Logo} width="48px" height="48px" alt="Logo icon" />
+            </li>
+          </ul>
         </div>
 
-        <ul className={styles.list}>
-          <li>©&nbsp;2023, DARKMOOD.com</li>
-          <li>Public offering</li>
-        </ul>
-      </div>
-
-      <div className={styles.right}>
-        <div className={styles.info}>
+        <div className={styles.footer__right}>
           <ul>
             <li>
               <h3>e-mail:</h3>
-              <p>
-                <Link href="mailto: support@jolybell.com">
-                  {' '}
-                  support@jolybell.com
-                </Link>
-              </p>
+
+              <Link href="mailto: support@jolybell.com">
+                <p> support@jolybell.com</p>
+              </Link>
             </li>
             <li>
               <h3>service hours:</h3>
               <p>Mon.-Fri.: 9 am - 9 pm</p>
             </li>
           </ul>
-          <ul>
+          <ul className={styles.footer__pay}>
             <li>
               <h3>We accept:</h3>
               <div className={styles.box}>
@@ -62,7 +67,7 @@ export const Footer = () => {
                 />
               </div>
             </li>
-            <li className={styles.box}>
+            <li className={styles.footer__box}>
               <Image
                 alt="Mastercard icon"
                 src={Mastercard}
@@ -78,7 +83,16 @@ export const Footer = () => {
             </li>
           </ul>
         </div>
-        <p>
+      </div>
+
+      <div className={styles.footer__bottom}>
+        <ul className={styles.footer__offering}>
+          <li>©&nbsp;2023, DARKMOOD.com</li>
+          <li>
+            <Link href="#">Public offering</Link>
+          </li>
+        </ul>
+        <p className={styles.footer__el_of}>
           Delivery in Ukraine is carried out by the delivery service: Nova
           Poshta. <br />
           We deliver worldwide by delivery service: Ukr Poshta, Nova Poshta.
