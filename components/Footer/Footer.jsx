@@ -1,16 +1,40 @@
+'use client';
 import styles from './Footer.module.scss';
 import Image from 'next/image';
 import Inst from '../../public/inst.svg';
-import Logo from '../../public/logo-footer.svg';
+import Logo1 from '../../public/icons/logo-footer-max.svg';
+import Logo2 from '../../public/icons/logo.svg';
 import Visa from '../../public/visa.svg';
 import Mastercard from '../../public/mastercard.png';
 import Privat from '../../public/privat.png';
 import Wayforpay from '../../public/wayforpay.png';
-import { RobotoSlabFont } from '@/app/layout';
+// import { RobotoSlabFont } from '@/app/layout';
 import classNames from 'classnames';
 import Link from 'next/link';
+import { Roboto_Slab } from 'next/font/google';
+import { useState, useEffect } from 'react';
+
+export const RobotoSlabFont = Roboto_Slab({
+  weight: ['300', '400'],
+  subsets: ['latin'],
+  variable: '--font-roboto-slab',
+});
 
 export const Footer = () => {
+  const [logo, setLogo] = useState(window.innerWidth > 800 ? Logo1 : Logo2);
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 800) {
+        setLogo(Logo1);
+      } else {
+        setLogo(Logo2);
+      }
+    }
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <footer
       className={classNames(`${RobotoSlabFont.variable}`, `${styles.footer}`)}>
@@ -30,7 +54,7 @@ export const Footer = () => {
 
           <ul className={styles.footer__images}>
             <li>
-              <Image src={Logo} width="48px" height="48px" alt="Logo icon" />
+              <Image src={logo} width="48px" height="48px" alt="Logo icon" />
             </li>
             <li className={styles.footer__el_of}>
               <Link href="#">

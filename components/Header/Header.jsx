@@ -3,7 +3,7 @@ import styles from './Header.module.scss';
 import Image from 'next/image';
 import User from '../../public/user.svg';
 import Cart from '../../public/cart.svg';
-import Logo from '../../public/logo.svg';
+import Logo from '../../public/icons/logo.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
