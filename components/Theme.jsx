@@ -1,11 +1,12 @@
+'use client';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 
 const Theme = ({ paths, className }) => {
-  const location = useLocation();
-
+  const pathname = usePathname();
+  console.log(paths === pathname);
   useEffect(() => {
-    if (paths.includes(location.pathname)) {
+    if (paths === pathname) {
       document.body.classList.add(className);
     } else {
       document.body.classList.remove(className);

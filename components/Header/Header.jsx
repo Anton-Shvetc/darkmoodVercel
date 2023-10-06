@@ -1,11 +1,12 @@
 'use client';
 import styles from './Header.module.scss';
 import Image from 'next/image';
-import User from '../../public/user.svg';
-import Cart from '../../public/cart.svg';
+import User from '../../public/icons/user.svg';
+import Cart from '../../public/icons/cart.svg';
 import Logo from '../../public/icons/logo.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Burger from '../Burger/Burger';
 
 export const Header = () => {
   const pathname = usePathname();
@@ -82,7 +83,7 @@ export const Header = () => {
           </Link>
         </li>
         <li className={styles.burger}>
-          <div>fff</div>
+          <Burger />
         </li>
         <li className={styles.header__el_of}>USD</li>
         <li className={styles.header__el_of}>РУС</li>

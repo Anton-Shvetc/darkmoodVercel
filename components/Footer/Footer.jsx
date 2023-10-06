@@ -1,13 +1,13 @@
 'use client';
 import styles from './Footer.module.scss';
 import Image from 'next/image';
-import Inst from '../../public/inst.svg';
+import Inst from '../../public/icons/inst.svg';
 import Logo1 from '../../public/icons/logo-footer-max.svg';
 import Logo2 from '../../public/icons/logo.svg';
-import Visa from '../../public/visa.svg';
-import Mastercard from '../../public/mastercard.png';
-import Privat from '../../public/privat.png';
-import Wayforpay from '../../public/wayforpay.png';
+import Visa from '../../public/icons/visa.svg';
+import Mastercard from '../../public/icons/mastercard.svg';
+import Privat from '../../public/icons/privat.svg';
+import Wayforpay from '../../public/icons/wayforpay.svg';
 // import { RobotoSlabFont } from '@/app/layout';
 import classNames from 'classnames';
 import Link from 'next/link';
