@@ -7,11 +7,20 @@ import Logo from '../../public/icons/logo.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Burger from '../Burger/Burger';
+import { Navigation } from '../Navigation/Navigation';
+import '../Burger/Burger.module.scss';
+import { useState } from 'react';
 
 export const Header = () => {
   const pathname = usePathname();
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+
+  function handleBurgerClick() {
+    setIsBurgerMenuOpen(!isBurgerMenuOpen);
+  }
   return (
-    <header className={styles.header}>
+    <header
+      className={` ${isBurgerMenuOpen ? styles.opened : ''} ${styles.header}`}>
       <ul>
         <li className={styles.header__el_of}>
           <Link
@@ -64,6 +73,7 @@ export const Header = () => {
               width="24px"
               height="24px"
               alt="User icon"
+              priority={true}
             />
           </Link>
         </li>
@@ -79,12 +89,13 @@ export const Header = () => {
               width="24px"
               height="24px"
               alt="Cart icon"
+              priority={true}
             />
           </Link>
         </li>
-        <li className={styles.burger}>
-          <Burger />
-        </li>
+
+        <Navigation />
+
         <li className={styles.header__el_of}>USD</li>
         <li className={styles.header__el_of}>РУС</li>
       </ul>

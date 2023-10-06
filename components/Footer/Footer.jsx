@@ -54,11 +54,23 @@ export const Footer = () => {
 
           <ul className={styles.footer__images}>
             <li>
-              <Image src={logo} width="48px" height="48px" alt="Logo icon" />
+              <Image
+                src={logo}
+                width="48px"
+                height="48px"
+                alt="Logo icon"
+                priority={true}
+              />
             </li>
             <li className={styles.footer__el_of}>
               <Link href="#">
-                <Image src={Inst} width="48px" height="48px" alt="Inst icon" />
+                <Image
+                  src={Inst}
+                  width="48px"
+                  height="48px"
+                  alt="Inst icon"
+                  priority={true}
+                />
               </Link>
             </li>
           </ul>
@@ -82,12 +94,19 @@ export const Footer = () => {
             <li>
               <h3>We accept:</h3>
               <div className={styles.footer__box}>
-                <Image alt="Visa icon" src={Visa} width="52px" height="17px" />
+                <Image
+                  alt="Visa icon"
+                  src={Visa}
+                  width="52px"
+                  height="17px"
+                  priority={true}
+                />
                 <Image
                   alt="Wayforpay icon"
                   src={Wayforpay}
                   width="85px"
                   height="17px"
+                  priority={true}
                 />
               </div>
             </li>
@@ -97,12 +116,14 @@ export const Footer = () => {
                 src={Mastercard}
                 width="47.5px"
                 height="40px"
+                priority={true}
               />
               <Image
                 alt="Privat icon"
                 src={Privat}
                 width="40px"
                 height="40px"
+                priority={true}
               />
             </li>
           </ul>
