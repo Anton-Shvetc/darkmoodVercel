@@ -29,13 +29,13 @@ export const Footer = () => {
           </ul>
 
           <ul className={styles.footer__images}>
+            <li>
+              <Image src={Logo} width="48px" height="48px" alt="Logo icon" />
+            </li>
             <li className={styles.footer__el_of}>
               <Link href="#">
                 <Image src={Inst} width="48px" height="48px" alt="Inst icon" />
               </Link>
-            </li>
-            <li>
-              <Image src={Logo} width="48px" height="48px" alt="Logo icon" />
             </li>
           </ul>
         </div>
