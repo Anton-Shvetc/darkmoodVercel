@@ -8,11 +8,14 @@
   font-family: var(--font-roboto-slab);
   font-style: normal;
   font-weight: 300;
-
   @include tb-screen {
     justify-content: center;
     align-items: center;
     gap: 20px;
+  }
+
+  li {
+    color: #fff;
   }
 
   &__top {
@@ -24,12 +27,116 @@
       align-items: center;
       gap: 20px;
     }
+
+    .footer__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .footer__links {
+        display: flex;
+        gap: 30px;
+        justify-content: flex-start;
+        li {
+          font-size: 16px;
+          line-height: 24px;
+          letter-spacing: 1px;
+        }
+        @include tb-screen {
+          display: none;
+        }
+      }
+      .footer__images {
+        display: flex;
+        gap: 30px;
+        justify-content: flex-start;
+        img {
+          width: 48px;
+          @include tb-screen {
+            width: 62px;
+            height: 59px;
+          }
+        }
+      }
+    }
+
+    .footer__right {
+      display: flex;
+      gap: 71px;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        // align-items: flex-end;
+        gap: 10px;
+        @include tb-screen {
+          gap: 20px;
+        }
+        li {
+          @include tb-screen {
+            gap: 10px;
+            display: flex;
+            flex-direction: column;
+          }
+        }
+      }
+
+      .footer__pay {
+        @include tb-screen {
+          display: none;
+        }
+      }
+
+      .footer__box {
+        display: flex;
+        gap: 9px;
+        justify-content: flex-end;
+        margin-top: 5px;
+      }
+
+      h3 {
+        color: #9d9d9d;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        text-transform: uppercase;
+        text-align: right;
+        width: 100%;
+        @include tb-screen {
+          text-align: center;
+        }
+      }
+
+      p {
+        color: #fff;
+        font-size: 14px;
+        line-height: 21px;
+        @include tb-screen {
+          text-align: center;
+        }
+      }
+    }
   }
 
   &__bottom {
     display: flex;
     justify-content: space-between;
-
+    .footer__offering {
+      display: flex;
+      gap: 30px;
+      justify-content: flex-start;
+      li {
+        font-size: 14px;
+        line-height: 21px;
+      }
+      @include tb-screen {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+    }
     p {
       color: #9d9d9d;
       text-align: right;
@@ -38,113 +145,6 @@
     }
   }
 
-  &__left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  ul {
-    display: flex;
-    gap: 30px;
-    justify-content: flex-start;
-  }
-
-  li {
-    color: #fff;
-  }
-
-  &__images {
-    img {
-      width: 48px;
-      @include tb-screen {
-        width: 62px;
-        height: 59px;
-      }
-    }
-  }
-
-  ul.footer__links {
-    li {
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: 1px;
-    }
-    @include tb-screen {
-      display: none;
-    }
-  }
-
-  ul.footer__pay {
-    @include tb-screen {
-      display: none;
-    }
-  }
-
-  ul.footer__offering {
-    li {
-      font-size: 14px;
-      line-height: 21px;
-    }
-    @include tb-screen {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-    }
-  }
-
-  &__right {
-    display: flex;
-    gap: 71px;
-
-    ul {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-end;
-      @include tb-screen {
-        gap: 20px;
-      }
-      li {
-        @include tb-screen {
-          gap: 10px;
-          display: flex;
-          flex-direction: column;
-        }
-      }
-    }
-
-    &__box {
-      display: flex;
-      gap: 9px;
-      justify-content: flex-end;
-      margin-top: 5px;
-    }
-
-    h3 {
-      color: #9d9d9d;
-      font-size: 11px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 16px;
-      text-transform: uppercase;
-      text-align: right;
-      width: 100%;
-      @include tb-screen {
-        text-align: center;
-      }
-    }
-
-    p {
-      color: #fff;
-      font-size: 14px;
-      line-height: 21px;
-      @include tb-screen {
-        text-align: center;
-      }
-    }
-  }
   &__el_of {
     @include tb-screen {
       display: none;

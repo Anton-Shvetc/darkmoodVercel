@@ -57,7 +57,7 @@ export const Footer = () => {
           <ul className={styles.footer__pay}>
             <li>
               <h3>We accept:</h3>
-              <div className={styles.box}>
+              <div className={styles.footer__box}>
                 <Image alt="Visa icon" src={Visa} width="52px" height="17px" />
                 <Image
                   alt="Wayforpay icon"
