@@ -1,33 +1,76 @@
-.root {
-  // min-height: 152px;
+@import '../../app/style.scss';
+
+.header {
   display: flex;
+  flex: 0 0 auto;
   justify-content: space-between;
-  padding: 30px 0 0;
+  padding: 1.88rem 0 6rem;
   position: relative;
-  .logo {
+
+  @include md-screen {
+    padding: 0;
+    align-items: center;
+    height: 61px;
+  }
+  &__logo {
     width: 104px;
     height: 100px;
     flex-shrink: 0;
     position: absolute;
-    // // top: 0;
-    // left: 50%;
-    position: absolute;
     margin-left: auto;
     margin-right: auto;
-    left: 0;
+    left: 3%;
     right: 0;
     text-align: center;
+
+    @include md-screen {
+      width: 42px;
+      height: 39px;
+      position: static;
+    }
+    @include sm-screen {
+      width: 42px;
+      height: 39px;
+    }
   }
 
   ul {
     display: flex;
-    padding: 0 50px 30px;
-    gap: 50px;
+    padding: 0 3.13rem 1.88rem;
+    gap: 3.13rem;
     border-bottom: 1px solid #ebebeb;
+    @include md-screen {
+      align-items: center;
+      width: 150px;
+      gap: 1.25rem;
+      padding: 10px 20px;
+      height: 100%;
+    }
 
-    img {
-      width: 24px;
-      height: 24px;
+    li:hover {
+      // opacity: 0.4;
+      cursor: pointer;
     }
   }
+  &__icon {
+    width: 24px;
+    height: 24px;
+  }
+  &__el_of {
+    @include md-screen {
+      gap: 1.25rem;
+      display: none;
+    }
+  }
+
+  &__link_active {
+    border-bottom: 1px solid #c8c7c7;
+  }
+
+  &__icon_active {
+    opacity: 0.4;
+  }
+}
+
+.burger {
 }
