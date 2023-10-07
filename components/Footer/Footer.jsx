@@ -8,7 +8,6 @@ import Visa from '../../public/icons/visa.svg';
 import Mastercard from '../../public/icons/mastercard.svg';
 import Privat from '../../public/icons/privat.svg';
 import Wayforpay from '../../public/icons/wayforpay.svg';
-// import { RobotoSlabFont } from '@/app/layout';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { Roboto_Slab } from 'next/font/google';

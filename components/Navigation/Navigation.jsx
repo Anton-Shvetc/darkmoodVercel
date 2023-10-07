@@ -1,12 +1,12 @@
 'use client';
-import styles from './Navigation.module.scss';
-import Link from 'next/link';
+// import styles from './Navigation.module.scss';
+// import Link from 'next/link';
 import { Burger } from '@/components/Burger/Burger';
-import { usePathname } from 'next/navigation';
+// import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 export const Navigation = () => {
-  const pathname = usePathname();
+  // const pathname = usePathname();
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   function handleBurgerClick() {

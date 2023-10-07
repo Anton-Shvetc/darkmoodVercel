@@ -5,48 +5,38 @@ import User from '../../public/icons/user.svg';
 import Cart from '../../public/icons/cart.svg';
 import Logo from '../../public/icons/logo.svg';
 import Link from 'next/link';
-// import { usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { Navigation } from '@/components/Navigation/Navigation';
-import { useState } from 'react';
 
 export const Header = () => {
-  // const pathname = usePathname();
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-
-  // function handleBurgerClick() {
-  //   setIsBurgerMenuOpen(!isBurgerMenuOpen);
-  // }
+  const pathname = usePathname();
   return (
-    <header
-      className={` ${isBurgerMenuOpen ? styles.opened : ''} ${styles.header}`}>
+    <header className={styles.header}>
       <ul>
         <li className={styles.header__el_of}>
           <Link
             href="/questions"
-            // className={` ${
-            //   pathname === '/questions' ? styles.header__link_active : ''
-            // }`}
-          >
+            className={` ${
+              pathname === '/questions' ? styles.header__link_active : ''
+            }`}>
             FAQ
           </Link>
         </li>
         <li className={styles.header__el_of}>
           <Link
             href="/order"
-            // className={` ${
-            //   pathname === '/order' ? styles.header__link_active : ''
-            // }`}
-          >
+            className={` ${
+              pathname === '/order' ? styles.header__link_active : ''
+            }`}>
             ВАШ ЗАКАЗ
           </Link>
         </li>
         <li className={styles.header__el_of}>
           <Link
             href="/catalog"
-            // className={` ${
-            //   pathname === '/catalog' ? styles.header__link_active : ''
-            // }`}
-          >
+            className={` ${
+              pathname === '/catalog' ? styles.header__link_active : ''
+            }`}>
             КАТАЛОГ
           </Link>
         </li>
@@ -65,10 +55,9 @@ export const Header = () => {
         <li>
           <Link
             href="/profile"
-            // className={` ${
-            //   pathname === '/profile' ? styles.header__icon_active : ''
-            // }`}
-          >
+            className={` ${
+              pathname === '/profile' ? styles.header__icon_active : ''
+            }`}>
             <Image
               className={styles.header__icon}
               src={User}
@@ -82,10 +71,9 @@ export const Header = () => {
         <li>
           <Link
             href="/cart"
-            // className={` ${
-            //   pathname === '/cart' ? styles.header__icon_active : ''
-            // }`}
-          >
+            className={` ${
+              pathname === '/cart' ? styles.header__icon_active : ''
+            }`}>
             <Image
               className={styles.header__icon}
               src={Cart}
