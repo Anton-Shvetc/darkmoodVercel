@@ -40,7 +40,7 @@
       padding: 10px 20px;
       height: 100%;
     }
-    li {
+    .link {
       margin-right: 3.13rem;
       @include md-screen {
         margin-right: 1.25rem;
@@ -94,7 +94,9 @@
 }
 
 .header.opened .blur {
-  display: block;
+  @include md-screen {
+    display: block;
+  }
 }
 
 .menu {
@@ -111,12 +113,14 @@
   gap: 20px;
   padding: 60px 30px;
   align-items: center;
-  a {
+  .el {
     color: black;
     margin: 0;
   }
 }
 
 .header.opened .menu {
-  display: flex;
+  @include md-screen {
+    display: flex;
+  }
 }

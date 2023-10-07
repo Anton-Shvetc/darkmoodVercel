@@ -18,37 +18,37 @@ export const Header = () => {
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
   }
 
+  const arrMenu = [
+    {
+      name: 'FAQ',
+      link: '/questions',
+    },
+    {
+      name: 'ВАШ ЗАКАЗ',
+      link: '/order',
+    },
+    {
+      name: 'КАТАЛОГ',
+      link: '/catalog',
+    },
+  ];
+
   return (
     <header
       className={`${styles.header} ${isBurgerMenuOpen ? styles.opened : ''}`}>
       <ul className={styles.header__menu}>
-        <li className={styles.header__el_of}>
-          <Link
-            href="/questions"
-            className={` ${
-              pathname === '/questions' ? styles.header__link_active : ''
-            }`}>
-            FAQ
-          </Link>
-        </li>
-        <li className={styles.header__el_of}>
-          <Link
-            href="/order"
-            className={` ${
-              pathname === '/order' ? styles.header__link_active : ''
-            }`}>
-            ВАШ ЗАКАЗ
-          </Link>
-        </li>
-        <li className={styles.header__el_of}>
-          <Link
-            href="/catalog"
-            className={` ${
-              pathname === '/catalog' ? styles.header__link_active : ''
-            }`}>
-            КАТАЛОГ
-          </Link>
-        </li>
+        {arrMenu.map((el, i) => (
+          <li key={i} className={`${styles.link} ${styles.header__el_of}`}>
+            <Link
+              href={el.link}
+              className={` ${
+                pathname === el.link ? styles.header__link_active : ''
+              }`}>
+              {el.name}
+            </Link>
+          </li>
+        ))}
+
         <Link href="/">
           <Image
             className={styles.header__logo}
@@ -61,7 +61,7 @@ export const Header = () => {
       </ul>
 
       <ul className={styles.header__menu}>
-        <li>
+        <li className={styles.link}>
           <Link
             href="/profile"
             className={` ${
@@ -77,7 +77,7 @@ export const Header = () => {
             />
           </Link>
         </li>
-        <li>
+        <li className={styles.link}>
           <Link
             href="/cart"
             className={` ${
@@ -101,34 +101,24 @@ export const Header = () => {
         <span className={styles.blur} />
 
         <nav className={styles.menu}>
-          <Link
-            href="/questions"
-            className={` ${
-              pathname === '/questions' ? styles.header__link_active : ''
-            }`}>
-            FAQ
-          </Link>
-          <Link
-            href="/order"
-            className={` ${
-              pathname === '/order' ? styles.header__link_active : ''
-            }`}>
-            ВАШ ЗАКАЗ
-          </Link>
-          <Link
-            href="/catalog"
-            className={` ${
-              pathname === '/catalog' ? styles.header__link_active : ''
-            }`}>
-            КАТАЛОГ
-          </Link>
+          {arrMenu.map((el, i) => (
+            <li className={styles.el} key={i}>
+              <Link
+                href={el.link}
+                className={` ${
+                  pathname === el.link ? styles.header__link_active : ''
+                }`}>
+                {el.name}
+              </Link>
+            </li>
+          ))}
 
-          {/* <li>USD</li>
-          <li>РУС</li> */}
+          <li>USD</li>
+          <li>РУС</li>
         </nav>
 
-        <li className={styles.header__el_of}>USD</li>
-        <li className={styles.header__el_of}>РУС</li>
+        <li className={`${styles.header__el_of} ${styles.link}`}>USD</li>
+        <li className={`${styles.header__el_of} ${styles.link}`}>РУС</li>
       </ul>
     </header>
   );
