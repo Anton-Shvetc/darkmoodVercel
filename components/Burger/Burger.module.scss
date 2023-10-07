@@ -1,0 +1,67 @@
+@import '../../app/style.scss';
+
+.burger {
+  display: none;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  @include md-screen {
+    display: block;
+  }
+
+  span {
+    position: absolute;
+    z-index: 8;
+    width: 18px;
+    left: 2px;
+    border-radius: 2px;
+    height: 2px;
+    background-color: #fff;
+    transition: background-color 0.5s, opacity 0.25s, transform 0.5s;
+    will-change: transform;
+  }
+
+  span:nth-child(1) {
+    top: 5px;
+  }
+
+  span:nth-child(2) {
+    top: 11px;
+  }
+
+  span:nth-child(3) {
+    top: 17px;
+  }
+}
+
+.burger.opened {
+  top: -7px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  top: 3px;
+}
+
+.burger.opened span {
+  left: 0;
+  top: 10px;
+  width: 22px;
+}
+
+.burger.opened span:nth-child(1) {
+  transform: rotate(45deg);
+  background-color: #000;
+}
+
+.burger.opened span:nth-child(2) {
+  transform: scale(0);
+}
+
+.burger.opened span:nth-child(3) {
+  transform: rotate(-45deg);
+  background-color: #000;
+}

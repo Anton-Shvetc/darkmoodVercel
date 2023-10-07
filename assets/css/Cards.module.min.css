@@ -1,0 +1,1 @@
+.container{width:90%;margin:0 auto;max-width:1332px}.cards{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;-moz-column-gap:28px;column-gap:28px;row-gap:50px}@media(max-width: 800px){.cards{grid-template-columns:1fr 1fr}}@media(max-width: 480px){.cards{grid-template-columns:1fr}}/*# sourceMappingURL=Cards.module.min.css.map */
