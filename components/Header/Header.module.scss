@@ -1,16 +1,15 @@
 @import '../../app/style.scss';
-
 .header {
   display: flex;
   flex: 0 0 auto;
   justify-content: space-between;
   padding: 1.88rem 0 6rem;
   position: relative;
-
   @include md-screen {
     padding: 0;
     align-items: center;
     height: 61px;
+    position: static;
   }
   &__logo {
     width: 104px;
@@ -22,29 +21,34 @@
     left: 3%;
     right: 0;
     text-align: center;
-
     @include md-screen {
       width: 42px;
       height: 39px;
       position: static;
-    }
-    @include sm-screen {
-      width: 42px;
-      height: 39px;
     }
   }
 
   ul {
     display: flex;
     padding: 0 3.13rem 1.88rem;
-    gap: 3.13rem;
     border-bottom: 1px solid #ebebeb;
+    z-index: 10;
+
     @include md-screen {
       align-items: center;
       width: 150px;
-      gap: 1.25rem;
       padding: 10px 20px;
       height: 100%;
+    }
+
+    li {
+      margin-right: 3.13rem;
+      @include md-screen {
+        margin-right: 1.25rem;
+      }
+    }
+    li:last-of-type {
+      margin: 0;
     }
 
     li:hover {
@@ -54,8 +58,9 @@
   }
   &__icon {
     width: 24px;
-    height: 24px;
+    height: auto;
   }
+
   &__el_of {
     @include md-screen {
       gap: 1.25rem;
@@ -70,7 +75,4 @@
   &__icon_active {
     opacity: 0.4;
   }
-}
-
-.burger {
 }

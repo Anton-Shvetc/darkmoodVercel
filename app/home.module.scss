@@ -1,29 +1,55 @@
 @import './style.scss';
 
 .root {
-  padding: 120px 0 228px 50px;
-  max-width: 993px;
+  padding: 120px 50px 15px;
+  // max-width: 993px;
+  // width: 100%;
   height: 100%;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+  gap: 50px;
+  @include tb-screen {
+    padding: 90px 20px;
+    text-align: center;
+    align-items: center;
+    gap: 30px;
+  }
 
   h1 {
     color: #fff;
     font-family: Copperplate;
-    font-size: 84px;
+    // font-size: 84px;
+    font-size: clamp(1.5rem, 0.18rem + 5.634vw, 5.25rem);
     font-style: normal;
     font-weight: 700;
     line-height: 80px;
-    margin-bottom: 50px;
+    @include tb-screen {
+      line-height: 150%;
+    }
   }
   p {
     color: #d7d7d7;
     font-family: Copperplate;
-    font-size: 24px;
+    // font-size: 24px;
+    font-size: clamp(1rem, 0.824rem + 0.751vw, 1.5rem);
     font-style: normal;
     font-weight: 400;
     line-height: 35px;
     max-width: 588px;
+    @include tb-screen {
+      line-height: 150%;
+    }
+  }
+  span {
+    width: 204px;
+    height: 1px;
+    flex-shrink: 0;
+    background-color: #fff;
+    align-self: center;
+    margin-top: 178px;
+    @include tb-screen {
+      display: none;
+    }
   }
 }

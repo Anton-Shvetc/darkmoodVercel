@@ -1,11 +1,12 @@
 'use client';
 import styles from './Header.module.scss';
 import Image from 'next/image';
-import User from '../../public/user.svg';
-import Cart from '../../public/cart.svg';
-import Logo from '../../public/logo.svg';
+import User from '../../public/icons/user.svg';
+import Cart from '../../public/icons/cart.svg';
+import Logo from '../../public/icons/logo.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Navigation } from '@/components/Navigation/Navigation';
 
 export const Header = () => {
   const pathname = usePathname();
@@ -61,8 +62,9 @@ export const Header = () => {
               className={styles.header__icon}
               src={User}
               width="24px"
-              height="24px"
+              height="auto"
               alt="User icon"
+              priority={true}
             />
           </Link>
         </li>
@@ -76,14 +78,15 @@ export const Header = () => {
               className={styles.header__icon}
               src={Cart}
               width="24px"
-              height="24px"
+              height="auto"
               alt="Cart icon"
+              priority={true}
             />
           </Link>
         </li>
-        <li className={styles.burger}>
-          <div>fff</div>
-        </li>
+
+        <Navigation />
+
         <li className={styles.header__el_of}>USD</li>
         <li className={styles.header__el_of}>РУС</li>
       </ul>
