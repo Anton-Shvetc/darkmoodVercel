@@ -1,7 +1,7 @@
 'use client';
 import styles from './Navigation.module.scss';
-// import Link from 'next/link';
-import { Burger } from '../Burger/Burger';
+import Link from 'next/link';
+import { Burger } from '@/components/Burger/Burger';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -44,10 +44,10 @@ export const Navigation = () => {
             КАТАЛОГ
           </Link>
         </li>
-      </nav> */}
+      </nav>
 
-      {/* <li className={styles.header__el_of}>USD</li>
-        <li className={styles.header__el_of}>РУС</li> */}
+      <li className={styles.header__el_of}>USD</li>
+      <li className={styles.header__el_of}>РУС</li> */}
     </>
   );
 };
