@@ -6,13 +6,22 @@ import Cart from '../../public/icons/cart.svg';
 import Logo from '../../public/icons/logo.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Navigation } from '@/components/Navigation/Navigation';
+// import { Navigation } from '@/components/Navigation/Navigation';
+import { Burger } from '../Burger/Burger';
+import { useState } from 'react';
 
 export const Header = () => {
   const pathname = usePathname();
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+
+  function handleBurgerClick() {
+    setIsBurgerMenuOpen(!isBurgerMenuOpen);
+  }
+
   return (
-    <header className={styles.header}>
-      <ul>
+    <header
+      className={`${styles.header} ${isBurgerMenuOpen ? styles.opened : ''}`}>
+      <ul className={styles.header__menu}>
         <li className={styles.header__el_of}>
           <Link
             href="/questions"
@@ -51,7 +60,7 @@ export const Header = () => {
         </Link>
       </ul>
 
-      <ul>
+      <ul className={styles.header__menu}>
         <li>
           <Link
             href="/profile"
@@ -85,7 +94,38 @@ export const Header = () => {
           </Link>
         </li>
 
-        <Navigation />
+        <Burger
+          isBurgerMenuOpen={isBurgerMenuOpen}
+          handleBurgerClick={handleBurgerClick}
+        />
+        <span className={styles.blur} />
+
+        <nav className={styles.menu}>
+          <Link
+            href="/questions"
+            className={` ${
+              pathname === '/questions' ? styles.header__link_active : ''
+            }`}>
+            FAQ
+          </Link>
+          <Link
+            href="/order"
+            className={` ${
+              pathname === '/order' ? styles.header__link_active : ''
+            }`}>
+            ВАШ ЗАКАЗ
+          </Link>
+          <Link
+            href="/catalog"
+            className={` ${
+              pathname === '/catalog' ? styles.header__link_active : ''
+            }`}>
+            КАТАЛОГ
+          </Link>
+
+          {/* <li>USD</li>
+          <li>РУС</li> */}
+        </nav>
 
         <li className={styles.header__el_of}>USD</li>
         <li className={styles.header__el_of}>РУС</li>
