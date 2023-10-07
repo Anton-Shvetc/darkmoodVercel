@@ -21,7 +21,7 @@ export const RobotoSlabFont = Roboto_Slab({
 });
 
 export const Footer = () => {
-  const [logo, setLogo] = useState(window.innerWidth > 800 ? Logo1 : Logo2);
+  const [logo, setLogo] = useState(Logo1);
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth > 800) {
@@ -57,7 +57,7 @@ export const Footer = () => {
               <Image
                 src={logo}
                 width="48px"
-                height="48px"
+                height="auto"
                 alt="Logo icon"
                 priority={true}
               />
@@ -67,7 +67,7 @@ export const Footer = () => {
                 <Image
                   src={Inst}
                   width="48px"
-                  height="48px"
+                  height="auto"
                   alt="Inst icon"
                   priority={true}
                 />

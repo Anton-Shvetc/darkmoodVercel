@@ -6,7 +6,6 @@ import Cart from '../../public/icons/cart.svg';
 import Logo from '../../public/icons/logo.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Burger from '../Burger/Burger';
 import { Navigation } from '../Navigation/Navigation';
 import '../Burger/Burger.module.scss';
 import { useState } from 'react';
@@ -71,7 +70,7 @@ export const Header = () => {
               className={styles.header__icon}
               src={User}
               width="24px"
-              height="24px"
+              height="auto"
               alt="User icon"
               priority={true}
             />
@@ -87,7 +86,7 @@ export const Header = () => {
               className={styles.header__icon}
               src={Cart}
               width="24px"
-              height="24px"
+              height="auto"
               alt="Cart icon"
               priority={true}
             />

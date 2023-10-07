@@ -1,7 +1,7 @@
 'use client';
 import styles from './Navigation.module.scss';
-import Link from 'next/link';
-import Burger from '../Burger/Burger';
+// import Link from 'next/link';
+import { Burger } from '../Burger/Burger';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
