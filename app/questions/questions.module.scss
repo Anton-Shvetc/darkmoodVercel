@@ -1,0 +1,79 @@
+@import '../style.scss';
+.questions {
+  padding: 6.25rem 0 10rem;
+  border-bottom: 1px solid #c8c7c7;
+  margin-bottom: 50px;
+  @include tb-screen {
+    padding: 50px 24px 120px;
+  }
+  h2 {
+    font-family: Copperplate;
+    font-size: clamp(1rem, 0.824rem + 0.751vw, 1.5rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    align-self: flex-start;
+  }
+
+  &__title_active {
+    color: #fff;
+  }
+
+  &__title_inactive {
+    color: #c8c8c8;
+  }
+
+  span {
+    color: #c8c7c7;
+    font-family: Ubuntu;
+    font-size: clamp(0.875rem, 0.787rem + 0.376vw, 1.125rem);
+    font-style: normal;
+    font-weight: 500;
+    // line-height: 32px;
+    margin-top: 20px;
+    display: none;
+  }
+  ul {
+    background-color: #464646;
+    border-radius: 12px;
+    display: flex;
+    padding: 90px 93px 100px 93px;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 0 auto;
+    gap: 2.5rem;
+    @include tb-screen {
+      padding: 50px 12px;
+      gap: 25px;
+    }
+  }
+  li {
+    border-bottom: #c8c7c7 1px solid;
+    padding: 0 20px 25px;
+    justify-content: space-between;
+    align-items: flex-start;
+    display: flex;
+    gap: 80px;
+    @include tb-screen {
+      padding: 0 0 20px;
+      gap: 0;
+    }
+  }
+
+  &__block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .questions__text_active {
+    display: inline-block;
+  }
+
+  button {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+}
