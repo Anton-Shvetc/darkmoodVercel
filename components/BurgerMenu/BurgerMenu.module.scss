@@ -1,3 +1,4 @@
+@import '../../app/style.scss';
 .blur {
   z-index: 1;
   display: none;
@@ -11,11 +12,12 @@
   opacity: 0.4;
   transition: display 0.5s;
   will-change: transform;
+  &_opened {
+    @include md-screen {
+      display: block;
+    }
+  }
 }
-
-// .header.opened .header__blur {
-//   display: block;
-// }
 
 .menu {
   display: none;
@@ -26,18 +28,23 @@
   top: 0;
   background: #ebebeb;
   position: absolute;
-  z-index: 4;
-  display: flex;
+  z-index: 3;
   flex-direction: column;
   gap: 20px;
-  padding: 60px 40px;
+  padding: 60px 30px;
   align-items: center;
-  li {
+
+  &__el {
     color: black;
     margin: 0;
   }
-}
+  &_opened {
+    @include md-screen {
+      display: flex;
+    }
+  }
 
-// .header.opened ul .nav {
-//   display: block;
-// }
+  &__el_active {
+    border-bottom: 1px solid #c8c7c7;
+  }
+}

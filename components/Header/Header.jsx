@@ -6,17 +6,10 @@ import Cart from '../../public/icons/cart.svg';
 import Logo from '../../public/icons/logo.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-// import { Navigation } from '@/components/Navigation/Navigation';
-import { Burger } from '../Burger/Burger';
-import { useState } from 'react';
+import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 
 export const Header = () => {
   const pathname = usePathname();
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-
-  function handleBurgerClick() {
-    setIsBurgerMenuOpen(!isBurgerMenuOpen);
-  }
 
   const arrMenu = [
     {
@@ -34,8 +27,7 @@ export const Header = () => {
   ];
 
   return (
-    <header
-      className={`${styles.header} ${isBurgerMenuOpen ? styles.opened : ''}`}>
+    <header className={`${styles.header} `}>
       <ul className={styles.header__menu}>
         {arrMenu.map((el, i) => (
           <li key={i} className={`${styles.link} ${styles.header__el_of}`}>
@@ -61,7 +53,7 @@ export const Header = () => {
       </ul>
 
       <ul className={styles.header__menu}>
-        <li className={styles.link}>
+        <li className={styles.header__link}>
           <Link
             href="/profile"
             className={` ${
@@ -77,7 +69,7 @@ export const Header = () => {
             />
           </Link>
         </li>
-        <li className={styles.link}>
+        <li className={styles.header__link}>
           <Link
             href="/cart"
             className={` ${
@@ -94,28 +86,7 @@ export const Header = () => {
           </Link>
         </li>
 
-        <Burger
-          isBurgerMenuOpen={isBurgerMenuOpen}
-          handleBurgerClick={handleBurgerClick}
-        />
-        <span className={styles.blur} />
-
-        <nav className={styles.menu}>
-          {arrMenu.map((el, i) => (
-            <li className={styles.el} key={i}>
-              <Link
-                href={el.link}
-                className={` ${
-                  pathname === el.link ? styles.header__link_active : ''
-                }`}>
-                {el.name}
-              </Link>
-            </li>
-          ))}
-
-          <li>USD</li>
-          <li>РУС</li>
-        </nav>
+        <BurgerMenu arrMenu={arrMenu} />
 
         <li className={`${styles.header__el_of} ${styles.link}`}>USD</li>
         <li className={`${styles.header__el_of} ${styles.link}`}>РУС</li>
