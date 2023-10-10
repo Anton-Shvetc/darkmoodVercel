@@ -6,40 +6,43 @@ import Cart from '../../public/icons/cart.svg';
 import Logo from '../../public/icons/logo.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Navigation } from '@/components/Navigation/Navigation';
+import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 
 export const Header = () => {
   const pathname = usePathname();
+
+  const arrMenu = [
+    {
+      name: 'FAQ',
+      link: '/questions',
+    },
+    {
+      name: 'ВАШ ЗАКАЗ',
+      link: '/order',
+    },
+    {
+      name: 'КАТАЛОГ',
+      link: '/catalog',
+    },
+  ];
+
   return (
-    <header className={styles.header}>
-      <ul>
-        <li className={styles.header__el_of}>
-          <Link
-            href="/questions"
-            className={` ${
-              pathname === '/questions' ? styles.header__link_active : ''
-            }`}>
-            FAQ
-          </Link>
-        </li>
-        <li className={styles.header__el_of}>
-          <Link
-            href="/order"
-            className={` ${
-              pathname === '/order' ? styles.header__link_active : ''
-            }`}>
-            ВАШ ЗАКАЗ
-          </Link>
-        </li>
-        <li className={styles.header__el_of}>
-          <Link
-            href="/catalog"
-            className={` ${
-              pathname === '/catalog' ? styles.header__link_active : ''
-            }`}>
-            КАТАЛОГ
-          </Link>
-        </li>
+    <header className={`${styles.header} `}>
+      <ul className={styles.header__menu}>
+        {arrMenu.map((el, i) => (
+          <li
+            key={i}
+            className={`${styles.header__link} ${styles.header__el_of}`}>
+            <Link
+              href={el.link}
+              className={` ${
+                pathname === el.link ? styles.header__link_active : ''
+              }`}>
+              {el.name}
+            </Link>
+          </li>
+        ))}
+
         <Link href="/">
           <Image
             className={styles.header__logo}
@@ -51,8 +54,8 @@ export const Header = () => {
         </Link>
       </ul>
 
-      <ul>
-        <li>
+      <ul className={styles.header__menu}>
+        <li className={styles.header__link}>
           <Link
             href="/profile"
             className={` ${
@@ -68,7 +71,7 @@ export const Header = () => {
             />
           </Link>
         </li>
-        <li>
+        <li className={styles.header__link}>
           <Link
             href="/cart"
             className={` ${
@@ -85,10 +88,14 @@ export const Header = () => {
           </Link>
         </li>
 
-        <Navigation />
+        <BurgerMenu arrMenu={arrMenu} />
 
-        <li className={styles.header__el_of}>USD</li>
-        <li className={styles.header__el_of}>РУС</li>
+        <li className={`${styles.header__el_of} ${styles.header__link}`}>
+          USD
+        </li>
+        <li className={`${styles.header__el_of} ${styles.header__link}`}>
+          РУС
+        </li>
       </ul>
     </header>
   );

@@ -28,34 +28,35 @@
     }
   }
 
-  ul {
+  &__menu {
     display: flex;
     padding: 0 3.13rem 1.88rem;
     border-bottom: 1px solid #ebebeb;
     z-index: 10;
-
     @include md-screen {
       align-items: center;
       width: 150px;
       padding: 10px 20px;
       height: 100%;
     }
+  }
 
-    li {
-      margin-right: 3.13rem;
-      @include md-screen {
-        margin-right: 1.25rem;
-      }
+  .header__link {
+    margin-right: 3.13rem;
+    @include md-screen {
+      margin-right: 1.25rem;
     }
-    li:last-of-type {
+
+    &:last-of-type {
       margin: 0;
     }
 
-    li:hover {
+    &:hover {
       // opacity: 0.4;
       cursor: pointer;
     }
   }
+
   &__icon {
     width: 24px;
     height: auto;
