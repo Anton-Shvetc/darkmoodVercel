@@ -30,7 +30,9 @@ export const Header = () => {
     <header className={`${styles.header} `}>
       <ul className={styles.header__menu}>
         {arrMenu.map((el, i) => (
-          <li key={i} className={`${styles.link} ${styles.header__el_of}`}>
+          <li
+            key={i}
+            className={`${styles.header__link} ${styles.header__el_of}`}>
             <Link
               href={el.link}
               className={` ${
@@ -88,8 +90,12 @@ export const Header = () => {
 
         <BurgerMenu arrMenu={arrMenu} />
 
-        <li className={`${styles.header__el_of} ${styles.link}`}>USD</li>
-        <li className={`${styles.header__el_of} ${styles.link}`}>РУС</li>
+        <li className={`${styles.header__el_of} ${styles.header__link}`}>
+          USD
+        </li>
+        <li className={`${styles.header__el_of} ${styles.header__link}`}>
+          РУС
+        </li>
       </ul>
     </header>
   );

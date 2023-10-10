@@ -1,10 +1,14 @@
+@import '../style.scss';
 .questions {
-  padding: 100px 0 160px;
+  padding: 6.25rem 0 10rem;
   border-bottom: 1px solid #c8c7c7;
   margin-bottom: 50px;
+  @include tb-screen {
+    padding: 50px 24px 120px;
+  }
   h2 {
     font-family: Copperplate;
-    font-size: 24px;
+    font-size: clamp(1rem, 0.824rem + 0.751vw, 1.5rem);
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -22,10 +26,10 @@
   span {
     color: #c8c7c7;
     font-family: Ubuntu;
-    font-size: 18px;
+    font-size: clamp(0.875rem, 0.787rem + 0.376vw, 1.125rem);
     font-style: normal;
     font-weight: 500;
-    line-height: 32px;
+    // line-height: 32px;
     margin-top: 20px;
     display: none;
   }
@@ -34,13 +38,14 @@
     border-radius: 12px;
     display: flex;
     padding: 90px 93px 100px 93px;
-    // display: inline-flex;
     flex-direction: column;
-    // align-items: flex-start;
-
     max-width: 700px;
     margin: 0 auto;
-    gap: 40px;
+    gap: 2.5rem;
+    @include tb-screen {
+      padding: 50px 12px;
+      gap: 25px;
+    }
   }
   li {
     border-bottom: #c8c7c7 1px solid;
@@ -49,6 +54,10 @@
     align-items: flex-start;
     display: flex;
     gap: 80px;
+    @include tb-screen {
+      padding: 0 0 20px;
+      gap: 0;
+    }
   }
 
   &__block {
