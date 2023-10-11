@@ -1,2 +1,206 @@
+@import '../style.scss';
+.profile {
+  padding: 50px 0 160px;
+  border-bottom: 1px solid #c8c7c7;
+  margin-bottom: 50px;
+  @include tb-screen {
+    padding: 50px 14px 120px;
+    margin-bottom: 60px;
+  }
 
+  &__content {
+    margin: 0 auto;
+    display: flex;
+    padding: 60px 200px 50px;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    max-width: 887px;
+    border-radius: 5px;
+    border: 1px solid #464646;
+    box-shadow: 4px 4px 4px 0px rgba(192, 192, 192, 0.1),
+      -4px -4px 4px 0px rgba(192, 192, 192, 0.1);
+    @include tb-screen {
+      padding: 60px 33px 50px;
+    }
+  }
 
+  h1 {
+    color: #fff;
+    font-family: Copperplate;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  &__checkbox {
+    border-radius: 5px;
+    border: 1px solid #c8c7c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    li {
+      padding: 10px;
+      border-radius: 3px;
+      color: #c8c7c7;
+      font-family: Copperplate;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    .active {
+      background: #c8c7c7;
+      color: #000;
+    }
+  }
+
+  &__orders {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    @include tb-screen {
+      gap: 50px;
+    }
+  }
+
+  &__order {
+    border-bottom: #c8c7c7 1px solid;
+    padding: 0 0 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    @include tb-screen {
+      padding: 0 0 30px;
+    }
+  }
+
+  h2 {
+    align-self: flex-start;
+    // color: #fff;
+    font-family: Ubuntu;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  &__title_active {
+    color: #fff;
+  }
+
+  &__title_inactive {
+    color: #c8c8c8;
+  }
+
+  &__head-order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    button {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+  }
+
+  &__more-info {
+    padding: 18px 52px 10px 0;
+    display: none;
+    width: 100%;
+    @include tb-screen {
+      padding: 40px 0 0;
+    }
+  }
+
+  h3 {
+    color: #c8c7c7;
+    font-family: Ubuntu;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 20px;
+  }
+
+  &__order-card {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    @include sm-screen {
+      flex-direction: column;
+    }
+  }
+
+  &__image {
+    display: flex;
+    width: 142px;
+    height: 142px;
+    flex-shrink: 0;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    border: 1px solid #c8c7c7;
+  }
+
+  &__order-info {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    li {
+      color: #828282;
+      font-family: Ubuntu;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      display: flex;
+      gap: 20px;
+    }
+    span {
+      color: #c8c7c7;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    button {
+      color: #c8c7c7;
+      font-family: Ubuntu;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      display: flex;
+      padding: 5px 10px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 24px;
+      border: 1px solid #c8c7c7;
+    }
+  }
+
+  &__text_active {
+    display: inline-block;
+  }
+
+  &__logout {
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: 1px solid #ebebeb;
+    color: #ebebeb;
+    font-family: Ubuntu;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+  }
+}
