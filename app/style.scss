@@ -8,6 +8,8 @@
     @content;
   }
 }
+
+//500 order history
 @mixin sm-screen {
   @media (max-width: 480px) {
     @content;
