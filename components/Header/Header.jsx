@@ -57,9 +57,11 @@ export const Header = () => {
       <ul className={styles.header__menu}>
         <li className={styles.header__link}>
           <Link
-            href="/profile"
+            href="/profile/user"
             className={` ${
-              pathname === '/profile' ? styles.header__icon_active : ''
+              pathname === '/profile/user' || pathname === '/profile/orders'
+                ? styles.header__icon_active
+                : ''
             }`}>
             <Image
               className={styles.header__icon}
