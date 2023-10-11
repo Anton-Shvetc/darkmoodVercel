@@ -3,10 +3,45 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
-  border: 1px solid hotpink;
   width: 100%;
   padding-top: 20px;
   @include tb-screen {
     padding-top: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h2 {
+    color: #fff;
+    font-family: Ubuntu;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 30px;
+    @include tb-screen {
+      margin-bottom: 50px;
+    }
+  }
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, 227px);
+    grid-row-gap: 30px;
+    justify-content: space-between;
+    @include tb-screen {
+      grid-template-columns: repeat(1, 227px);
+      grid-row-gap: 40px;
+      justify-content: center;
+    }
+  }
+  li {
+    color: #c8c7c7;
+    font-family: Ubuntu;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #464646;
   }
 }
