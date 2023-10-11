@@ -1,20 +1,6 @@
-"use client";
-import { ProductCard } from "@/components/Product/ProductCard";
-import { usePathname } from "next/navigation";
+import { ProductCard } from "@/components/ProductCard/ProductCard";
 
 export default function Product() {
-  const pathname = usePathname();
-  const idPath = pathname.replace("/catalog/", "");
-
-
-  const mockCardData = {
-    id: 1,
-    name: "Футболка Darkmood",
-    price: "49,99",
-    // imageUrl: imageUrl,
-  };
-
-
   return (
     <section className="container">
       <ProductCard />
