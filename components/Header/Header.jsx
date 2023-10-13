@@ -50,6 +50,7 @@ export const Header = () => {
             width="104px"
             height="100px"
             alt="Logo icon"
+            priority={true}
           />
         </Link>
       </ul>

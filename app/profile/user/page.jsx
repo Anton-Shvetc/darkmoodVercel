@@ -1,6 +1,7 @@
 'use client';
 import styles from './user.module.scss';
 import { useState } from 'react';
+import { useForm, handleSubmit } from 'react-hook-form';
 
 const dataUser = [
   {
@@ -29,6 +30,29 @@ export default function User() {
   const [isEditUser, setIsEditUser] = useState(false);
   const [isEditAddress, setIsEditAddress] = useState(false);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    watch,
+    setValue,
+  } = useForm({
+    mode: 'onChange',
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+    // reset();
+  };
+
+  // useEffect(() => {
+  //   const sub = watch((value, { name, type }) => {
+  //     console.log(value, name, type);
+  //   });
+  //   return () => sub.unsubscribe();
+  // }, [watch]);
+
   return (
     <ul className={styles.user}>
       <li>
@@ -37,16 +61,22 @@ export default function User() {
           <span onClick={() => setIsEditUser(!isEditUser)}>Изменить</span>
         </div>
 
-        <form>
+        <form onSubmit={() => onSubmit(e)}>
           <ul>
             {dataUser.map((el, i) => (
-              <li>
-                <label key={i}>
+              <li key={i}>
+                <label>
                   <h3>{el.name}</h3>
                   <input
                     disabled={!isEditUser}
                     className={isEditUser ? styles.active : ''}
+                    {...register('name', {
+                      required: 'Name is required field',
+                    })}
                   />
+                  {errors?.name && (
+                    <div style={{ color: 'red' }}>{errors.name.message}</div>
+                  )}
                 </label>
               </li>
             ))}
@@ -64,8 +94,8 @@ export default function User() {
         <form>
           <ul>
             {dataAddress.map((el, i) => (
-              <li>
-                <label key={i}>
+              <li key={i}>
+                <label>
                   <h3>{el.name}</h3>
                   <input
                     disabled={!isEditAddress}

@@ -14,7 +14,7 @@
   &__block-info {
     display: flex;
     gap: 10px;
-    align-items: end;
+    align-items: flex-end;
     margin-bottom: 30px;
     @include tb-screen {
       margin-bottom: 50px;
