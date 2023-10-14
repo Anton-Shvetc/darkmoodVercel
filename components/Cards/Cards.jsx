@@ -16,12 +16,10 @@ export const Cards = () => {
     { id: 5, name: "Футболка Darkmood", price: "49,99", imageUrl: imageUrl },
   ];
   return (
-    <div className={styles.container}>
       <div className={styles.cards}>
         {mockData.map((card) => {
           return <Card key={card.id} {...card} />;
         })}
       </div>
-    </div>
   );
 };
