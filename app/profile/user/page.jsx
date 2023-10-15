@@ -6,15 +6,23 @@ import { useForm, handleSubmit } from 'react-hook-form';
 const dataUser = [
   {
     name: 'ИМЯ',
+    nameInput: 'name',
+    type: 'text',
   },
   {
     name: 'ФАМИЛИЯ',
+    nameInput: 'LastName',
+    type: 'text',
   },
   {
     name: 'ОТЧЕСТВО',
+    nameInput: 'LastName',
+    type: 'text',
   },
   {
     name: 'ТЕЛЕФОН',
+    nameInput: 'phone',
+    type: 'number',
   },
 ];
 
@@ -61,7 +69,7 @@ export default function User() {
           <span onClick={() => setIsEditUser(!isEditUser)}>Изменить</span>
         </div>
 
-        <form onSubmit={() => onSubmit(e)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <ul>
             {dataUser.map((el, i) => (
               <li key={i}>
@@ -70,6 +78,8 @@ export default function User() {
                   <input
                     disabled={!isEditUser}
                     className={isEditUser ? styles.active : ''}
+                    type="text"
+                    // value="+7"
                     {...register('name', {
                       required: 'Name is required field',
                     })}
