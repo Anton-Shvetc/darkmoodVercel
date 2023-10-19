@@ -70,9 +70,21 @@ export default function Questions() {
             </div>
             <button onClick={() => handleClick(i)}>
               {isQuestionOpen.includes(i) ? (
-                <Image src={Minus} width="24px" height="24" alt="Minus icon" />
+                <Image
+                  src={Minus}
+                  width="24px"
+                  height="24"
+                  alt="Minus icon"
+                  priority={true}
+                />
               ) : (
-                <Image src={Plus} width="24px" height="24" alt="Plus icon" />
+                <Image
+                  src={Plus}
+                  width="24px"
+                  height="24"
+                  alt="Plus icon"
+                  priority={true}
+                />
               )}
             </button>
           </li>

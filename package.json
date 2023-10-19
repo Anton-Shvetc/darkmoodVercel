@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"cd backend && npm run develop\" \"next dev\" ",
+    "serve": "cd backend && npm run develop",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -13,11 +14,13 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-hook-form": "^7.47.0",
     "sass": "^1.68.0",
     "scss": "^0.2.4"
   },
   "devDependencies": {
     "autoprefixer": "latest",
+    "concurrently": "^8.2.1",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
