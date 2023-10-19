@@ -62,7 +62,7 @@
     }
 
     input {
-      color: #000;
+      color: #fff;
       font-family: Ubuntu;
       font-size: 14px;
       font-style: normal;
@@ -74,10 +74,17 @@
       background: none;
     }
 
+    span {
+      color: red;
+      font-size: 11px;
+      text-align: center;
+    }
+
     .active {
       background-color: #c8c7c7;
       border-radius: 5px;
       padding: 0 15px;
+      color: #000;
     }
 
     button {
@@ -96,6 +103,10 @@
       margin-top: 50px;
       width: 227px;
       align-self: center;
+    }
+    .not-valid {
+      background-color: gray;
+      color: #464646;
     }
   }
 }

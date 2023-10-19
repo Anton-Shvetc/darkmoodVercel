@@ -1,65 +1,85 @@
 'use client';
 import styles from './user.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, handleSubmit } from 'react-hook-form';
+import Form from '@/components/Form/Form';
 
 const dataUser = [
   {
     name: 'ИМЯ',
-    nameInput: 'name',
+    nameInput: 'firstName',
     type: 'text',
+    id: 'firstName',
+    error: 'Имя - обязательное поле!',
   },
   {
     name: 'ФАМИЛИЯ',
-    nameInput: 'LastName',
+    nameInput: 'lastName',
     type: 'text',
+    id: 'lastName',
+    error: 'Фамилия - обязательное поле!',
   },
   {
     name: 'ОТЧЕСТВО',
-    nameInput: 'LastName',
+    nameInput: 'patronymic',
     type: 'text',
+    id: 'patronymic',
+    error: 'Отчество - обязательное поле!',
   },
   {
     name: 'ТЕЛЕФОН',
     nameInput: 'phone',
-    type: 'number',
+    type: 'tel',
+    id: 'phone',
+    error: 'Введите корректный номер телефона!',
+    pattern: {
+      pattern: /^\+?[0-9]{10,14}$/i,
+      message: 'Некорректный формат телефона!',
+    },
   },
 ];
 
 const dataAddress = [
-  { name: 'СТРАНА' },
-  { name: 'КРАЙ/ОБЛАСТЬ/РЕГИОН' },
-  { name: 'ПОЧТОВЫЙ ИНДЕКС' },
-  { name: 'ГОРОД' },
-  { name: 'УЛИЦА, ДОМ, КВАРТИРА' },
+  {
+    name: 'СТРАНА',
+    nameInput: 'country',
+    type: 'text',
+    id: 'country',
+    error: 'Введите корректный номер телефона!',
+  },
+  {
+    name: 'КРАЙ/ОБЛАСТЬ/РЕГИОН',
+    nameInput: 'region',
+    type: 'text',
+    id: 'region',
+    error: 'Введите корректный номер телефона!',
+  },
+  {
+    name: 'ПОЧТОВЫЙ ИНДЕКС',
+    nameInput: 'postalCode',
+    type: 'text',
+    id: 'postalCode',
+    error: 'Введите корректный номер телефона!',
+  },
+  {
+    name: 'ГОРОД',
+    nameInput: 'city',
+    type: 'text',
+    id: 'city',
+    error: 'Введите корректный номер телефона!',
+  },
+  {
+    name: 'УЛИЦА, ДОМ, КВАРТИРА',
+    nameInput: 'address',
+    type: 'text',
+    id: 'address',
+    error: 'Введите корректный номер телефона!',
+  },
 ];
 
 export default function User() {
   const [isEditUser, setIsEditUser] = useState(false);
   const [isEditAddress, setIsEditAddress] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    watch,
-    setValue,
-  } = useForm({
-    mode: 'onChange',
-  });
-
-  const onSubmit = (data) => {
-    console.log(data);
-    // reset();
-  };
-
-  // useEffect(() => {
-  //   const sub = watch((value, { name, type }) => {
-  //     console.log(value, name, type);
-  //   });
-  //   return () => sub.unsubscribe();
-  // }, [watch]);
 
   return (
     <ul className={styles.user}>
@@ -68,31 +88,11 @@ export default function User() {
           <h2>Персональные даные</h2>
           <span onClick={() => setIsEditUser(!isEditUser)}>Изменить</span>
         </div>
-
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <ul>
-            {dataUser.map((el, i) => (
-              <li key={i}>
-                <label>
-                  <h3>{el.name}</h3>
-                  <input
-                    disabled={!isEditUser}
-                    className={isEditUser ? styles.active : ''}
-                    type="text"
-                    // value="+7"
-                    {...register('name', {
-                      required: 'Name is required field',
-                    })}
-                  />
-                  {errors?.name && (
-                    <div style={{ color: 'red' }}>{errors.name.message}</div>
-                  )}
-                </label>
-              </li>
-            ))}
-          </ul>
-          {isEditUser ? <button type="submit">Сохранить изменения</button> : ''}
-        </form>
+        <Form
+          arrInput={dataUser}
+          nameData={'userFormData'}
+          isEdit={isEditUser}
+        />
       </li>
 
       <li>
@@ -100,27 +100,11 @@ export default function User() {
           <h2>Адрес доставки</h2>
           <span onClick={() => setIsEditAddress(!isEditAddress)}>Изменить</span>
         </div>
-
-        <form>
-          <ul>
-            {dataAddress.map((el, i) => (
-              <li key={i}>
-                <label>
-                  <h3>{el.name}</h3>
-                  <input
-                    disabled={!isEditAddress}
-                    className={isEditAddress ? styles.active : ''}
-                  />
-                </label>
-              </li>
-            ))}
-          </ul>
-          {isEditAddress ? (
-            <button type="submit">Сохранить изменения</button>
-          ) : (
-            ''
-          )}
-        </form>
+        <Form
+          arrInput={dataAddress}
+          nameData={'addressFormData'}
+          isEdit={isEditAddress}
+        />
       </li>
     </ul>
   );
