@@ -10,6 +10,7 @@
 }
 
 //500 order history
+//400 cart
 @mixin sm-screen {
   @media (max-width: 480px) {
     @content;
