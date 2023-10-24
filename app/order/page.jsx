@@ -222,11 +222,13 @@ export default function Order() {
 
         <ul className={styles.order__products}>
           <h2>Ваш заказ</h2>
-          <ul className={styles.order__list}>
-            {arrProduct.map((product) => (
-              <li key={product.id}>{product.name}</li>
-            ))}
-          </ul>
+          <div>
+            <ul className={styles.order__list}>
+              {arrProduct.map((product) => (
+                <li key={product.id}>{product.name}</li>
+              ))}
+            </ul>
+          </div>
         </ul>
       </div>
     </div>
