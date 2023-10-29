@@ -3,6 +3,7 @@
     @content;
   }
 }
+
 @mixin tb-screen {
   @media (max-width: 800px) {
     @content;

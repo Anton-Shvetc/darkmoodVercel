@@ -18,7 +18,7 @@
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    left: 3%;
+    left: 0;
     right: 0;
     text-align: center;
     @include md-screen {
@@ -30,13 +30,31 @@
 
   &__menu {
     display: flex;
-    padding: 0 3.13rem 1.88rem;
     border-bottom: 1px solid #ebebeb;
     z-index: 10;
+    width: 370px;
+
     @include md-screen {
       align-items: center;
       width: 150px;
-      padding: 10px 20px;
+      height: 100%;
+    }
+  }
+
+  &__menu:first-of-type {
+    padding: 0 0 30px 50px;
+    justify-content: flex-start;
+    @include md-screen {
+      padding: 10px 0 10px 20px;
+      height: 100%;
+    }
+  }
+
+  &__menu:last-of-type {
+    padding: 0 50px 30px 0;
+    justify-content: flex-end;
+    @include md-screen {
+      padding: 10px 20px 10px 0;
       height: 100%;
     }
   }
