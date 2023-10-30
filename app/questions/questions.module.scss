@@ -25,7 +25,7 @@
 
   span {
     color: #c8c7c7;
-    font-family: Ubuntu;
+    font-family: var(--font-ubuntu);
     font-size: clamp(0.875rem, 0.787rem + 0.376vw, 1.125rem);
     font-style: normal;
     font-weight: 500;
