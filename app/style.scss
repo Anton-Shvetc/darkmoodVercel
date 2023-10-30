@@ -3,6 +3,7 @@
     @content;
   }
 }
+
 @mixin tb-screen {
   @media (max-width: 800px) {
     @content;
@@ -10,6 +11,7 @@
 }
 
 //500 order history
+//400 cart
 @mixin sm-screen {
   @media (max-width: 480px) {
     @content;
