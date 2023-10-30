@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ru">
       <Head />
-      <body>
+      <body className={ubuntuFont.variable}>
         <Header />
         <main>{children}</main>
         <Footer />

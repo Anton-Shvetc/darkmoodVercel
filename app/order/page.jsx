@@ -392,7 +392,7 @@ export default function Order() {
           </ul>
         )}
 
-        <ul className={styles.order__products}>
+        <section className={styles.order__products}>
           <h2>Ваш заказ</h2>
           <div className={styles.order__container}>
             <ul className={styles.order__list}>
@@ -423,7 +423,7 @@ export default function Order() {
               ))}
             </ul>
           </div>
-        </ul>
+        </section>
       </div>
     </div>
   );

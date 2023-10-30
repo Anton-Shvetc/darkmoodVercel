@@ -20,7 +20,7 @@
   p {
     color: #aeaeae;
     text-align: right;
-    font-family: Ubuntu;
+    font-family: var(--font-ubuntu);
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
@@ -44,7 +44,7 @@
 
     h2 {
       color: #ebebeb;
-      font-family: Ubuntu;
+      font-family: var(--font-ubuntu);
       font-size: 20px;
       font-style: normal;
       font-weight: 400;
@@ -132,7 +132,7 @@
 
       h3 {
         color: #c8c7c7;
-        font-family: Ubuntu;
+        font-family: var(--font-ubuntu);
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
@@ -162,7 +162,7 @@
 
         p {
           color: #828282;
-          font-family: Ubuntu;
+          font-family: var(--font-ubuntu);
           font-size: 14px;
           font-style: normal;
           font-weight: 400;
@@ -173,7 +173,7 @@
 
         span {
           color: var(--C8C7C7, #c8c7c7);
-          font-family: Ubuntu;
+          font-family: var(--font-ubuntu);
           font-size: 16px;
           font-style: normal;
           font-weight: 500;
@@ -188,7 +188,7 @@
           border: 1px solid#c8c7c7;
 
           color: #c8c7c7;
-          font-family: Ubuntu;
+          font-family: var(--font-ubuntu);
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
@@ -275,7 +275,7 @@
 
   h3 {
     color: #c8c7c7;
-    font-family: Ubuntu;
+    font-family: var(--font-ubuntu);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -284,7 +284,7 @@
   }
 
   input {
-    font-family: Ubuntu;
+    font-family: var(--font-ubuntu);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -299,7 +299,7 @@
 
   span {
     color: #ff3939;
-    font-family: Ubuntu;
+    font-family: var(--font-ubuntu);
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -320,14 +320,12 @@
     background: #ebebeb;
     color: #000;
 
-    color: #000;
-
-    font-family: Ubuntu;
+    font-family: var(--font-ubuntu);
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 30px;
-
+    white-space: nowrap;
     width: 198px;
     height: 50px;
     align-self: center;
@@ -352,7 +350,7 @@
   }
   p {
     color: #c8c7c7;
-    font-family: Ubuntu;
+    font-family: var(--font-ubuntu);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -414,7 +412,7 @@
   &__back {
     color: #c8c7c7;
     cursor: pointer;
-    font-family: Ubuntu;
+    font-family: var(--font-ubuntu);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

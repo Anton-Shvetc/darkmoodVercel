@@ -12,10 +12,25 @@ const arrProduct = [
     name: 'Футболка DARKMOOD',
     price: 46.9,
     imageUrl: imageUrl,
+    size: 'XS',
   },
-  { id: 2, name: 'Футболка DARKMOOD', price: 40.99, imageUrl: imageUrl },
-  { id: 3, name: 'Футболка DARKMOOD', price: 49.8, imageUrl: imageUrl },
+  {
+    id: 2,
+    name: 'Футболка DARKMOOD',
+    price: 40.99,
+    imageUrl: imageUrl,
+    size: 'S',
+  },
+  {
+    id: 3,
+    name: 'Футболка DARKMOOD',
+    price: 49.8,
+    imageUrl: imageUrl,
+    size: 'M',
+  },
 ];
+
+const dataSize = ['XS', 'S', 'M', 'L', 'XL'];
 
 export default function Cart({ isCartOpen, handleCloseCart }) {
   const [promoCode, setPromoCode] = useState('');
@@ -102,7 +117,47 @@ export default function Cart({ isCartOpen, handleCloseCart }) {
 
         <ul className={styles.cart__list}>
           {arrProduct.map((product) => (
-            <li key={product.id}>{product.name}</li>
+            // <li key={product.id}>{product.name}</li>
+            <li key={product.id}>
+              <div className={styles.product__title}>
+                <h3>{product.name}</h3>
+                <button>{`${product.price} USD`}</button>
+              </div>
+
+              <div className={styles.product__content}>
+                <div className={styles.product__image}>
+                  <Image
+                    src={imageUrl}
+                    width="100px"
+                    height="100px"
+                    alt="Product image"
+                    priority={true}
+                  />
+                </div>
+                <div className={styles.product__info}>
+                  <p>Размер:</p>
+                  <ul className={styles.product__size}>
+                    {dataSize.map((size, i) => (
+                      <li
+                        key={i}
+                        className={
+                          product.size === size ? styles.product__active : ''
+                        }>
+                        {size}
+                      </li>
+                    ))}
+                  </ul>
+                  <p>Количество:</p>
+                  <div className={styles.product__counter}>
+                    <span>-</span>
+                    <div className={styles.count}>
+                      <span>1</span>
+                    </div>
+                    <span>+</span>
+                  </div>
+                </div>
+              </div>
+            </li>
           ))}
         </ul>
 

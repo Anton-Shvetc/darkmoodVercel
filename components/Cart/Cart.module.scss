@@ -20,10 +20,11 @@
 .cart {
   z-index: 10;
   width: 380px;
-  min-height: 100vh;
+  height: auto;
+  padding-bottom: 40px;
   flex-shrink: 0;
   top: 0;
-  position: fixed;
+  position: absolute;
   z-index: 5;
   right: -380px;
   transition: right 0.3s ease-in-out;
@@ -42,7 +43,7 @@
 
     span {
       color: #000;
-      font-family: Ubuntu;
+      font-family: var(--font-ubuntu);
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
@@ -74,15 +75,146 @@
   }
 
   &__list {
-    margin: 0 auto;
-    width: 266px;
+    margin: 0;
+    // width: 266px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
     li {
-      padding: 15px 0 20px;
+      padding: 0 0 15px;
       color: #000;
       border-bottom: 1px solid #c8c7c7;
+      width: 100%;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      gap: 20px;
+      // justify-content: space-between;
+      // align-items: center;
+      flex-direction: column;
+      // &:last-of-type {
+      //   border-bottom: none;
+      // }
+
+      .product__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        white-space: nowrap;
+
+        h3 {
+          color: #000;
+          font-family: var(--font-ubuntu);
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+
+        button {
+          padding: 5px 10px;
+          justify-content: center;
+          align-items: center;
+          border-radius: 24px;
+          border: 1px solid #232323;
+          color: #232323;
+          font-family: var(--font-ubuntu);
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+      }
+
+      .product__content {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+      }
+
+      .product__image {
+        display: flex;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        border: 1px solid #000;
+        width: 135px;
+        height: 135px;
+      }
+
+      .product__info {
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+
+        p {
+          color: #828282;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          color: #828282;
+          font-family: var(--font-ubuntu);
+        }
+        .product__size {
+          display: flex;
+          gap: 5px;
+          li {
+            color: #d9d9d9;
+            padding: 0;
+            text-align: center;
+            font-family: Inter;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            display: flex;
+            width: 29px;
+            height: 29px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100px;
+            border: 2px solid #d9d9d9;
+          }
+
+          .product__active {
+            color: #232323;
+            border: 2px solid #232323;
+          }
+        }
+
+        .product__counter {
+          border-radius: 24px;
+          border: 2px solid #232323;
+          display: flex;
+          width: 101px;
+          height: 33px;
+          padding: 0 8px;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          background-color: #232323;
+
+          span {
+            color: white;
+            margin-bottom: 3px;
+          }
+
+          .count {
+            width: 40px;
+            height: 100%;
+            background-color: #ebebeb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span {
+              color: #232323;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -97,7 +229,7 @@
     gap: 30px;
     h3 {
       color: #828282;
-      font-family: Ubuntu;
+      font-family: var(--font-ubuntu);
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
@@ -139,7 +271,7 @@
       button {
         cursor: pointer;
         color: #fff;
-        font-family: Ubuntu;
+        font-family: var(--font-ubuntu);
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
@@ -170,7 +302,7 @@
     p {
       color: #232323;
       text-align: right;
-      font-family: Ubuntu;
+      font-family: var(--font-ubuntu);
       font-size: 16px;
       font-style: normal;
       font-weight: 700;
@@ -180,7 +312,7 @@
     button {
       cursor: pointer;
       color: #c8c7c7;
-      font-family: Ubuntu;
+      font-family: var(--font-ubuntu);
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
