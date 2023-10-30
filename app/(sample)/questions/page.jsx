@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
-import Plus from '../../public/icons/plus.svg';
-import Minus from '../../public/icons/minus.svg';
+import Plus from '@/public/icons/plus.svg';
+import Minus from '@/public/icons/minus.svg';
 import styles from './questions.module.scss';
 import { useState } from 'react';
 

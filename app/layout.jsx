@@ -1,8 +1,9 @@
-import { Header } from '@/components/Header/Header';
+// import { Header } from '@/components/Header/Header';
 import './globals.css';
-import { Footer } from '@/components/Footer/Footer';
+// import { Footer } from '@/components/Footer/Footer';
 import Head from './head';
 import { Ubuntu } from 'next/font/google';
+// import { Layout } from '@/components/Layout/Layout';
 
 export const metadata = {
   title: 'Darkmode',
@@ -19,11 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ru">
       <Head />
-      <body className={ubuntuFont.variable}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <body className={ubuntuFont.variable}>{children}</body>
     </html>
   );
 }

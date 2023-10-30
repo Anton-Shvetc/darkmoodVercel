@@ -34,12 +34,9 @@ const dataSize = ['XS', 'S', 'M', 'L', 'XL'];
 
 export default function Cart({ isCartOpen, handleCloseCart }) {
   const [promoCode, setPromoCode] = useState('');
-
   const [price, setPrice] = useState(0);
-
   const [valueDiscount, setValueDiscount] = useState(0);
   const [typeDiscount, setTypeDiscount] = useState('');
-
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   function applyDiscount(price, type, value) {
@@ -87,6 +84,14 @@ export default function Cart({ isCartOpen, handleCloseCart }) {
     //перенаправить на стр заказа
   };
 
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isCartOpen]);
+
   return (
     <>
       <span
@@ -97,7 +102,7 @@ export default function Cart({ isCartOpen, handleCloseCart }) {
       <div
         onMouseLeave={() => handleCloseCart()}
         className={`${styles.cart} ${isCartOpen ? styles.open : ''}`}>
-        <div className={styles.cart__exit}>
+        <div onClick={() => handleCloseCart()} className={styles.cart__exit}>
           <Image
             className={styles.cart__icon}
             src={Arrow}
