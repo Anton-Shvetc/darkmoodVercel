@@ -2,7 +2,7 @@
 import styles from './Cart.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-import Arrow from '../../public/icons/arrow-cart.svg';
+import Arrow from '@/public/icons/arrow-cart.svg';
 import imageUrl from '@/public/images/card-img.png';
 import { useState, useEffect } from 'react';
 
@@ -34,12 +34,9 @@ const dataSize = ['XS', 'S', 'M', 'L', 'XL'];
 
 export default function Cart({ isCartOpen, handleCloseCart }) {
   const [promoCode, setPromoCode] = useState('');
-
   const [price, setPrice] = useState(0);
-
   const [valueDiscount, setValueDiscount] = useState(0);
   const [typeDiscount, setTypeDiscount] = useState('');
-
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   function applyDiscount(price, type, value) {
@@ -97,7 +94,7 @@ export default function Cart({ isCartOpen, handleCloseCart }) {
       <div
         onMouseLeave={() => handleCloseCart()}
         className={`${styles.cart} ${isCartOpen ? styles.open : ''}`}>
-        <div className={styles.cart__exit}>
+        <div onClick={() => handleCloseCart()} className={styles.cart__exit}>
           <Image
             className={styles.cart__icon}
             src={Arrow}

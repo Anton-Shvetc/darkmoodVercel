@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import imageUrl from '@/public/images/card-img.png';
-import MasterCard from '../../public/icons/pay/master-card.svg';
-import ApplePay from '../../public/icons/pay/apple-pay.svg';
-import Mir from '../../public/icons/pay/mir.svg';
-import GooglePay from '../../public/icons/pay/google-pay.svg';
-import PayPal from '../../public/icons/pay/pay-pal.svg';
-import Visa from '../../public/icons/pay/visa.svg';
-import Arrow from '../../public/icons/arrow-white.svg';
+import MasterCard from '@/public/icons/pay/master-card.svg';
+import ApplePay from '@/public/icons/pay/apple-pay.svg';
+import Mir from '@/public/icons/pay/mir.svg';
+import GooglePay from '@/public/icons/pay/google-pay.svg';
+import PayPal from '@/public/icons/pay/pay-pal.svg';
+import Visa from '@/public/icons/pay/visa.svg';
+import Arrow from '@/public/icons/arrow-white.svg';
 
 const dataOrder = [
   {

@@ -8,7 +8,7 @@ import Visa from '../../public/icons/footer/visa.svg';
 import Mastercard from '../../public/icons/footer/mastercard.svg';
 import Privat from '../../public/icons/footer/privat.svg';
 import Wayforpay from '../../public/icons/footer/wayforpay.svg';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import Link from 'next/link';
 import { Roboto_Slab } from 'next/font/google';
 import { useState, useEffect } from 'react';
@@ -35,8 +35,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer
-      className={classNames(`${RobotoSlabFont.variable}`, `${styles.footer}`)}>
+    <footer className={`${RobotoSlabFont.variable} ${styles.footer}`}>
       <div className={styles.footer__top}>
         <div className={styles.footer__left}>
           <ul className={styles.footer__links}>

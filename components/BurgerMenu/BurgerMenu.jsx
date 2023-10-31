@@ -3,7 +3,7 @@ import styles from './BurgerMenu.module.scss';
 import Link from 'next/link';
 import { Burger } from '@/components/Burger/Burger';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const BurgerMenu = ({ arrMenu }) => {
   const pathname = usePathname();
@@ -13,6 +13,14 @@ export const BurgerMenu = ({ arrMenu }) => {
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
   }
 
+  useEffect(() => {
+    if (isBurgerMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isBurgerMenuOpen]);
+
   return (
     <>
       <Burger
@@ -20,6 +28,7 @@ export const BurgerMenu = ({ arrMenu }) => {
         handleBurgerClick={handleBurgerClick}
       />
       <span
+        onClick={handleBurgerClick}
         className={`${styles.blur} ${
           isBurgerMenuOpen ? styles.blur_opened : ''
         }`}

@@ -7,7 +7,7 @@ import Logo from '../../public/icons/logo.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Cart from '../Cart/Cart';
 
 const arrMenu = [
@@ -40,6 +40,14 @@ export const Header = () => {
       setIsCartOpen(false);
     }
   };
+
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isCartOpen]);
 
   return (
     <header className={`${styles.header} `}>
