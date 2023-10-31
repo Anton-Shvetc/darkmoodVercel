@@ -1,5 +1,5 @@
-import { Cards } from "@/components/Cards/Cards";
-import styles from "./catalog.module.scss";
+import { Cards } from '@/components/Cards/Cards';
+import styles from './catalog.module.scss';
 
 export default function Catalog() {
   return (

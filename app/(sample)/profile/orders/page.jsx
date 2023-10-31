@@ -1,9 +1,9 @@
 'use client';
 import styles from './orders.module.scss';
 import Image from 'next/image';
-import Plus from '../../../public/icons/plus.svg';
-import Minus from '../../../public/icons/minus.svg';
-import Product from '../../../public/images/card-img.png';
+import Plus from '@/public/icons/plus.svg';
+import Minus from '@/public/icons/minus.svg';
+import Product from '@/public/images/card-img.png';
 import { useState } from 'react';
 
 const arrQuestions = [
