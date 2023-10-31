@@ -2,7 +2,7 @@
 import styles from './Cart.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-import Arrow from '../../public/icons/arrow-cart.svg';
+import Arrow from '@/public/icons/arrow-cart.svg';
 import imageUrl from '@/public/images/card-img.png';
 import { useState, useEffect } from 'react';
 
@@ -83,14 +83,6 @@ export default function Cart({ isCartOpen, handleCloseCart }) {
     //сумма заказа и товары
     //перенаправить на стр заказа
   };
-
-  useEffect(() => {
-    if (isCartOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isCartOpen]);
 
   return (
     <>
