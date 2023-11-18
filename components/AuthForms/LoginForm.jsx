@@ -11,9 +11,34 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset({ email: "", password: "", confirmPassword: "" });
+  const onSubmit = async (data) => {
+    try {
+      const identifier = data.email;
+      const password = data.password;
+
+      console.log(identifier, password);
+      let response = await fetch(
+        "https://squid-app-ensv5.ondigitalocean.app/api/auth/local",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify({ identifier, password }),
+        }
+      );
+      let result = await response.json();
+
+      if (result.user) {
+        alert("Авторизация прошла успешно");
+      }
+      if (result.errors) {
+        alert(result.error.message);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    // reset({ email: "", password: ""});
   };
 
   return (
@@ -35,7 +60,6 @@ export const LoginForm = () => {
           type="password"
           {...register("password", {
             required: "Пароль обязателен",
-
           })}
         />
         {errors.password && <span>{errors.password.message}</span>}

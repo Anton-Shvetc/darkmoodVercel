@@ -12,7 +12,7 @@ export const RegisterForm = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+   
 
     try {
       let response = await fetch(
