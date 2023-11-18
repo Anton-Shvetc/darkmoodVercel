@@ -1,8 +1,8 @@
 
 'use client'
 import styles from "./authorization.module.scss";
-// import {RegisterForm} from "@/components/AuthForms/RegisterForm"
-// import { LoginForm } from "@/components/AuthForms/LoginForm";
+import {RegisterForm} from "@/components/AuthForms/RegisterForm"
+import { LoginForm } from "@/components/AuthForms/LoginForm";
 import { useState } from "react";
 
 export default function Authorization() {
@@ -21,7 +21,7 @@ export default function Authorization() {
               : styles.tab
           }
         >
-          {" "}
+
           Войти
         </div>
         <div
@@ -38,7 +38,7 @@ export default function Authorization() {
         </div>
       </div>
 
-      {/* {activeTab === "login" ? (
+      {activeTab === "login" ? (
         <>
           <h2 className={styles.title}>Войти</h2>
           <LoginForm />
@@ -48,7 +48,7 @@ export default function Authorization() {
           <h2 className={styles.title}>Регистрация</h2>
           <RegisterForm />
         </>
-      )} */}
+      )}
     </section>
   );
 }
