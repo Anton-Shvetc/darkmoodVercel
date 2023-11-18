@@ -1,7 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
 import styles from "./AuthForms.module.scss";
-import { redirect } from "next/navigation";
 
 export const RegisterForm = () => {
   const {
@@ -12,13 +11,51 @@ export const RegisterForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    reset({ email: "", password: "", confirmPassword: "" });
+
+    try {
+      let response = await fetch(
+        "https://squid-app-ensv5.ondigitalocean.app/api/auth/local/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      let result = await response.json();
+
+      if (result.user) {
+        alert("Регистрация прошла успешно");
+      }
+      if (result.errors) {
+        alert(result.error.message);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    reset({ username: "", email: "", password: "", confirmPassword: "" });
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <div>
+        <label>Имя</label>
+        <input
+          type="text"
+          {...register("username", {
+            required: "Обязателеное поле",
+            minLength: {
+              value: 3,
+              message: "Минимальная длина имени: 3 символова",
+            },
+          })}
+        />
+        {errors.username && <span>{errors.username.message}</span>}
+      </div>
       <div>
         <label>Email</label>
         <input
