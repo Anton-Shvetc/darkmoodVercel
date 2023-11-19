@@ -1,6 +1,8 @@
 "use client";
 import { useForm } from "react-hook-form";
 import styles from "./AuthForms.module.scss";
+import googleIcon from "@/public/icons/google.svg"
+import Image from "next/image";
 
 export const LoginForm = () => {
   const {
@@ -64,6 +66,12 @@ export const LoginForm = () => {
         />
         {errors.password && <span>{errors.password.message}</span>}
       </div>
+      <div className={styles.form__optional}>
+        <div>
+          <label> Чужой компьютер</label>
+        </div>
+        <div> Забыли Пароль?</div>
+      </div>
 
       <button className={styles.button} type="submit">
         Войти
@@ -73,7 +81,10 @@ export const LoginForm = () => {
         type="button"
         href="#"
       >
-        Войти через Google
+        <span>
+          <Image src={googleIcon} width={0} height={0} alt="google"/>
+        </span>
+        Зарегистрироваться через Google
       </button>
     </form>
   );

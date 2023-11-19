@@ -1,6 +1,8 @@
 "use client";
 import { useForm } from "react-hook-form";
 import styles from "./AuthForms.module.scss";
+import googleIcon from "@/public/icons/google.svg";
+import Image from "next/image";
 
 export const RegisterForm = () => {
   const {
@@ -106,7 +108,10 @@ export const RegisterForm = () => {
         type="button"
         href="#"
       >
-        Войти через Google
+        <span>
+          <Image src={googleIcon} width={0} height={0} alt="google" />
+        </span>
+        Зарегистрироваться через Google
       </button>
     </form>
   );
