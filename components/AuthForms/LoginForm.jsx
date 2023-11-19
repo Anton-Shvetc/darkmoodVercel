@@ -1,9 +1,10 @@
 "use client";
 import { useForm } from "react-hook-form";
 import styles from "./AuthForms.module.scss";
-import googleIcon from "@/public/icons/google.svg"
+import googleIcon from "@/public/icons/google.svg";
 import Image from "next/image";
-
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 export const LoginForm = () => {
   const {
     register,
@@ -12,13 +13,15 @@ export const LoginForm = () => {
     watch,
     formState: { errors },
   } = useForm();
+  const router = useRouter();
 
   const onSubmit = async (data) => {
-    try {
-      const identifier = data.email;
-      const password = data.password;
+    // Установить время жизни куки при чеке - чужой компьютер
+    // setCookie("user", jwt, { maxAge: 60 * 60 });
 
-      console.log(identifier, password);
+    const identifier = data.email;
+    const password = data.password;
+    try {
       let response = await fetch(
         "https://squid-app-ensv5.ondigitalocean.app/api/auth/local",
         {
@@ -32,15 +35,17 @@ export const LoginForm = () => {
       let result = await response.json();
 
       if (result.user) {
+        const jwt = result.jwt;
+        setCookie("user", jwt);
         alert("Авторизация прошла успешно");
+        router.push("/profile/user");
       }
-      if (result.errors) {
+      if (result.error) {
         alert(result.error.message);
       }
     } catch (err) {
       console.log(err);
     }
-    // reset({ email: "", password: ""});
   };
 
   return (
@@ -82,7 +87,7 @@ export const LoginForm = () => {
         href="#"
       >
         <span>
-          <Image src={googleIcon} width={0} height={0} alt="google"/>
+          <Image src={googleIcon} width={0} height={0} alt="google" />
         </span>
         Зарегистрироваться через Google
       </button>
