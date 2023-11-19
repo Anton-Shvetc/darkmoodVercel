@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import styles from "./AuthForms.module.scss";
 import googleIcon from "@/public/icons/google.svg";
 import Image from "next/image";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 export const RegisterForm = () => {
   const {
@@ -12,7 +14,7 @@ export const RegisterForm = () => {
     watch,
     formState: { errors },
   } = useForm();
-
+  const router = useRouter();
   const onSubmit = async (data) => {
    
 
@@ -32,6 +34,11 @@ export const RegisterForm = () => {
 
       if (result.user) {
         alert("Регистрация прошла успешно");
+        const jwt = result.jwt;
+        setCookie("user", jwt);
+
+        router.push("/profile/user");
+
       }
       if (result.errors) {
         alert(result.error.message);
