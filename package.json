@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"cd backend && npm run develop\" \"next dev\" ",
+    "dev": "next dev",
     "serve": "cd backend && npm run develop",
     "build": "next build",
     "start": "next start",
@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "classnames": "^2.3.2",
+    "cookies-next": "^4.1.0",
     "next": "latest",
+    "next-auth": "^4.24.5",
     "react": "latest",
     "react-dom": "latest",
-    "react-hook-form": "^7.47.0",
+    "react-hook-form": "^7.48.2",
     "sass": "^1.68.0",
     "scss": "^0.2.4"
   },
