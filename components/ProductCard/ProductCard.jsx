@@ -34,7 +34,7 @@ useEffect(() => {
     const bearer = "Bearer " + bearer_token;
 
     // fetch("https://1e14-185-67-246-119.ngrok-free.app/api/testdatas", {
-         fetch("http://darkmode-serve/api/testdatas", {
+         fetch("http://darkmode-serve.ru:443/api/testdatas", {
            method: "GET",
            headers: {
              Authorization: bearer,
