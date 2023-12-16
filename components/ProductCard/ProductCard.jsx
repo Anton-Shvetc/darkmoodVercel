@@ -33,8 +33,8 @@ useEffect(() => {
       "c2e565482d2a21dfe2571318a30d2a50385cee24ae278a97a53f43d2e8ca6acb6340cfab1af90b2c56caa0b50b320274ec0fc607b3fa73007a6fe4f42c03d9e0ac36e10a3938033e87b004a6771e23c7b0ab17758d6761270092abba7f5b9d49213362e7566fb7e5e7231241d5bc71a7dc13e5ff9d582f302f7ca58f1b90b2b5";
     const bearer = "Bearer " + bearer_token;
 
-    // fetch("https://1e14-185-67-246-119.ngrok-free.app/api/testdatas", {
-         fetch("http://darkmode-serve.ru:443/api/testdatas", {
+    fetch("https://1e14-185-67-246-119.ngrok-free.app/api/testdatas", {
+        //  fetch("http://darkmode-serve.ru:443/api/testdatas", {
            method: "GET",
            headers: {
              Authorization: bearer,
