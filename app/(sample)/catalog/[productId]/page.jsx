@@ -1,13 +1,14 @@
 import { ProductCard } from "@/components/ProductCard/ProductCard";
+import styles from './product.module.scss'
+import { AdditionalSales } from "@/components/AdditionalSales/AdditionalSales";
 
 export default function Product() {
   return (
     <section className="container">
       <ProductCard />
 
-      <div>
-        <h2>Рекомендуем к покупке</h2>
-      </div>
+
+    <AdditionalSales />
     </section>
   );
 }
