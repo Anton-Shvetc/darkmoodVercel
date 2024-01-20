@@ -18,7 +18,8 @@ export default function Catalog() {
   ];
 
   return (
-    <section className={ styles.catalog}>
+    <section className={styles.container
+    }>
       <Cards data={mockData}/>
     </section>
   );
