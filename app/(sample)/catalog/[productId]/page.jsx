@@ -1,5 +1,5 @@
 import { ProductCard } from "@/components/ProductCard/ProductCard";
-import styles from './product.module.scss'
+import styles from "./product.module.scss";
 import { AdditionalSales } from "@/components/AdditionalSales/AdditionalSales";
 
 export default function Product() {
@@ -7,8 +7,7 @@ export default function Product() {
     <section className="container">
       <ProductCard />
 
-
-    {/* <AdditionalSales /> */}
+      {/* <AdditionalSales /> */}
     </section>
   );
 }
