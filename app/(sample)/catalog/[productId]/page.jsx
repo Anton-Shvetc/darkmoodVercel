@@ -8,7 +8,7 @@ export default function Product() {
       <ProductCard />
 
 
-    <AdditionalSales />
+    {/* <AdditionalSales /> */}
     </section>
   );
 }
