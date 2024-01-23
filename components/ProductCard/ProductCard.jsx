@@ -6,8 +6,7 @@ import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 // import { usePathname } from "next/navigation";
 
-import imageUrl from "@/public/images/card-img.png";
-
+import imageUrl from "@/public/images/main-card-img.png";
 export const ProductCard = () => {
   // const pathname = usePathname();
   // const idPath = pathname.replace("/catalog/", "");

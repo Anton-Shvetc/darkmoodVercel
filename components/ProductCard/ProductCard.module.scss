@@ -1,6 +1,8 @@
 @import "../../app/style.scss";
 
 .box {
+  margin-top: 50px;
+  margin-bottom: 110px;
   .title {
     font-family: Copperplate;
     font-size: 24px;
@@ -23,10 +25,17 @@
     .slider {
       width: 300px;
       width: 100%;
+  
+
+      @include tb-screen {
+        margin-bottom: 30px;
+      }
 
       img {
         object-fit: contain;
         object-position: center top;
+        max-width: 434px;
+        max-height: 556px;
       }
     }
 
@@ -130,13 +139,17 @@
           &__button,
           &__button_minus {
             cursor: pointer;
-            padding: 13px;
+            display: flex;
+            align-items: center;
+            font-size: 42px;
+            padding: 0 5px 5px 5px;
             color: #232323;
             background: #d9d9d9;
             border: 1px solid #d9d9d9;
             border-radius: 0 50px 50px 0;
           }
           &__button_minus {
+            padding: 0 10px 5px 10px;
             border-radius: 50px 0 0 50px;
           }
 
