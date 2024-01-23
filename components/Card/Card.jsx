@@ -12,16 +12,14 @@ const ubuntuFont = Ubuntu({
   variable: '--font-ubuntu',
 });
 
-export const Card = ({ name, price, imageUrl }) => {
+export const Card = ({ id, name, price, imageUrl }) => {
   return (
     <>
       <div className={classNames(`${ubuntuFont.variable}`, `${styles.card}`)}>
         <Link
-          href="#"
-          onClick={() => {
-            console.log('link');
-          }}
-          className={styles.card__moreLink}>
+          href={`/catalog/${id}`}
+          className={styles.card__moreLink}
+        >
           <div className={styles.card__moreBtn}>
             <span>Подробнее</span>
             <Image
@@ -44,13 +42,9 @@ export const Card = ({ name, price, imageUrl }) => {
             />
           </div>
         </Link>
-        <button
-          onClick={() => {
-            console.log('click');
-          }}
-          className={styles.card__button}>
+        <Link href={`/catalog/${id}`} className={styles.card__button}>
           {name}
-        </button>
+        </Link>
       </div>
     </>
   );
