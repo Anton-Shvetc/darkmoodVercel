@@ -1,4 +1,3 @@
-"use client";
 import { useForm } from "react-hook-form";
 import styles from "./AuthForms.module.scss";
 import googleIcon from "@/public/icons/google.svg";
@@ -14,24 +13,22 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm();
   const router = useRouter();
-
   const onSubmit = async (data) => {
     // Установить время жизни куки при чеке - чужой компьютер
     // setCookie("user", jwt, { maxAge: 60 * 60 });
 
+
+
     const identifier = data.email;
     const password = data.password;
     try {
-      let response = await fetch(
-        "https://squid-app-ensv5.ondigitalocean.app/api/auth/local",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-          },
-          body: JSON.stringify({ identifier, password }),
-        }
-      );
+      let response = await fetch("https://darkmode-serve.ru/api/auth/local", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify({ identifier, password }),
+      });
       let result = await response.json();
 
       if (result.user) {
@@ -75,7 +72,7 @@ export const LoginForm = () => {
         <div>
           <label> Чужой компьютер</label>
         </div>
-        <div> Забыли Пароль?</div>
+        <div> Забыли пароль?</div>
       </div>
 
       <button className={styles.button} type="submit">

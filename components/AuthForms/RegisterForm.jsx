@@ -19,18 +19,18 @@ export const RegisterForm = () => {
    
 
     try {
-      let response = await fetch(
-        "https://squid-app-ensv5.ondigitalocean.app/api/auth/local/register",
+      const response = await fetch(
+        "https://darkmode-serve.ru/api/auth/local/register",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json;charset=utf-8",
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify({"username": data.username , "email": data.email , "password": data.password}),
         }
       );
 
-      let result = await response.json();
+      const result = await response.json();
 
       if (result.user) {
         alert("Регистрация прошла успешно");

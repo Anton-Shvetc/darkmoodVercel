@@ -4,6 +4,9 @@ import imageUrl from "@/public/images/card-img.png";
 
 export default function Catalog() {
 
+
+  
+
   const mockData = [
     {
       id: 1,
