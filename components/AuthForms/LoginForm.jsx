@@ -72,7 +72,7 @@ export const LoginForm = () => {
         <div>
           <label> Чужой компьютер</label>
         </div>
-        <div> Забыли Пароль?</div>
+        <div> Забыли пароль?</div>
       </div>
 
       <button className={styles.button} type="submit">

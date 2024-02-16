@@ -52,10 +52,10 @@ const dataOrder = [
     type: 'email',
     id: 'email',
     error: 'Введите корректный email телефона!',
-    pattern: {
-      pattern: /^\+?[0-9]{10,14}$/i,
-      message: 'Некорректный email!',
-    },
+    // pattern: {
+    //   pattern: /^a-zA-Z0-9.!#$%&' \* +\/=?^\_`{|}~-+@a-zA-Z0-9?(?:\.a-zA-Z0-9?) * $/,
+    //   message: 'Некорректный email!',
+    // },
   },
   {
     name: 'СТРАНА',
@@ -309,10 +309,10 @@ export default function Order() {
   }, [watch()]);
 
   const onSubmit = (data) => {
-    localStorage.setItem(nameData, JSON.stringify(data));
-    setPreviousData(data);
+    // localStorage.setItem(nameData, JSON.stringify(data));
+    // setPreviousData(data);
     console.log('sub', data);
-    setIsPay(true);
+    // setIsPay(true);
   };
   return (
     <div className={styles.order}>
