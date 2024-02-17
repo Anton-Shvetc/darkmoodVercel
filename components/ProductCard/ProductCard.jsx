@@ -187,7 +187,7 @@ export const ProductCard = () => {
                     value={count}
                     onChange={handleInputChange}
                   /> */}
-                  <div {...register("count")} className={styles.count}>
+                  <div {...register("count", { value: count }) } className={styles.count}>
                     {count}
                   </div>
                   <div
