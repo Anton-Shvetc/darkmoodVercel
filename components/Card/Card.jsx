@@ -12,14 +12,12 @@ const ubuntuFont = Ubuntu({
   variable: '--font-ubuntu',
 });
 
-export const Card = ({ id, name, price, imageUrl }) => {
+export const Card = ({ id, attributes }) => {
+  const imageUrl = attributes.images.data ? 'https://darkmode-serve.ru' + attributes.images.data[0].attributes.url : "";
   return (
     <>
       <div className={classNames(`${ubuntuFont.variable}`, `${styles.card}`)}>
-        <Link
-          href={`/catalog/${id}`}
-          className={styles.card__moreLink}
-        >
+        <Link href={`/catalog/${id}`} className={styles.card__moreLink}>
           <div className={styles.card__moreBtn}>
             <span>Подробнее</span>
             <Image
@@ -31,19 +29,19 @@ export const Card = ({ id, name, price, imageUrl }) => {
             />
           </div>
 
-          <div className={styles.card__price}>{price} USD</div>
+          <div className={styles.card__price}>{attributes.price} USD</div>
           <div className={styles.card__img}>
             <Image
               src={imageUrl}
-              width="427px"
-              height="100%"
-              alt={name}
+              width={420}
+              height={200}
+              alt={attributes.title}
               priority={true}
             />
           </div>
         </Link>
         <Link href={`/catalog/${id}`} className={styles.card__button}>
-          {name}
+          {attributes.title}
         </Link>
       </div>
     </>
