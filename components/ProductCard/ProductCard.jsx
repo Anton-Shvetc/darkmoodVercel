@@ -11,12 +11,11 @@ export const ProductCard = () => {
   const pathname = usePathname();
   const idPath = pathname.replace("/catalog/", "");
 
-
   const { handleSubmit, register, setValue } = useForm();
   const [count, setCount] = useState(1);
   const [activeSize, setActiveSize] = useState("M");
 
-  const [isLoading, setIsLoading]= useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   const onSubmit = (data) => {
     // data.count = Number(data.count);
@@ -48,13 +47,12 @@ export const ProductCard = () => {
     const json = await response.json();
     console.log(json.data);
     setData(json.data);
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   useEffect(() => {
     getCardsData();
   }, []);
-
 
   const dataCard = {
     id: 1,
@@ -72,8 +70,8 @@ export const ProductCard = () => {
     images: [imageUrl, imageUrl, imageUrl],
   };
 
-  if(!isLoading && data.length <= 0) {
-    return <>Загрузка страницы</>
+  if (!isLoading && data.length <= 0) {
+    return <>Загрузка страницы</>;
   }
 
   return !isLoading && data ? (
@@ -90,10 +88,13 @@ export const ProductCard = () => {
             dynamicHeight={false}
             className={styles.mySwiper}
           >
-            {dataCard.images.map((item, index) => (
+            {data.attributes.images.data.map((item, index) => (
               <div key={index} className={styles.swipItem}>
                 <div className={styles.imgBox}>
-                  <img src={item.src} alt="slides" />
+                  <img
+                    src={`https://darkmode-serve.ru${item.attributes.url}`}
+                    alt="slides"
+                  />
                 </div>
               </div>
             ))}
