@@ -36,6 +36,7 @@ export const ProductCard = () => {
         ...formData,
         id: +idPath,
         title: data.attributes.title,
+        price: data.attributes.price,
         imageUrl: data.attributes.images.data[0].attributes.url,
       });
     } else {
@@ -44,6 +45,7 @@ export const ProductCard = () => {
             ...formData,
             id: +idPath,
             title: data.attributes.title,
+            price: data.attributes.price,
             imageUrl: data.attributes.images.data[0].attributes.url,
           })
         : (cartArray = [
@@ -51,6 +53,7 @@ export const ProductCard = () => {
               ...formData,
               id: +idPath,
               title: data.attributes.title,
+              price: data.attributes.price,
               imageUrl: data.attributes.images.data[0].attributes.url,
             },
           ]);
