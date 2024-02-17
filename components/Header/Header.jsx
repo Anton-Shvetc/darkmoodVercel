@@ -49,18 +49,29 @@ export const Header = () => {
     }
   }, [isCartOpen]);
 
+  const [cartCount, setCartCount] = useState("");
+  useEffect(() => {
+    setCartCount(
+      localStorage?.getItem("cart") && typeof window !== "undefined"
+        ? JSON.parse(localStorage?.getItem("cart")).length
+        : 0
+    );
+  }, []);
+
   return (
     <header className={`${styles.header} `}>
       <ul className={styles.header__menu}>
         {arrMenu.map((el, i) => (
           <li
             key={i}
-            className={`${styles.header__link} ${styles.header__el_of}`}>
+            className={`${styles.header__link} ${styles.header__el_of}`}
+          >
             <Link
               href={el.link}
               className={` ${
-                pathname === el.link ? styles.header__link_active : ''
-              }`}>
+                pathname === el.link ? styles.header__link_active : ""
+              }`}
+            >
               {el.name}
             </Link>
           </li>
@@ -83,10 +94,11 @@ export const Header = () => {
           <Link
             href="/profile/user"
             className={` ${
-              pathname === '/profile/user' || pathname === '/profile/orders'
+              pathname === "/profile/user" || pathname === "/profile/orders"
                 ? styles.header__icon_active
-                : ''
-            }`}>
+                : ""
+            }`}
+          >
             <Image
               className={styles.header__icon}
               src={User}
@@ -99,10 +111,12 @@ export const Header = () => {
         </li>
         <li
           className={styles.header__link}
-          onClick={() => {window.location.replace("/order");}}
+          onClick={() => {
+            window.location.replace("/order");
+          }}
           // onClick={() => handleOpenCart()}
           // onMouseEnter={() => handleOpenCart()}
-          >
+        >
           <Image
             className={styles.header__icon}
             src={CartIcon}
@@ -111,12 +125,15 @@ export const Header = () => {
             alt="Cart icon"
             priority={true}
           />
+          <span className={styles.header__icon_count}>
+            {cartCount && cartCount!==0 ? cartCount : ""}
+          </span>
         </li>
 
         {isCartOpen ? (
           <Cart handleCloseCart={handleCloseCart} isCartOpen={isCartOpen} />
         ) : (
-          ''
+          ""
         )}
 
         <BurgerMenu arrMenu={arrMenu} />

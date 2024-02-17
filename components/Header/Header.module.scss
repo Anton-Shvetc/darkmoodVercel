@@ -61,6 +61,7 @@
 
   .header__link {
     margin-right: 3.13rem;
+        position: relative;
     @include md-screen {
       margin-right: 1.25rem;
     }
@@ -78,6 +79,11 @@
   &__icon {
     width: 24px;
     height: auto;
+    &_count {
+      position: absolute;
+      top: -15px;
+      right: -5px;
+    }
   }
 
   &__el_of {
