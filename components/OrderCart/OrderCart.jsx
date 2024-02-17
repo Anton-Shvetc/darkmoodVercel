@@ -6,7 +6,6 @@ import imageUrl from "@/public/images/card-img.png";
 
 export const OrderCart = () => {
   const [arrProduct, setArrProduct] = useState([]);
-
   useEffect(() => {
     setArrProduct(
       localStorage?.getItem("cart") && typeof window !== "undefined"
@@ -14,6 +13,13 @@ export const OrderCart = () => {
         : []
     );
   }, []);
+
+  const handleDeleteProduct = (id) => {
+    const newCartArray = arrProduct.filter((cart) => cart.id !== id);
+    localStorage.setItem("cart", JSON.stringify(newCartArray));
+    setArrProduct(newCartArray);
+  };
+
 
   return (
     <div className={styles.order__container}>
@@ -24,9 +30,9 @@ export const OrderCart = () => {
             <div className={styles.product__content}>
               <div className={styles.product__image}>
                 <Image
-                  src={imageUrl}
-                  width="100px"
-                  height="100px"
+                  src={`https://darkmode-serve.ru${product.imageUrl}`}
+                  width={100}
+                  height={100}
                   alt="Product image"
                   priority={true}
                 />
@@ -38,8 +44,16 @@ export const OrderCart = () => {
                 <p>
                   Количество: <span>{product.count}</span>
                 </p>
+
                 <button>{`${product.price} USD`}</button>
               </div>
+              <button
+                onClick={() => {
+                  handleDeleteProduct(product.id);
+                }}
+              >
+                Удалить из корзины
+              </button>
             </div>
           </li>
         ))}
