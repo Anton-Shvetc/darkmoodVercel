@@ -319,7 +319,7 @@ export default function Order() {
       <h1>Оформление заказа</h1>
       <p>НОМЕР ЗАКАЗА: 95201</p>
       <div className={styles.order__content}>
-        {isPay ? (
+        {!isPay ? (
           <section className={styles.pay}>
             <h2>Система оплаты</h2>
 

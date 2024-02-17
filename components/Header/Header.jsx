@@ -99,8 +99,10 @@ export const Header = () => {
         </li>
         <li
           className={styles.header__link}
-          onClick={() => handleOpenCart()}
-          onMouseEnter={() => handleOpenCart()}>
+          onClick={() => {window.location.replace("/order");}}
+          // onClick={() => handleOpenCart()}
+          // onMouseEnter={() => handleOpenCart()}
+          >
           <Image
             className={styles.header__icon}
             src={CartIcon}
