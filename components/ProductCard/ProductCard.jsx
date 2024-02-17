@@ -17,9 +17,46 @@ export const ProductCard = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const onSubmit = (data) => {
-    // data.count = Number(data.count);
-    console.log("Добавлено в корзину:", data);
+  const [data, setData] = useState([]);
+
+  const onSubmit = (formData) => {
+    let cartArray = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : false;
+    let existingItem = cartArray
+      ? cartArray.find((item) => item.id == idPath)
+      : false;
+
+    if (existingItem && existingItem !== undefined) {
+      cartArray = cartArray.filter((cart) => {
+        return cart.id != idPath;
+      });
+
+      cartArray.push({
+        ...formData,
+        id: +idPath,
+        title: data.attributes.title,
+        imageUrl: data.attributes.images.data[0].attributes.url,
+      });
+    } else {
+      cartArray
+        ? cartArray.push({
+            ...formData,
+            id: +idPath,
+            title: data.attributes.title,
+            imageUrl: data.attributes.images.data[0].attributes.url,
+          })
+        : (cartArray = [
+            {
+              ...formData,
+              id: +idPath,
+              title: data.attributes.title,
+              imageUrl: data.attributes.images.data[0].attributes.url,
+            },
+          ]);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cartArray));
   };
 
   // const handleInputChange = (e) => {
@@ -27,8 +64,6 @@ export const ProductCard = () => {
   //   setCount(inputValue);
   //   setValue("count", inputValue);
   // };
-
-  const [data, setData] = useState([]);
 
   const getCardsData = async () => {
     const response = await fetch(
@@ -45,7 +80,6 @@ export const ProductCard = () => {
     );
 
     const json = await response.json();
-    console.log(json.data);
     setData(json.data);
     setIsLoading(false);
   };
