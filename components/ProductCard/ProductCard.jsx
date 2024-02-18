@@ -17,7 +17,7 @@ export const ProductCard = () => {
 
   const { handleSubmit, register, setValue } = useForm();
   const [count, setCount] = useState(1);
-  const [activeSize, setActiveSize] = useState("M");
+  const [activeSize, setActiveSize] = useState(0);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -212,17 +212,15 @@ export const ProductCard = () => {
               <p className={styles.label}>Выберите размер:</p>
 
               <ul className={styles.sizes}>
-                {data.attributes.sizes.map((size) => {
-                  const isActive =
-                    size.toLowerCase() === activeSize.toLocaleLowerCase();
-
+                {data.attributes.sizes.map((size, index) => {
+                  const isActive = index === activeSize;
                   return (
                     <li
                       className={isActive ? styles.size_active : styles.size}
                       key={size}
                       {...register("size", { value: activeSize })}
                       onClick={() => {
-                        setActiveSize(size);
+                        setActiveSize(index);
                         setValue("size", size);
                       }}
                     >
