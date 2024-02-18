@@ -33,6 +33,8 @@ export const LoginForm = () => {
 
       if (result.user) {
         const jwt = result.jwt;
+        const userData = result.user
+        localStorage.setItem("user", JSON.stringify(userData));
         setCookie("user", jwt);
         alert("Авторизация прошла успешно");
         router.push("/profile/user");
