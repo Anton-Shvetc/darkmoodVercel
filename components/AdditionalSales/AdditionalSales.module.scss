@@ -1,7 +1,10 @@
+@import "../../app/style.scss";
+
 .additionalSales {
   width: 100%;
   margin-top: 110px;
   margin-bottom: 160px;
+
   &__title {
     font-size: 24px;
     text-align: center;
@@ -9,7 +12,17 @@
   }
 
   &__cards {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    @include md-screen {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include tb-screen {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include sm-screen {
+      grid-template-columns: 1fr;
+    }
   }
 }

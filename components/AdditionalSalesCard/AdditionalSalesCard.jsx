@@ -6,7 +6,13 @@ export const AdditionalSalesCard = ({ data }) => {
 
   return (
     <div className={styles.additionalSalesCard}>
-      <Image src={imageUrl} width={207} height={244} alt="image" />
+      <Image
+        className={styles.additionalSalesCard__image}
+        src={imageUrl}
+        width={207}
+        height={244}
+        alt="image"
+      />
       <p className={styles.additionalSalesCard__price}>
         {data.attributes.price}
       </p>
