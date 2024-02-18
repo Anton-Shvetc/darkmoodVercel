@@ -161,7 +161,6 @@ export const ProductCard = () => {
               disableDotsControls={true}
               infinite={true}
               items={items}
-              responsive={{ items: 1 }}
               renderPrevButton={({ isDisabled }) => {
                 if (!isDisabled) {
                   return (
