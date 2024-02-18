@@ -15,8 +15,10 @@
     "next": "latest",
     "next-auth": "^4.24.5",
     "react": "latest",
+    "react-alice-carousel": "^2.8.0",
     "react-dom": "latest",
     "react-hook-form": "^7.47.0",
+    "react-icons": "^5.0.1",
     "react-responsive-carousel": "^3.2.23",
     "sass": "^1.68.0",
     "scss": "^0.2.4"
