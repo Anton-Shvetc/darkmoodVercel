@@ -1,4 +1,8 @@
 .additionalSalesCard {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
   &__image {
     margin: 0 auto;
   }

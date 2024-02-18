@@ -1,10 +1,14 @@
 "use client";
 import styles from "./ProductCard.module.scss";
-import { Carousel } from "react-responsive-carousel";
+// import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
+import { MdArrowForward } from "react-icons/md";
+import { MdArrowBack } from "react-icons/md";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
 
 import imageUrl from "@/public/images/main-card-img.png";
 export const ProductCard = () => {
@@ -60,7 +64,7 @@ export const ProductCard = () => {
     }
 
     localStorage.setItem("cart", JSON.stringify(cartArray));
-   window.location.reload();
+    window.location.reload();
   };
 
   // const handleInputChange = (e) => {
@@ -112,13 +116,27 @@ export const ProductCard = () => {
     return <>Загрузка страницы</>;
   }
 
+  const items =
+    !isLoading &&
+    data &&
+    data.attributes.images.data.map((item, index) => (
+      <div key={index} className={styles.swipItem}>
+        <div className={styles.imgBox}>
+          <img
+            src={`https://darkmode-serve.ru${item.attributes.url}`}
+            alt="slides"
+          />
+        </div>
+      </div>
+    ));
+
   return !isLoading && data ? (
     <div className={styles.box}>
       <h1 className={styles.title}>{data.attributes.title}</h1>
 
       <div className={styles.info}>
         <div className={styles.slider}>
-          <Carousel
+          {/* <Carousel
             showArrows={true}
             infiniteLoop={true}
             showStatus={false}
@@ -136,7 +154,50 @@ export const ProductCard = () => {
                 </div>
               </div>
             ))}
-          </Carousel>
+          </Carousel> */}
+          {!isLoading && (
+            <AliceCarousel
+              mouseTracking
+              disableDotsControls={true}
+              infinite={true}
+              items={items}
+              responsive={{ items: 1 }}
+              renderPrevButton={({ isDisabled }) => {
+                if (!isDisabled) {
+                  return (
+                    <p
+                      style={{
+                        fontSize: "34px",
+                        left: "0px",
+                        border: "1px solid #ffffff",
+                        borderRadius: "100%",
+                      }}
+                      className="p-1 absolute left-0 top-40"
+                    >
+                      <MdArrowBack />
+                    </p>
+                  );
+                }
+              }}
+              renderNextButton={({ isDisabled }) => {
+                if (!isDisabled) {
+                  return (
+                    <p
+                      style={{
+                        fontSize: "34px",
+                        right: "0px",
+                        border: "1px solid #ffffff",
+                        borderRadius: "100%",
+                      }}
+                      className="p-1 absolute right-0 top-40"
+                    >
+                      <MdArrowForward />
+                    </p>
+                  );
+                }
+              }}
+            />
+          )}
         </div>
         <div className={styles.description}>
           <div className={styles.price}>{data.attributes.price}</div>
@@ -191,7 +252,10 @@ export const ProductCard = () => {
                     value={count}
                     onChange={handleInputChange}
                   /> */}
-                  <div {...register("count", { value: count }) } className={styles.count}>
+                  <div
+                    {...register("count", { value: count })}
+                    className={styles.count}
+                  >
                     {count}
                   </div>
                   <div

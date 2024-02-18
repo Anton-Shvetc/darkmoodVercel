@@ -14,8 +14,9 @@
   }
 
   .info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 50px;
 
     @include tb-screen {
@@ -23,11 +24,11 @@
     }
 
     .slider {
-      width: 300px;
-      width: 100%;
-  
+      width: 50%;
 
+      display: flex;
       @include tb-screen {
+        width: 100%;
         margin-bottom: 30px;
       }
 
@@ -36,6 +37,7 @@
         object-position: center top;
         max-width: 434px;
         max-height: 556px;
+        margin: 0 auto;
       }
     }
 
