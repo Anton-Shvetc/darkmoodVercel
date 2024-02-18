@@ -1,10 +1,14 @@
-@import '../../style.scss';
+@import "../../style.scss";
 
 .container {
   width: 90%;
   margin: 0 auto;
   max-width: 1332px;
   margin-bottom: 160px;
+
+  @include md-screen {
+    margin-top: 50px;
+  }
 
   .box {
     padding-top: 40px;
