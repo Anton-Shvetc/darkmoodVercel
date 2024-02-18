@@ -1,23 +1,70 @@
 "use client";
 import styles from "./ProductCard.module.scss";
-import { Carousel } from "react-responsive-carousel";
+// import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
-// import { usePathname } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { usePathname } from "next/navigation";
+import { MdArrowForward } from "react-icons/md";
+import { MdArrowBack } from "react-icons/md";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
 
 import imageUrl from "@/public/images/main-card-img.png";
 export const ProductCard = () => {
-  // const pathname = usePathname();
-  // const idPath = pathname.replace("/catalog/", "");
+  const pathname = usePathname();
+  const idPath = pathname.replace("/catalog/", "");
 
   const { handleSubmit, register, setValue } = useForm();
   const [count, setCount] = useState(1);
-  const [activeSize, setActiveSize] = useState("M");
+  const [activeSize, setActiveSize] = useState(0);
 
-  const onSubmit = (data) => {
-    // data.count = Number(data.count);
-    console.log("Добавлено в корзину:", data);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [data, setData] = useState([]);
+
+  const onSubmit = (formData) => {
+    let cartArray = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : false;
+    let existingItem = cartArray
+      ? cartArray.find((item) => item.id == idPath)
+      : false;
+
+    if (existingItem && existingItem !== undefined) {
+      cartArray = cartArray.filter((cart) => {
+        return cart.id != idPath;
+      });
+
+      cartArray.push({
+        ...formData,
+        id: +idPath,
+        title: data.attributes.title,
+        price: data.attributes.price,
+        imageUrl: data.attributes.images.data[0].attributes.url,
+      });
+    } else {
+      cartArray
+        ? cartArray.push({
+            ...formData,
+            id: +idPath,
+            title: data.attributes.title,
+            price: data.attributes.price,
+            imageUrl: data.attributes.images.data[0].attributes.url,
+          })
+        : (cartArray = [
+            {
+              ...formData,
+              id: +idPath,
+              title: data.attributes.title,
+              price: data.attributes.price,
+              imageUrl: data.attributes.images.data[0].attributes.url,
+            },
+          ]);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cartArray));
+    window.location.reload();
   };
 
   // const handleInputChange = (e) => {
@@ -26,39 +73,29 @@ export const ProductCard = () => {
   //   setValue("count", inputValue);
   // };
 
-useEffect(() => {
-  // const fetchData = async () => {
-  //   const bearer_token =
-  //     "c2e565482d2a21dfe2571318a30d2a50385cee24ae278a97a53f43d2e8ca6acb6340cfab1af90b2c56caa0b50b320274ec0fc607b3fa73007a6fe4f42c03d9e0ac36e10a3938033e87b004a6771e23c7b0ab17758d6761270092abba7f5b9d49213362e7566fb7e5e7231241d5bc71a7dc13e5ff9d582f302f7ca58f1b90b2b5";
-  //   const bearer = "Bearer " + bearer_token;
+  const getCardsData = async () => {
+    const response = await fetch(
+      `https://darkmode-serve.ru/api/catalogs/${idPath}?populate=images`,
+      {
+        method: "GET",
+        headers: {
+          Authorization:
+            "Bearer 63e74db5f842896da84149d352ea13c224cb240781490ff12f574a960df9a33894190bc96d5a5fc11483876cf43cc0d682900d178466dec4afdda24df86930916d7c4eaeb620c766ff2eb4889158991490aa90b598e940ca6cd11d50d21179f6c0c3096510f83eb9d867abbaf3d97693c477735fb250af26014c044494064979",
 
-  //   fetch("https://1e14-185-67-246-119.ngrok-free.app/api/testdatas", {
-  //       //  fetch("http://darkmode-serve.ru:443/api/testdatas", {
-  //          method: "GET",
-  //          headers: {
-  //            Authorization: bearer,
-  //            "Content-Type": "application/json",
-  //          },
-  //        })
-  //          .then((response) => {
-  //            if (!response.ok) {
-  //              throw new Error("Network response was not ok");
-  //            }
-  //            return response.json();
-  //          })
-  //          .then((data) => {
-  //            console.log(data);
-  //          })
-  //          .catch((error) => {
-  //            console.error(
-  //              "There has been a problem with your fetch operation:",
-  //              error
-  //            );
-  //          });
-  // };
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-  // fetchData();
-}, []);
+    const json = await response.json();
+    setData(json.data);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    getCardsData();
+  }, []);
+
   const dataCard = {
     id: 1,
     title: "Футболка Darkmood",
@@ -75,13 +112,31 @@ useEffect(() => {
     images: [imageUrl, imageUrl, imageUrl],
   };
 
-  return (
+  if (!isLoading && data.length <= 0) {
+    return <>Загрузка страницы</>;
+  }
+
+  const items =
+    !isLoading &&
+    data &&
+    data.attributes.images.data.map((item, index) => (
+      <div key={index} className={styles.swipItem}>
+        <div className={styles.imgBox}>
+          <img
+            src={`https://darkmode-serve.ru${item.attributes.url}`}
+            alt="slides"
+          />
+        </div>
+      </div>
+    ));
+
+  return !isLoading && data ? (
     <div className={styles.box}>
-      <h1 className={styles.title}>{dataCard.title}</h1>
+      <h1 className={styles.title}>{data.attributes.title}</h1>
 
       <div className={styles.info}>
         <div className={styles.slider}>
-          <Carousel
+          {/* <Carousel
             showArrows={true}
             infiniteLoop={true}
             showStatus={false}
@@ -89,23 +144,67 @@ useEffect(() => {
             dynamicHeight={false}
             className={styles.mySwiper}
           >
-            {dataCard.images.map((item, index) => (
+            {data.attributes.images.data.map((item, index) => (
               <div key={index} className={styles.swipItem}>
                 <div className={styles.imgBox}>
-                  <img src={item.src} alt="slides" />
+                  <img
+                    src={`https://darkmode-serve.ru${item.attributes.url}`}
+                    alt="slides"
+                  />
                 </div>
               </div>
             ))}
-          </Carousel>
+          </Carousel> */}
+          {!isLoading && (
+            <AliceCarousel
+              mouseTracking
+              disableDotsControls={true}
+              infinite={true}
+              items={items}
+              responsive={{ items: 1 }}
+              renderPrevButton={({ isDisabled }) => {
+                if (!isDisabled) {
+                  return (
+                    <p
+                      style={{
+                        fontSize: "34px",
+                        left: "0px",
+                        border: "1px solid #ffffff",
+                        borderRadius: "100%",
+                      }}
+                      className="p-1 absolute left-0 top-40"
+                    >
+                      <MdArrowBack />
+                    </p>
+                  );
+                }
+              }}
+              renderNextButton={({ isDisabled }) => {
+                if (!isDisabled) {
+                  return (
+                    <p
+                      style={{
+                        fontSize: "34px",
+                        right: "0px",
+                        border: "1px solid #ffffff",
+                        borderRadius: "100%",
+                      }}
+                      className="p-1 absolute right-0 top-40"
+                    >
+                      <MdArrowForward />
+                    </p>
+                  );
+                }
+              }}
+            />
+          )}
         </div>
         <div className={styles.description}>
-          <div className={styles.price}>{dataCard.price}</div>
+          <div className={styles.price}>{data.attributes.price} USD</div>
           <div className={styles.subTitle}>{dataCard.subTitle}</div>
           <div className={styles.description__text}>{dataCard.description}</div>
           <div className={styles.structure}>
-            <p>{dataCard.fabrics.join(", ")}</p>
-            <p>Состав: {dataCard.structure.join(", ")}</p>
-            <p>{dataCard.details.join(", ")}</p>
+            <p>{data.attributes.fabrics}</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -113,17 +212,15 @@ useEffect(() => {
               <p className={styles.label}>Выберите размер:</p>
 
               <ul className={styles.sizes}>
-                {dataCard.sizes.map((size) => {
-                  const isActive =
-                    size.toLowerCase() === activeSize.toLocaleLowerCase();
-
+                {data.attributes.sizes.map((size, index) => {
+                  const isActive = index === activeSize;
                   return (
                     <li
                       className={isActive ? styles.size_active : styles.size}
                       key={size}
                       {...register("size", { value: activeSize })}
                       onClick={() => {
-                        setActiveSize(size);
+                        setActiveSize(index);
                         setValue("size", size);
                       }}
                     >
@@ -153,7 +250,10 @@ useEffect(() => {
                     value={count}
                     onChange={handleInputChange}
                   /> */}
-                  <div {...register("count")} className={styles.count}>
+                  <div
+                    {...register("count", { value: count })}
+                    className={styles.count}
+                  >
                     {count}
                   </div>
                   <div
@@ -176,5 +276,7 @@ useEffect(() => {
         </div>
       </div>
     </div>
+  ) : (
+    <>Загрузка страницы</>
   );
 };

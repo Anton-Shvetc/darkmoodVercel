@@ -4,6 +4,9 @@ import imageUrl from "@/public/images/card-img.png";
 
 export default function Catalog() {
 
+
+  
+
   const mockData = [
     {
       id: 1,
@@ -18,9 +21,8 @@ export default function Catalog() {
   ];
 
   return (
-    <section className={styles.container
-    }>
-      <Cards data={mockData}/>
+    <section className={styles.container  }>
+      <Cards/>
     </section>
   );
 }

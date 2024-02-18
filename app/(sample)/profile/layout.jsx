@@ -12,8 +12,9 @@ export default function ProfileLayout({ children }) {
   const router = useRouter();
 
   const onClick = () => {
-    deleteCookie("user");
     if (window.confirm("Вы действительно хотите выйти из аккаунта?")) {
+      deleteCookie("user");
+      localStorage.setItem("user", null);
       router.push("/authorization");
     }
   };
