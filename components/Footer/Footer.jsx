@@ -33,7 +33,7 @@ export const Footer = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
+  const year = new Date().getFullYear()
   return (
     <footer className={`${RobotoSlabFont.variable} ${styles.footer}`}>
       <div className={styles.footer__top}>
@@ -130,7 +130,7 @@ export const Footer = () => {
 
       <div className={styles.footer__bottom}>
         <ul className={styles.footer__offering}>
-          <li>©&nbsp;2023, DARKMOOD.com</li>
+          <li>©&nbsp;{year}, DARKMOOD.com</li>
           <li>
             <Link href="#">Public offering</Link>
           </li>
