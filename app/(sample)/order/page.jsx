@@ -13,7 +13,6 @@ import PayPal from "@/public/icons/pay/pay-pal.svg";
 import Visa from "@/public/icons/pay/visa.svg";
 import Arrow from "@/public/icons/arrow-white.svg";
 import { OrderCart } from "@/components/OrderCart/OrderCart";
-import { data } from "autoprefixer";
 
 const dataOrder = [
   {
