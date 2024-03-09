@@ -342,7 +342,7 @@ export default function Order() {
   
         setOrderNumber(answer.data.id);
         setIsOrderComplete(true);
-        localStorage.setItem('cart', {})
+        localStorage.removeItem('cart')
         
       } else {
         throw new Error("Ошибка оформления заказа");
