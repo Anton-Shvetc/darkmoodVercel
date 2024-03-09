@@ -1,9 +1,8 @@
 import styles from "./AdditionalSalesCard.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-export const AdditionalSalesCard = ({ data }) => {
 
-  console.log(data)
+export const AdditionalSalesCard = ({ data }) => {
   const imageUrl =
     "https://darkmode-serve.ru" + data.attributes.images.data[0].attributes.url;
 

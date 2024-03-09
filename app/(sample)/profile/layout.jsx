@@ -15,6 +15,7 @@ export default function ProfileLayout({ children }) {
     if (window.confirm("Вы действительно хотите выйти из аккаунта?")) {
       deleteCookie("user");
       localStorage.setItem("user", null);
+      localStorage.setItem("userFormData", {})
       router.push("/authorization");
     }
   };
