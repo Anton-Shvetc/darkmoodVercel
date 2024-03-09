@@ -29,7 +29,7 @@ export const Card = ({ id, attributes }) => {
             />
           </div>
 
-          <div className={styles.card__price}>{attributes.price} USD</div>
+          <div className={styles.card__price}>{attributes.price} RUB</div>
           <div className={styles.card__img}>
             <Image
               src={imageUrl}

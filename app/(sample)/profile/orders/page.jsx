@@ -77,13 +77,14 @@ export default function Orders() {
     <ul className={styles.orders}>
       {arrQuestions.map((el, i) => (
         <li key={i} className={styles.orders__order}>
-          <div className={styles['orders__head-order']}>
+          <div className={styles["orders__head-order"]}>
             <h2
               className={
                 isQuestionOpen.includes(i)
                   ? styles.orders__title_active
                   : styles.orders__title_inactive
-              }>
+              }
+            >
               {`Заказ № ${el.number}`}
             </h2>
             <button onClick={() => handleClick(i)}>
@@ -109,13 +110,14 @@ export default function Orders() {
 
           <span
             className={`
-						${isQuestionOpen.includes(i) ? styles.orders__text_active : ''} ${
-              styles['orders__more-info']
+						${isQuestionOpen.includes(i) ? styles.orders__text_active : ""} ${
+              styles["orders__more-info"]
             }
-					`}>
+					`}
+          >
             <h3>{el.title}</h3>
 
-            <div className={styles['orders__order-card']}>
+            <div className={styles["orders__order-card"]}>
               <div className={styles.orders__image}>
                 <Image
                   src={el.image}
@@ -126,7 +128,7 @@ export default function Orders() {
                 />
               </div>
 
-              <ul className={styles['orders__order-info']}>
+              <ul className={styles["orders__order-info"]}>
                 <li>
                   <p>
                     Размер: <span>{el.size}</span>
@@ -146,7 +148,7 @@ export default function Orders() {
                   </p>
                 </li>
                 <li>
-                  <button>{`${el.price} USD`}</button>
+                  <button>{`${el.price} RUB`}</button>
                 </li>
               </ul>
             </div>

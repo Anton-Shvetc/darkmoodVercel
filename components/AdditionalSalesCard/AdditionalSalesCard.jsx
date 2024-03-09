@@ -16,7 +16,7 @@ export const AdditionalSalesCard = ({ data }) => {
         alt="image"
       />
       <p className={styles.additionalSalesCard__price}>
-        {data.attributes.price} USD
+        {data.attributes.price} RUB
       </p>
       <h6 className={styles.additionalSalesCard__title}>
         {data.attributes.title}

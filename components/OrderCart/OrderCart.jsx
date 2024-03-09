@@ -46,7 +46,7 @@ export const OrderCart = () => {
                     Количество: <span>{product.count}</span>
                   </p>
 
-                  <button>{`${product.price} USD`}</button>
+                  <button>{`${product.price} RUB`}</button>
                 </div>
                 <button
                   onClick={() => {

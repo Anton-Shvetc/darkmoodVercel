@@ -88,12 +88,13 @@ export default function Cart({ isCartOpen, handleCloseCart }) {
     <>
       <span
         onClick={() => handleCloseCart()}
-        className={`${styles.blur} ${isCartOpen ? styles.blur_opened : ''}`}
+        className={`${styles.blur} ${isCartOpen ? styles.blur_opened : ""}`}
       />
 
       <div
         onMouseLeave={() => handleCloseCart()}
-        className={`${styles.cart} ${isCartOpen ? styles.open : ''}`}>
+        className={`${styles.cart} ${isCartOpen ? styles.open : ""}`}
+      >
         <div onClick={() => handleCloseCart()} className={styles.cart__exit}>
           <Image
             className={styles.cart__icon}
@@ -118,7 +119,7 @@ export default function Cart({ isCartOpen, handleCloseCart }) {
             <li key={product.id}>
               <div className={styles.product__title}>
                 <h3>{product.name}</h3>
-                <button>{`${product.price} USD`}</button>
+                <button>{`${product.price} RUB`}</button>
               </div>
 
               <div className={styles.product__content}>
@@ -138,8 +139,9 @@ export default function Cart({ isCartOpen, handleCloseCart }) {
                       <li
                         key={i}
                         className={
-                          product.size === size ? styles.product__active : ''
-                        }>
+                          product.size === size ? styles.product__active : ""
+                        }
+                      >
                         {size}
                       </li>
                     ))}
@@ -161,7 +163,7 @@ export default function Cart({ isCartOpen, handleCloseCart }) {
         <ul className={styles.cart__footer}>
           <li className={styles.cart__box}>
             <h3>Промокод</h3>
-            <div className={styles['cart__promo-code']}>
+            <div className={styles["cart__promo-code"]}>
               <input
                 type="text"
                 // value={promoCode}
@@ -172,7 +174,8 @@ export default function Cart({ isCartOpen, handleCloseCart }) {
           )} */}
               <button
                 disabled={isButtonDisabled}
-                onClick={() => handleApplyDiscount()}>
+                onClick={() => handleApplyDiscount()}
+              >
                 ПРИМЕНИТЬ
               </button>
             </div>
@@ -181,7 +184,7 @@ export default function Cart({ isCartOpen, handleCloseCart }) {
           <li className={styles.cart__order}>
             <div className={styles.cart__info}>
               <h3>итого</h3>
-              <p>{`${price} USD`}</p>
+              <p>{`${price} RUB`}</p>
             </div>
 
             <Link href="/order">

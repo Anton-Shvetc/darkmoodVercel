@@ -30,26 +30,28 @@ export const BurgerMenu = ({ arrMenu }) => {
       <span
         onClick={handleBurgerClick}
         className={`${styles.blur} ${
-          isBurgerMenuOpen ? styles.blur_opened : ''
+          isBurgerMenuOpen ? styles.blur_opened : ""
         }`}
       />
       <ul
         className={`${styles.menu} ${
-          isBurgerMenuOpen ? styles.menu_opened : ''
-        }`}>
+          isBurgerMenuOpen ? styles.menu_opened : ""
+        }`}
+      >
         {arrMenu.map((el, i) => (
           <li className={styles.menu__el} key={i}>
             <Link
               href={el.link}
               className={` ${
-                pathname === el.link ? styles.menu__el_active : ''
-              }`}>
+                pathname === el.link ? styles.menu__el_active : ""
+              }`}
+            >
               {el.name}
             </Link>
           </li>
         ))}
 
-        <li className={styles.menu__el}>USD</li>
+        <li className={styles.menu__el}>RUB</li>
         <li className={styles.menu__el}>РУС</li>
       </ul>
     </>

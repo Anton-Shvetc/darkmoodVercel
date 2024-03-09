@@ -200,7 +200,7 @@ export const ProductCard = () => {
           )}
         </div>
         <div className={styles.description}>
-          <div className={styles.price}>{data.attributes.price} USD</div>
+          <div className={styles.price}>{data.attributes.price} RUB</div>
           <div className={styles.subTitle}>{data.subTitle}</div>
           <div className={styles.description__text}>{data.description}</div>
           <div className={styles.structure}>

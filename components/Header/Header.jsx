@@ -139,7 +139,7 @@ export const Header = () => {
         <BurgerMenu arrMenu={arrMenu} />
 
         <li className={`${styles.header__el_of} ${styles.header__link}`}>
-          USD
+          RUB
         </li>
         <li className={`${styles.header__el_of} ${styles.header__link}`}>
           РУС
