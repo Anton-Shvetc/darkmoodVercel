@@ -5,6 +5,8 @@
 
   &__image {
     margin: 0 auto;
+    height: 220px;
+    object-fit: contain;
   }
 
   &__price {
