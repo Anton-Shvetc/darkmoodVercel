@@ -64,7 +64,7 @@ export const ProductCard = () => {
     }
 
     localStorage.setItem("cart", JSON.stringify(cartArray));
-    window.location.reload();
+    // window.location.reload();
   };
 
   // const handleInputChange = (e) => {
