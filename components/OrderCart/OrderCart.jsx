@@ -31,7 +31,7 @@ export const OrderCart = () => {
               <div className={styles.product__content}>
                 <div className={styles.product__image}>
                   <Image
-                    src={`https://darkmode-serve.ru${product.imageUrl}`}
+                    src={`${process.env.NEXT_PUBLIC_DB_HOST}${product.imageUrl}`}
                     width={100}
                     height={100}
                     alt="Product image"

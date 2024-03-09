@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const AdditionalSalesCard = ({ data }) => {
   const imageUrl =
-    "https://darkmode-serve.ru" + data.attributes.images.data[0].attributes.url;
+    process.env.NEXT_PUBLIC_DB_HOST + data.attributes.images.data[0].attributes.url;
 
   return (
     <Link href={`/catalog/${data.id}`} className={styles.additionalSalesCard}>
