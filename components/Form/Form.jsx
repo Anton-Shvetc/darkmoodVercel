@@ -94,7 +94,6 @@ export default function Form({ arrInput, nameData, isEdit }) {
     //   }
     // }
   };
-  console.log(arrInput);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -109,11 +108,11 @@ export default function Form({ arrInput, nameData, isEdit }) {
                 type={el.type}
                 id={el.id}
                 {...register(el.nameInput, {
-                  required: el.error,
-                  pattern: {
-                    value: el.pattern?.pattern || undefined,
-                    message: el.pattern?.message || "",
-                  },
+                  // required: el.error,
+                  // pattern: {
+                  //   value: el.pattern?.pattern || undefined,
+                  //   message: el.pattern?.message || "",
+                  // },
                 })}
               />
               {errors?.[el.nameInput] && (
@@ -126,8 +125,8 @@ export default function Form({ arrInput, nameData, isEdit }) {
 
       {isEdit ? (
         <button
-          className={isButtonDisabled ? styles["not-valid"] : ""}
-          disabled={isButtonDisabled}
+          // className={isButtonDisabled ? styles["not-valid"] : ""}
+          // disabled={isButtonDisabled}
           type="submit"
         >
           Сохранить изменения
