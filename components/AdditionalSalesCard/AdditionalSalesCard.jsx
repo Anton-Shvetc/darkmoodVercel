@@ -1,11 +1,13 @@
 import styles from "./AdditionalSalesCard.module.scss";
 import Image from "next/image";
+import Link from "next/link";
+
 export const AdditionalSalesCard = ({ data }) => {
   const imageUrl =
     "https://darkmode-serve.ru" + data.attributes.images.data[0].attributes.url;
 
   return (
-    <div className={styles.additionalSalesCard}>
+    <Link href={`/catalog/${data.id}`} className={styles.additionalSalesCard}>
       <Image
         className={styles.additionalSalesCard__image}
         src={imageUrl}
@@ -14,11 +16,11 @@ export const AdditionalSalesCard = ({ data }) => {
         alt="image"
       />
       <p className={styles.additionalSalesCard__price}>
-        {data.attributes.price} USD
+        {data.attributes.price} RUB
       </p>
       <h6 className={styles.additionalSalesCard__title}>
         {data.attributes.title}
       </h6>
-    </div>
+    </Link>
   );
 };

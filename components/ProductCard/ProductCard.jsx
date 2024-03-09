@@ -10,7 +10,7 @@ import { MdArrowBack } from "react-icons/md";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 
-import imageUrl from "@/public/images/main-card-img.png";
+// import imageUrl from "@/public/images/main-card-img.png";
 export const ProductCard = () => {
   const pathname = usePathname();
   const idPath = pathname.replace("/catalog/", "");
@@ -24,6 +24,7 @@ export const ProductCard = () => {
   const [data, setData] = useState([]);
 
   const onSubmit = (formData) => {
+  
     let cartArray = localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
       : false;
@@ -64,7 +65,7 @@ export const ProductCard = () => {
     }
 
     localStorage.setItem("cart", JSON.stringify(cartArray));
-    window.location.reload();
+    // window.location.reload();
   };
 
   // const handleInputChange = (e) => {
@@ -96,21 +97,21 @@ export const ProductCard = () => {
     getCardsData();
   }, []);
 
-  const dataCard = {
-    id: 1,
-    title: "Футболка Darkmood",
-    price: "49.99 USD",
-    subTitle: "Тонкая. Легкая. Черная.",
-    description: [
-      "Футболка линейки DARKMOOD - первая единица контрбрендовой линии одежды. Потрясающие качество в совместительстве с утонченным подходом к деталям, которым не могут похвастаться именитые раздутые фирмы.",
-    ],
-    fabrics: ["Ткань сорта пенье"],
-    structure: ["95% cotton", "5% spandex"],
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    quantity: 10,
-    details: ["Плотность 170 г/м²"],
-    images: [imageUrl, imageUrl, imageUrl],
-  };
+  // const dataCard = {
+  //   id: 1,
+  //   title: "Футболка Darkmood",
+  //   price: "49.99 USD",
+  //   subTitle: "Тонкая. Легкая. Черная.",
+  //   description: [
+  //     "Футболка линейки DARKMOOD - первая единица контрбрендовой линии одежды. Потрясающие качество в совместительстве с утонченным подходом к деталям, которым не могут похвастаться именитые раздутые фирмы.",
+  //   ],
+  //   fabrics: ["Ткань сорта пенье"],
+  //   structure: ["95% cotton", "5% spandex"],
+  //   sizes: ["S", "M", "L", "XL", "XXL"],
+  //   quantity: 10,
+  //   details: ["Плотность 170 г/м²"],
+  //   images: [imageUrl, imageUrl, imageUrl],
+  // };
 
   if (!isLoading && data.length <= 0) {
     return <>Загрузка страницы</>;
@@ -199,9 +200,9 @@ export const ProductCard = () => {
           )}
         </div>
         <div className={styles.description}>
-          <div className={styles.price}>{data.attributes.price} USD</div>
-          <div className={styles.subTitle}>{dataCard.subTitle}</div>
-          <div className={styles.description__text}>{dataCard.description}</div>
+          <div className={styles.price}>{data.attributes.price} RUB</div>
+          <div className={styles.subTitle}>{data.subTitle}</div>
+          <div className={styles.description__text}>{data.description}</div>
           <div className={styles.structure}>
             <p>{data.attributes.fabrics}</p>
           </div>
@@ -213,11 +214,12 @@ export const ProductCard = () => {
               <ul className={styles.sizes}>
                 {data.attributes.sizes.map((size, index) => {
                   const isActive = index === activeSize;
+
                   return (
                     <li
                       className={isActive ? styles.size_active : styles.size}
                       key={size}
-                      {...register("size", { value: activeSize })}
+                      {...register("size", { value: data.attributes.sizes[0] })}
                       onClick={() => {
                         setActiveSize(index);
                         setValue("size", size);

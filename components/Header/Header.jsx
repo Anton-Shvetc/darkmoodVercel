@@ -50,13 +50,13 @@ export const Header = () => {
   }, [isCartOpen]);
 
   const [cartCount, setCartCount] = useState("");
-  useEffect(() => {
-    setCartCount(
-      localStorage?.getItem("cart") && typeof window !== "undefined"
-        ? JSON.parse(localStorage?.getItem("cart")).length
-        : 0
-    );
-  }, []);
+  // useEffect(() => {
+  //   setCartCount(
+  //     localStorage?.getItem("cart") && typeof window !== "undefined"
+  //       ? JSON.parse(localStorage?.getItem("cart")).length
+  //       : 0
+  //   );
+  // }, []);
 
   return (
     <header className={`${styles.header} `}>
@@ -125,9 +125,9 @@ export const Header = () => {
             alt="Cart icon"
             priority={true}
           />
-          <span className={styles.header__icon_count}>
+          {/* <span className={styles.header__icon_count}>
             {cartCount && cartCount!==0 ? cartCount : ""}
-          </span>
+          </span> */}
         </li>
 
         {isCartOpen ? (
@@ -139,7 +139,7 @@ export const Header = () => {
         <BurgerMenu arrMenu={arrMenu} />
 
         <li className={`${styles.header__el_of} ${styles.header__link}`}>
-          USD
+          RUB
         </li>
         <li className={`${styles.header__el_of} ${styles.header__link}`}>
           РУС
