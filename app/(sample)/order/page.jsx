@@ -20,21 +20,21 @@ const dataOrder = [
     nameInput: "firstName",
     type: "text",
     id: "firstName",
-    error: "Имя - обязательное поле!",
+    error: "Пустое поле",
   },
   {
     name: "ФАМИЛИЯ",
     nameInput: "lastName",
     type: "text",
     id: "lastName",
-    error: "Фамилия - обязательное поле!",
+    error: "Пустое поле",
   },
   {
     name: "ОТЧЕСТВО",
     nameInput: "patronymic",
     type: "text",
     id: "patronymic",
-    error: "Отчество - обязательное поле!",
+    error: "Пустое поле",
   },
   {
     name: "ТЕЛЕФОН",
@@ -52,53 +52,54 @@ const dataOrder = [
     nameInput: "email",
     type: "email",
     id: "email",
-    error: "Введите корректный email телефона!",
-    pattern: {
-      pattern: /^a-zA-Z0-9.!#$%&' \* +\/=?^\_`{|}~-+@a-zA-Z0-9?(?:\.a-zA-Z0-9?) * $/,
-      message: 'Некорректный email!',
-    },
+    error: "Пустое поле",
+    // pattern: {
+    //   pattern:
+    //     /^a-zA-Z0-9.!#$%&' \* +\/=?^\_`{|}~-+@a-zA-Z0-9?(?:\.a-zA-Z0-9?) * $/,
+    //   message: "Некорректный email!",
+    // },
   },
   {
     name: "СТРАНА",
     nameInput: "country",
     type: "text",
     id: "country",
-    error: "Введите корректный номер телефона!",
+    error: "Пустое поле",
   },
   {
     name: "КРАЙ/ОБЛАСТЬ/РЕГИОН",
     nameInput: "region",
     type: "text",
     id: "region",
-    error: "Введите корректный номер телефона!",
+    error: "Пустое поле",
   },
   {
     name: "ПОЧТОВЫЙ ИНДЕКС",
     nameInput: "postalCode",
     type: "text",
     id: "postalCode",
-    error: "Введите корректный номер телефона!",
+    error: "Пустое поле",
   },
   {
     name: "ГОРОД",
     nameInput: "city",
     type: "text",
     id: "city",
-    error: "Введите корректный номер телефона!",
+    error: "Пустое поле",
   },
   {
     name: "УЛИЦА, ДОМ, КВАРТИРА",
     nameInput: "address",
     type: "text",
     id: "address",
-    error: "Введите корректный номер телефона!",
+    error: "Пустое поле",
   },
   {
     name: "ПРИМЕЧАНИЕ",
     nameInput: "note",
     type: "text",
     id: "note",
-    error: "6!",
+    // error: "6!",
   },
 ];
 
@@ -443,11 +444,11 @@ export default function Order() {
                         type={el.type}
                         id={el.id}
                         {...register(el.nameInput, {
-                          // required: el.error,
-                          // pattern: {
-                          //   value: el.pattern?.pattern || undefined,
-                          //   message: el.pattern?.message || "",
-                          // },
+                          required: el.error,
+                          pattern: {
+                            value: el.pattern?.pattern || undefined,
+                            message: el.pattern?.message || "",
+                          },
                         })}
                       />
                       {errors?.[el.nameInput] && (
@@ -457,8 +458,8 @@ export default function Order() {
                   </li>
                 ))}
                 <button
-                  // className={isButtonDisabled ? styles["not-valid"] : ""}
-                  // disabled={isButtonDisabled}
+                  className={isButtonDisabled ? styles["not-valid"] : ""}
+                  disabled={isButtonDisabled}
                   type="submit"
                 >
                   Перейти к оплате
