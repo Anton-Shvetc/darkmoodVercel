@@ -1,66 +1,45 @@
-'use client';
-import styles from './orders.module.scss';
-import Image from 'next/image';
-import Plus from '@/public/icons/plus.svg';
-import Minus from '@/public/icons/minus.svg';
-import Product from '@/public/images/card-img.png';
-import { useState } from 'react';
+"use client";
+import styles from "./orders.module.scss";
+import Image from "next/image";
+import Plus from "@/public/icons/plus.svg";
+import Minus from "@/public/icons/minus.svg";
+// import Product from "@/public/images/card-img.png";
+import { useEffect, useState } from "react";
 
-const arrQuestions = [
-  {
-    number: 95201,
-    image: Product,
-    size: 'M',
-    quantity: 1,
-    delivery: 'Доставка курьером',
-    date: '12 сентября',
-    title: 'Футболка DARKMOOD',
-    price: '26.25',
-  },
-  {
-    number: 95202,
-    image: Product,
-    size: 'L',
-    quantity: 2,
-    delivery: 'Самовывоз',
-    date: '19 сентября',
-    title: 'Футболка DARKMOOD',
-    price: '35.99',
-  },
-  {
-    number: 95203,
-    image: Product,
-    size: 'M',
-    quantity: 2,
-    delivery: 'Самовывоз',
-    date: '10 октября',
-    title: 'Футболка DARKMOOD',
-    price: '65.50',
-  },
-  {
-    number: 95204,
-    image: Product,
-    size: 'S',
-    quantity: 3,
-    delivery: 'Доставка почтой',
-    date: '25 сентября',
-    title: 'Футболка DARKMOOD',
-    price: '49.99',
-  },
-  {
-    number: 95205,
-    image: Product,
-    size: 'XL',
-    quantity: 1,
-    delivery: 'Доставка курьером',
-    date: '3 октября',
-    title: 'Футболка DARKMOOD',
-    price: '89.00',
-  },
-];
+
 
 export default function Orders() {
+  const userInfo = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : "";
+  const userId = userInfo ? userInfo?.id : null;
+
   const [isQuestionOpen, setIsQuestionOpen] = useState([]);
+
+  const [ordersHistoryData, setOrdersHistoryData] = useState(null);
+
+  const getOrdersHistory = async () => {
+    const response = await fetch(
+      "https://darkmode-serve.ru/api/ordershistories",
+      {
+        method: "GET",
+        headers: {
+          Authorization:
+            "Bearer 63e74db5f842896da84149d352ea13c224cb240781490ff12f574a960df9a33894190bc96d5a5fc11483876cf43cc0d682900d178466dec4afdda24df86930916d7c4eaeb620c766ff2eb4889158991490aa90b598e940ca6cd11d50d21179f6c0c3096510f83eb9d867abbaf3d97693c477735fb250af26014c044494064979",
+
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const json = await response.json();
+
+    const userOrdersHistory = json.data.filter(
+      (order) => order.attributes.userId === userId
+    );
+
+    setOrdersHistoryData(userOrdersHistory);
+  };
 
   const handleClick = (i) => {
     if (isQuestionOpen.includes(i)) {
@@ -73,88 +52,105 @@ export default function Orders() {
     }
   };
 
+  useEffect(() => {
+    getOrdersHistory();
+  }, []);
+
   return (
     <ul className={styles.orders}>
-      {arrQuestions.map((el, i) => (
-        <li key={i} className={styles.orders__order}>
-          <div className={styles["orders__head-order"]}>
-            <h2
-              className={
-                isQuestionOpen.includes(i)
-                  ? styles.orders__title_active
-                  : styles.orders__title_inactive
-              }
-            >
-              {`Заказ № ${el.number}`}
-            </h2>
-            <button onClick={() => handleClick(i)}>
-              {isQuestionOpen.includes(i) ? (
-                <Image
-                  src={Minus}
-                  width="24px"
-                  height="24"
-                  alt="Minus icon"
-                  priority={true}
-                />
-              ) : (
-                <Image
-                  src={Plus}
-                  width="24px"
-                  height="24"
-                  alt="Plus icon"
-                  priority={true}
-                />
-              )}
-            </button>
-          </div>
-
-          <span
-            className={`
-						${isQuestionOpen.includes(i) ? styles.orders__text_active : ""} ${
-              styles["orders__more-info"]
-            }
-					`}
-          >
-            <h3>{el.title}</h3>
-
-            <div className={styles["orders__order-card"]}>
-              <div className={styles.orders__image}>
-                <Image
-                  src={el.image}
-                  alt="Product image"
-                  width="100px"
-                  height="100px"
-                  priority={true}
-                />
-              </div>
-
-              <ul className={styles["orders__order-info"]}>
-                <li>
-                  <p>
-                    Размер: <span>{el.size}</span>
-                  </p>
-                  <p>
-                    Количество: <span>{el.quantity}</span>
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Способ доставки: <span>{el.delivery}</span>
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Дата доставки: <span>{el.date}</span>
-                  </p>
-                </li>
-                <li>
-                  <button>{`${el.price} RUB`}</button>
-                </li>
-              </ul>
+      {ordersHistoryData &&
+        ordersHistoryData.map((el, i) => (
+          <li key={el.id} className={styles.orders__order}>
+            <div className={styles["orders__head-order"]}>
+              <h2
+                className={
+                  isQuestionOpen.includes(i)
+                    ? styles.orders__title_active
+                    : styles.orders__title_inactive
+                }
+              >
+                {`Заказ № ${el?.id}`}
+              </h2>
+              <button onClick={() => handleClick(i)}>
+                {isQuestionOpen.includes(i) ? (
+                  <Image
+                    src={Minus}
+                    width="24px"
+                    height="24"
+                    alt="Minus icon"
+                    priority={true}
+                  />
+                ) : (
+                  <Image
+                    src={Plus}
+                    width="24px"
+                    height="24"
+                    alt="Plus icon"
+                    priority={true}
+                  />
+                )}
+              </button>
             </div>
-          </span>
-        </li>
-      ))}
+
+            <span
+              className={`
+						${isQuestionOpen.includes(i) ? styles.orders__text_active : ""} ${
+                styles["orders__more-info"]
+              }
+					`}
+            >
+              {el.attributes.cards.map((card) => {
+                return (
+                  <>
+                    <h3>{card.title}</h3>
+                    <div className={styles["orders__order-card"]}>
+                      <div className={styles.orders__image}>
+                        <Image
+                          src={`https://darkmode-serve.ru${card.imageUrl}`}
+                          alt="Product image"
+                          width={100}
+                          height={100}
+                          priority={true}
+                        />
+                      </div>
+
+                      <ul className={styles["orders__order-info"]}>
+                        <li>
+                          <p>
+                            Размер: <span>{card.size}</span>
+                          </p>
+                          <p>
+                            Количество: <span>{card.count}</span>
+                          </p>
+                        </li>
+                        {/* <li>
+          <p>
+            Способ доставки: <span>{card.delivery}</span>
+          </p>
+        </li> */}
+                        <li>
+                          <p>
+                            Дата доставки:{" "}
+                            <span>{el.attributes.deliveryDate}</span>
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Дата заказа:{" "}
+                            <span>{el.attributes.publishedAt}</span>
+                          </p>
+                        </li>
+                        <li>
+                          <button>{`${card.price} RUB`}</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </>
+                );
+              })}
+            </span>
+          </li>
+        ))}
     </ul>
   );
 }
