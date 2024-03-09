@@ -13,7 +13,7 @@ const ubuntuFont = Ubuntu({
 });
 
 export const Card = ({ id, attributes }) => {
-  const imageUrl = attributes.images.data ? 'https://darkmode-serve.ru' + attributes.images.data[0].attributes.url : "";
+  const imageUrl = attributes.images.data ? `${process.env.NEXT_PUBLIC_DB_HOST}` + attributes.images.data[0].attributes.url : "";
   return (
     <>
       <div className={classNames(`${ubuntuFont.variable}`, `${styles.card}`)}>

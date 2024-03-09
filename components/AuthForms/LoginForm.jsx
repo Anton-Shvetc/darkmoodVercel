@@ -22,13 +22,16 @@ export const LoginForm = () => {
     const identifier = data.email;
     const password = data.password;
     try {
-      let response = await fetch("https://darkmode-serve.ru/api/auth/local", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify({ identifier, password }),
-      });
+      let response = await fetch(
+        `${process.env.NEXT_PUBLIC_DB_HOST}/api/auth/local`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify({ identifier, password }),
+        }
+      );
       let result = await response.json();
 
       if (result.user) {

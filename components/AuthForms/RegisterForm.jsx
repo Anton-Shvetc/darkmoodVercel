@@ -20,13 +20,17 @@ export const RegisterForm = () => {
 
     try {
       const response = await fetch(
-        "https://darkmode-serve.ru/api/auth/local/register",
+        `${process.env.NEXT_PUBLIC_DB_HOST}/api/auth/local/register`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json;charset=utf-8",
           },
-          body: JSON.stringify({"username": data.username , "email": data.email , "password": data.password}),
+          body: JSON.stringify({
+            username: data.username,
+            email: data.email,
+            password: data.password,
+          }),
         }
       );
 
