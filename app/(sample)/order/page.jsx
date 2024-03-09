@@ -13,6 +13,7 @@ import PayPal from "@/public/icons/pay/pay-pal.svg";
 import Visa from "@/public/icons/pay/visa.svg";
 import Arrow from "@/public/icons/arrow-white.svg";
 import { OrderCart } from "@/components/OrderCart/OrderCart";
+import { data } from "autoprefixer";
 
 const dataOrder = [
   {
@@ -53,10 +54,10 @@ const dataOrder = [
     type: "email",
     id: "email",
     error: "Введите корректный email телефона!",
-    // pattern: {
-    //   pattern: /^a-zA-Z0-9.!#$%&' \* +\/=?^\_`{|}~-+@a-zA-Z0-9?(?:\.a-zA-Z0-9?) * $/,
-    //   message: 'Некорректный email!',
-    // },
+    pattern: {
+      pattern: /^a-zA-Z0-9.!#$%&' \* +\/=?^\_`{|}~-+@a-zA-Z0-9?(?:\.a-zA-Z0-9?) * $/,
+      message: 'Некорректный email!',
+    },
   },
   {
     name: "СТРАНА",
@@ -255,9 +256,18 @@ const dataPay = [MasterCard, ApplePay, Mir, GooglePay, PayPal, Visa];
 // ];
 
 export default function Order() {
+  const userInfo = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : "";
+  const userId = userInfo ? userInfo?.id : null;
+
   const [previousData, setPreviousData] = useState({});
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isPay, setIsPay] = useState(true);
+
+  const [orderNumber, setOrderNumber] = useState(null);
+
+  const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [isSelectPay, setIsSelectPay] = useState(null);
 
   const {
@@ -309,98 +319,161 @@ export default function Order() {
     setIsButtonDisabled(!isValid);
   }, [watch()]);
 
+  const saveOrder = async (orderData) => {
+    try {
+      const response = await fetch(
+        `https://darkmode-serve.ru/api/ordershistories`,
+        {
+          method: "POST",
+          headers: {
+            Authorization:
+              "Bearer 63e74db5f842896da84149d352ea13c224cb240781490ff12f574a960df9a33894190bc96d5a5fc11483876cf43cc0d682900d178466dec4afdda24df86930916d7c4eaeb620c766ff2eb4889158991490aa90b598e940ca6cd11d50d21179f6c0c3096510f83eb9d867abbaf3d97693c477735fb250af26014c044494064979",
+
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            data: orderData,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        const answer = await response.json();
+
+  
+        setOrderNumber(answer.data.id);
+        setIsOrderComplete(true);
+        localStorage.setItem('cart', {})
+        
+      } else {
+        throw new Error("Ошибка оформления заказа");
+      }
+    } catch (err) {
+      alert(err);
+    }
+  };
+
   const onSubmit = (data) => {
+    const cartData = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : null;
+
+    const orderData = { ...[], data };
+    orderData.data.cards = cartData;
+    orderData.data.userId = userId;
+    orderData.data.isPay = false;
     // localStorage.setItem(nameData, JSON.stringify(data));
     // setPreviousData(data);
-    console.log("sub", data);
+
+    // console.log("sub", data);
+    saveOrder(data);
+
     // setIsPay(true);
   };
+
+ 
+
   return (
     <div className={styles.order}>
       <h1>Оформление заказа</h1>
-      <p>НОМЕР ЗАКАЗА: 95201</p>
-      <div className={styles.order__content}>
-        {!isPay ? (
-          <section className={styles.pay}>
-            <h2>Система оплаты</h2>
+      {/* <p>НОМЕР ЗАКАЗА: 95201</p> */}
 
-            <div>
-              <p>Безналичные</p>
-              <ul>
-                {dataPay.map((el, i) => (
-                  <li
-                    onClick={() => setIsSelectPay(i)}
-                    key={i}
-                    className={isSelectPay === i ? styles.active : ""}
-                  >
-                    <Image width="91px" height="auto" alt="Pay icon" src={el} />
+      {isOrderComplete ? (
+        <div className={styles.order__content}>
+          <div>
+            <p>Заказ успешно оформлен </p>
+            <p>Номер заказа {orderNumber}</p>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.order__content}>
+          {!isPay ? (
+            <section className={styles.pay}>
+              <h2>Система оплаты</h2>
+
+              <div>
+                <p>Безналичные</p>
+                <ul>
+                  {dataPay.map((el, i) => (
+                    <li
+                      onClick={() => setIsSelectPay(i)}
+                      key={i}
+                      className={isSelectPay === i ? styles.active : ""}
+                    >
+                      <Image
+                        width="91px"
+                        height="auto"
+                        alt="Pay icon"
+                        src={el}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className={styles.pay__buttons}>
+                <button
+                  onClick={() => setIsPay(false)}
+                  className={styles.pay__back}
+                  href={"/"}
+                >
+                  Назад
+                </button>
+
+                <button className={styles.pay__button}>
+                  Оплатить{" "}
+                  <Image
+                    width="32px"
+                    height="32px"
+                    src={Arrow}
+                    alt="Arrow icon"
+                  />
+                </button>
+              </div>
+            </section>
+          ) : (
+            <ul className={styles.order__data}>
+              <h2>Введите данные для доставки</h2>
+
+              <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+                {dataOrder.map((el) => (
+                  <li key={el.id}>
+                    <label>
+                      <h3>{el.name}</h3>
+                      <input
+                        type={el.type}
+                        id={el.id}
+                        {...register(el.nameInput, {
+                          // required: el.error,
+                          // pattern: {
+                          //   value: el.pattern?.pattern || undefined,
+                          //   message: el.pattern?.message || "",
+                          // },
+                        })}
+                      />
+                      {errors?.[el.nameInput] && (
+                        <span>{errors[el.nameInput].message}</span>
+                      )}
+                    </label>
                   </li>
                 ))}
-              </ul>
-            </div>
+                <button
+                  // className={isButtonDisabled ? styles["not-valid"] : ""}
+                  // disabled={isButtonDisabled}
+                  type="submit"
+                >
+                  Перейти к оплате
+                </button>
+              </form>
+            </ul>
+          )}
 
-            <div className={styles.pay__buttons}>
-              <button
-                onClick={() => setIsPay(false)}
-                className={styles.pay__back}
-                href={"/"}
-              >
-                Назад
-              </button>
-
-              <button className={styles.pay__button}>
-                Оплатить{" "}
-                <Image
-                  width="32px"
-                  height="32px"
-                  src={Arrow}
-                  alt="Arrow icon"
-                />
-              </button>
-            </div>
+          <section className={styles.order__products}>
+            <h2>Ваш заказ</h2>
+            <OrderCart />
           </section>
-        ) : (
-          <ul className={styles.order__data}>
-            <h2>Введите данные для доставки</h2>
-
-            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-              {dataOrder.map((el) => (
-                <li key={el.id}>
-                  <label>
-                    <h3>{el.name}</h3>
-                    <input
-                      type={el.type}
-                      id={el.id}
-                      {...register(el.nameInput, {
-                        required: el.error,
-                        pattern: {
-                          value: el.pattern?.pattern || undefined,
-                          message: el.pattern?.message || "",
-                        },
-                      })}
-                    />
-                    {errors?.[el.nameInput] && (
-                      <span>{errors[el.nameInput].message}</span>
-                    )}
-                  </label>
-                </li>
-              ))}
-              <button
-                className={isButtonDisabled ? styles["not-valid"] : ""}
-                disabled={isButtonDisabled}
-                type="submit"
-              >
-                Перейти к оплате
-              </button>
-            </form>
-          </ul>
-        )}
-
-        <section className={styles.order__products}>
-          <h2>Ваш заказ</h2>
-          <OrderCart />
-        </section>
-      </div>
+        </div>
+      )}
     </div>
   );
 }
