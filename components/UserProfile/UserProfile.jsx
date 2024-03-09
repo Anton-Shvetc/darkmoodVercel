@@ -3,10 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "./UserProfile.module.scss";
 import Form from "@/components/Form/Form";
 
-const userId = localStorage.getItem("user")
-  ? JSON.parse(localStorage.getItem("user")).id
-  : null;
-console.log(JSON.stringify(localStorage.getItem("user")));
+
 
 const inputsUserData = [
   {
@@ -85,6 +82,9 @@ export const UserProfile = () => {
   const [isEditUser, setIsEditUser] = useState(false);
   const [isEditAddress, setIsEditAddress] = useState(false);
   const [userData, setUserData] = useState();
+  const userId = localStorage.getItem("user")
+  ? JSON.parse(localStorage.getItem("user")).id
+  : null;
 
   const getUserInfo = async () => {
     try {
