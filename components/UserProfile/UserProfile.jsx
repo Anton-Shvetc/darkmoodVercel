@@ -1,8 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import styles from "./UserProfile.module.scss";
-
-import { useForm, handleSubmit } from "react-hook-form";
 import Form from "@/components/Form/Form";
 
 const userId = localStorage.getItem("user")
