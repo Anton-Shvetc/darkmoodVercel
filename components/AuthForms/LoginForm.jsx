@@ -74,8 +74,15 @@ export const LoginForm = () => {
         {errors.password && <span>{errors.password.message}</span>}
       </div>
       <div className={styles.form__optional}>
-        <div>
-          <label> Чужой компьютер</label>
+        <div className={styles.form__custom_checkbox}>
+          <input
+            className={styles.custom_checkbox}
+            type="checkbox"
+            id="comp"
+            name="comp"
+            value="value"
+          />
+          <label for="comp">Чужой компьютер</label>
         </div>
         <div> Забыли пароль?</div>
       </div>
