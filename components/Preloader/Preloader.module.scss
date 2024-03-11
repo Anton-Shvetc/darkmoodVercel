@@ -21,15 +21,47 @@
     animation: contentTop .7s ease-in-out 1.5s forwards;
 }
 
-@keyframes contentTop {
-    0% {
-        top: 50%;
-        transform: translateX(calc(-50% - 7px)) translateY(-50%);
+@media (min-width: 1025px) {
+    @keyframes contentTop {
+        0% {
+            top: 50%;
+            transform: translateX(calc(-50% - 7px)) translateY(-50%);
+        }
+
+        100% {
+            top: -15px;
+            transform: translateX(calc(-50% - 7px)) translateY(0) scale(0.5);
+        }
     }
 
-    100% {
-        top: -15px;
-        transform: translateX(calc(-50% - 7px)) translateY(0) scale(0.5);
+    .wrapper::before,
+    .wrapper::after {
+        content: '';
+        position: absolute;
+        top: 85px;
+        display: block;
+        background-color: white;
+        width: 0;
+        height: 1px;
+        animation: lineWidth .5s ease-in 2s forwards;
+    }
+
+    @keyframes lineWidth {
+        0% {
+            width: 0;
+        }
+
+        100% {
+            width: 370px;
+        }
+    }
+
+    .wrapper::before {
+        left: 0;
+    }
+
+    .wrapper::after {
+        right: 0;
     }
 }
 
@@ -152,14 +184,16 @@
             opacity: 1;
         }
     }
-
 }
-@keyframes contentScale {
-    0% {
-        transform: scale(1);
-    }
 
-    100% {
-        transform: scale(0.9);
+@media (min-width: 1025px) {
+    @keyframes contentScale {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(0.9);
+        }
     }
 }
