@@ -33,7 +33,7 @@ export default function SampleLayout({ children }) {
     if (open === true) {
       setTimeout(() => {
         setOpen(false)
-      }, 2000)
+      }, 3000)
     }
   }, [open])
   return (
