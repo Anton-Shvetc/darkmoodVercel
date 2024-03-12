@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer/Footer';
 import { usePathname } from 'next/navigation';
 import { Preloader } from '@/components/Preloader/Preloader';
 import Loading from '../loading';
+import styles from './layout.module.scss';
 
 export default function SampleLayout({ children }) {
   const pathname = usePathname();
@@ -43,11 +44,11 @@ export default function SampleLayout({ children }) {
         open ?
           <Preloader />
           :
-          <>
+          <div className={styles.wrapper}>
             <Header />
             <main>{children}</main>
             <Footer />
-          </>
+          </div>
       }
     </div>
   );
