@@ -1,55 +1,44 @@
 'use client';
-import '../globals.css';
 import React, { useEffect, useState } from 'react';
 import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { usePathname } from 'next/navigation';
 import { Preloader } from '@/components/Preloader/Preloader';
-import Loading from '../loading';
 import styles from './layout.module.scss';
 
 export default function SampleLayout({ children }) {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  const [background, setBackground] = useState(true);
-  useEffect(() => {
-    const referrer = document.referrer
-    const url = window.location.hostname
-    if (!referrer) {
-      setOpen(true)
-      setBackground(false)
-    } else {
-      const referrerUrl = new URL(referrer)
-      if (url != referrerUrl.hostname) {
-        setOpen(true)
-        setBackground(false)
-      } else {
-        setOpen(false)
-        setBackground(false)
-      }
-    }
-  }, [])
+  const [showPreloader, setShowPreloader] = useState(true);
 
   useEffect(() => {
-    if (open === true) {
-      setTimeout(() => {
-        setOpen(false)
-      }, 3000)
+    const referrer = document.referrer;
+    const url = window.location.hostname;
+
+    if (!referrer || new URL(referrer).hostname !== url) {
+      setShowPreloader(true);
+    } else {
+      setShowPreloader(false);
     }
-  }, [open])
+  }, []);
+
+  useEffect(() => {
+    if (showPreloader) {
+      const timer = setTimeout(() => {
+        setShowPreloader(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showPreloader]);
+
   return (
     <div className={pathname === '/' ? 'theme' : ''}>
-      {background ?
-        <Loading /> :
-        open ?
-          <Preloader />
-          :
-          <div className={styles.wrapper}>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </div>
-      }
+      <div className={styles.wrapper}>
+        {showPreloader && <Preloader />}
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </div>
     </div>
   );
 }

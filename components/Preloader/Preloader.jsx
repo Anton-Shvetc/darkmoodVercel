@@ -5,7 +5,7 @@ import left from '../../public/images/left.png'
 import right from '../../public/images/right.png'
 export const Preloader = () => {
     return (
-        <div className={styles.wrapper}>
+        <article className={`${styles.wrapper} preloaderMain`}>
             <div className={styles.content}>
                 <div className={styles.images}>
                     <Image
@@ -66,6 +66,6 @@ export const Preloader = () => {
                     </svg>
                 </div>
             </div>
-        </div>
+        </article>
     );
 };
