@@ -5,7 +5,7 @@
 /assets
 /.pnp
 .pnp.js
-.env
+# .env
 # testing
 /coverage
 # next.js
@@ -25,11 +25,11 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+# .env*.local
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+# next-env.d.ts
