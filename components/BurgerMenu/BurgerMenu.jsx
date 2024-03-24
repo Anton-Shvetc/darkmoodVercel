@@ -51,8 +51,8 @@ export const BurgerMenu = ({ arrMenu }) => {
           </li>
         ))}
 
-        <li className={styles.menu__el}>RUB</li>
-        <li className={styles.menu__el}>РУС</li>
+        {/* <li className={styles.menu__el}>RUB</li>
+        <li className={styles.menu__el}>РУС</li> */}
       </ul>
     </>
   );

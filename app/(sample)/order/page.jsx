@@ -13,6 +13,7 @@ import PayPal from "@/public/icons/pay/pay-pal.svg";
 import Visa from "@/public/icons/pay/visa.svg";
 import Arrow from "@/public/icons/arrow-white.svg";
 import { OrderCart } from "@/components/OrderCart/OrderCart";
+import { send } from "emailjs-com";
 
 const dataOrder = [
   {
@@ -105,161 +106,13 @@ const dataOrder = [
 
 const dataPay = [MasterCard, ApplePay, Mir, GooglePay, PayPal, Visa];
 
-// const arrProduct = [
-//   {
-//     id: 1,
-//     name: 'Футболка DARKMOOD',
-//     price: 46.9,
-//     imageUrl: imageUrl,
-//   },
-//   { id: 2, name: 'Футболка DARKMOOD', price: 40.99, imageUrl: imageUrl },
-//   { id: 3, name: 'Футболка DARKMOOD', price: 49.8, imageUrl: imageUrl },
-// ];
-
-// const arrProduct = [
-//   {
-//     id: 1,
-//     size: 'M',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 46.9,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 2,
-//     size: 'L',
-//     quantity: '10',
-//     name: 'Футболка DARKMOOD',
-//     price: 40.99,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 3,
-//     size: 'S',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 49.8,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 4,
-//     size: 'M',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 55.5,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 5,
-//     size: 'XXS',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 39.99,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 6,
-//     size: 'XS',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 42.5,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 7,
-//     size: 'XXL',
-//     quantity: '2',
-//     name: 'Футболка DARKMOOD',
-//     price: 51.75,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 8,
-//     size: 'L',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 48.25,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 9,
-//     size: 'XL',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 47.6,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 10,
-//     size: 'L',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 44.99,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 11,
-//     size: 'S',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 53.25,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 12,
-//     size: 'M',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 36.5,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 13,
-//     size: 'L',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 41.9,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 14,
-//     size: 'XXL',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 50.99,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 15,
-//     size: 'XL',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 52.8,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 16,
-//     size: 'L',
-//     quantity: '1',
-//     name: 'Футболка DARKMOOD',
-//     price: 45.5,
-//     imageUrl: imageUrl,
-//   },
-//   {
-//     id: 17,
-//     size: 'S',
-//     quantity: '5',
-//     name: 'Футболка DARKMOOD',
-//     price: 38.99,
-//     imageUrl: imageUrl,
-//   },
-// ];
-
 export default function Order() {
-  const userInfo = localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
-    : "";
-  const userId = userInfo ? userInfo?.id : null;
+  // const userInfo = localStorage.getItem("user")
+  //   ? JSON.parse(localStorage.getItem("user"))
+  //   : "";
+  // const userId = userInfo ? userInfo?.id : null;
+  const [userInfo, setUserInfo] = useState();
+  const [userId, setUserId] = useState();
 
   const [previousData, setPreviousData] = useState({});
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -282,6 +135,16 @@ export default function Order() {
     mode: "onChange",
   });
 
+  useEffect(() => {
+    const userInfo = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : "";
+    setUserInfo(userInfo);
+
+    const userId = userInfo ? userInfo?.id : null;
+
+    setUserId(userId);
+  }, []);
   useEffect(() => {
     const savedData = localStorage.getItem("orderFormData");
     if (savedData) {
@@ -339,11 +202,22 @@ export default function Order() {
       if (response.ok) {
         const answer = await response.json();
 
-  
+        send(
+          "service_kreiu93",
+          "template_jfeo6sd",
+          orderData,
+          "j7vKR9I-jXejDzD8-"
+        )
+          .then((response) => {
+            console.log("SUCCESS!", response.status, response.text);
+          })
+          .catch((err) => {
+            console.log("FAILED...", err);
+          });
+
         setOrderNumber(answer.data.id);
         setIsOrderComplete(true);
-        localStorage.removeItem('cart')
-        
+        localStorage.removeItem("cart");
       } else {
         throw new Error("Ошибка оформления заказа");
       }
@@ -361,16 +235,10 @@ export default function Order() {
     orderData.data.cards = cartData;
     orderData.data.userId = userId;
     orderData.data.isPay = false;
-    // localStorage.setItem(nameData, JSON.stringify(data));
-    // setPreviousData(data);
 
-    // console.log("sub", data);
-    saveOrder(data);
-
-    // setIsPay(true);
+    // Отправка данных в бд
+    //   saveOrder(data);
   };
-
- 
 
   return (
     <div className={styles.order}>
@@ -461,7 +329,7 @@ export default function Order() {
                   disabled={isButtonDisabled}
                   type="submit"
                 >
-                  Перейти к оплате
+                  Оформить
                 </button>
               </form>
             </ul>
