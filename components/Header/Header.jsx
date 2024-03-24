@@ -139,10 +139,10 @@ export const Header = () => {
         <BurgerMenu arrMenu={arrMenu} />
 
         <li className={`${styles.header__el_of} ${styles.header__link}`}>
-          RUB
+          {/* RUB */}
         </li>
         <li className={`${styles.header__el_of} ${styles.header__link}`}>
-          РУС
+          {/* РУС */}
         </li>
       </ul>
     </header>
