@@ -2,11 +2,21 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-
+  padding: 15px;
+  border: 1px solid transparent;
+  transition: .3s;
   &__image {
-    margin: 0 auto;
-    height: 220px;
-    object-fit: contain;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    img{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
   }
 
   &__price {
@@ -24,8 +34,16 @@
     justify-content: center;
     color: #232323;
   }
+
   &__title {
     font-size: 14px;
     text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
   }
+
+}
+
+.additionalSalesCard:hover {
+  border-color: rgba(255, 255, 255, 0.267);
 }

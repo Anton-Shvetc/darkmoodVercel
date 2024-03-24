@@ -1,6 +1,6 @@
+import Link from "next/link";
 import styles from "./AdditionalSalesCard.module.scss";
 import Image from "next/image";
-import Link from "next/link";
 
 export const AdditionalSalesCard = ({ data }) => {
   const imageUrl =
@@ -8,13 +8,14 @@ export const AdditionalSalesCard = ({ data }) => {
 
   return (
     <Link href={`/catalog/${data.id}`} className={styles.additionalSalesCard}>
-      <Image
-        className={styles.additionalSalesCard__image}
-        src={imageUrl}
-        width={207}
-        height={244}
-        alt="image"
-      />
+      <div className={styles.additionalSalesCard__image}>
+        <Image
+          src={imageUrl}
+          width={207}
+          height={244}
+          alt="image"
+        />
+      </div>
       <p className={styles.additionalSalesCard__price}>
         {data.attributes.price} RUB
       </p>
