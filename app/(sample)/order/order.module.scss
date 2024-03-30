@@ -1,4 +1,4 @@
-@import '../../style.scss';
+@import "../../style.scss";
 .order {
   padding: 0 50px 160px;
   border-bottom: 1px solid #c8c7c7;
@@ -271,6 +271,26 @@
   li:nth-child(11) {
     grid-area: 10 / 1 / 11 / 3;
   }
+  li:nth-child(12) {
+    grid-area: 11 / 1 / 12 / 3;
+  }
+
+  &__select {
+    min-width: 350px;
+  }
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    font-size: 14px;
+    padding: 5px 20px;
+    background-color: #afafaf;
+    border: 1px solid #afafaf;
+    border-radius: 5px;
+    color: #000;
+    cursor: pointer;
+  }
+
   // }
 
   h3 {
