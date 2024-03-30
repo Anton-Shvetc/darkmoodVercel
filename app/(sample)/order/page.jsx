@@ -244,8 +244,7 @@ export default function Order() {
     orderData.data.isPay = false;
 
     // Отправка данных в бд
-
-    //   saveOrder(data);
+      saveOrder(data);
   };
 
   return (
