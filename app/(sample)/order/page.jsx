@@ -61,6 +61,13 @@ const dataOrder = [
     // },
   },
   {
+    name: "ДОСТАВКА",
+    nameInput: "delivery",
+    type: "select",
+    id: "delivery",
+    error: "Пустое поле",
+  },
+  {
     name: "СТРАНА",
     nameInput: "country",
     type: "text",
@@ -237,7 +244,7 @@ export default function Order() {
     orderData.data.isPay = false;
 
     // Отправка данных в бд
-    //   saveOrder(data);
+      saveOrder(data);
   };
 
   return (
@@ -303,27 +310,46 @@ export default function Order() {
               <h2>Введите данные для доставки</h2>
 
               <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-                {dataOrder.map((el) => (
-                  <li key={el.id}>
-                    <label>
-                      <h3>{el.name}</h3>
-                      <input
-                        type={el.type}
-                        id={el.id}
-                        {...register(el.nameInput, {
-                          required: el.error,
-                          pattern: {
-                            value: el.pattern?.pattern || undefined,
-                            message: el.pattern?.message || "",
-                          },
-                        })}
-                      />
-                      {errors?.[el.nameInput] && (
-                        <span>{errors[el.nameInput].message}</span>
-                      )}
-                    </label>
-                  </li>
-                ))}
+                {dataOrder.map((el) => {
+                  return el.type === "select" ? (
+                    <li>
+                      <label>
+                        {" "}
+                        <h3>{el.name}</h3>
+                        <select
+                          id="delivery"
+                          className={styles.form__select}
+                          {...register("delivery")}
+                        >
+                          <option value="cdek">сдек</option>
+                          <option value="boxberry">boxberry</option>
+                          <option value="russianpost">почта россии</option>
+                        </select>
+                      </label>
+                    </li>
+                  ) : (
+                    <li key={el.id}>
+                      <label>
+                        <h3>{el.name}</h3>
+                        <input
+                          type={el.type}
+                          id={el.id}
+                          {...register(el.nameInput, {
+                            required: el.error,
+                            pattern: {
+                              value: el.pattern?.pattern || undefined,
+                              message: el.pattern?.message || "",
+                            },
+                          })}
+                        />
+                        {errors?.[el.nameInput] && (
+                          <span>{errors[el.nameInput].message}</span>
+                        )}
+                      </label>
+                    </li>
+                  );
+                })}
+
                 <button
                   className={isButtonDisabled ? styles["not-valid"] : ""}
                   disabled={isButtonDisabled}
