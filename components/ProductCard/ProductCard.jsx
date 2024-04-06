@@ -20,11 +20,11 @@ export const ProductCard = () => {
   const [activeSize, setActiveSize] = useState(0);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
 
   const [data, setData] = useState([]);
 
   const onSubmit = (formData) => {
-  
     let cartArray = localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
       : false;
@@ -65,6 +65,7 @@ export const ProductCard = () => {
     }
 
     localStorage.setItem("cart", JSON.stringify(cartArray));
+    setOpenSuccessModal(true);
     // window.location.reload();
   };
 
@@ -95,6 +96,14 @@ export const ProductCard = () => {
     getCardsData();
   }, []);
 
+  useEffect(() => {
+    if (openSuccessModal) {
+      setTimeout(() => {
+        setOpenSuccessModal(false);
+      }, 4000);
+    }
+  }, [openSuccessModal]);
+
   // const dataCard = {
   //   id: 1,
   //   title: "Футболка Darkmood",
@@ -121,7 +130,10 @@ export const ProductCard = () => {
     data.attributes.images.data.map((item, index) => (
       <div key={index} className={styles.swipItem}>
         <div className={styles.imgBox}>
-          <img src={process.env.NEXT_PUBLIC_DB_HOST + item.attributes.url} alt="slides" />
+          <img
+            src={process.env.NEXT_PUBLIC_DB_HOST + item.attributes.url}
+            alt="slides"
+          />
         </div>
       </div>
     ));
@@ -263,9 +275,12 @@ export const ProductCard = () => {
                   </div>
                 </div>
 
-                <button className={styles.button} type="submit">
-                  Добавить в корзину
-                </button>
+                <div style={{ height: "75px" }}>
+                  <button className={styles.button} type="submit">
+                    Добавить в корзину
+                  </button>
+                  {openSuccessModal && <p>Товар успешно добавлен</p>}
+                </div>
               </div>
             </div>
           </form>
