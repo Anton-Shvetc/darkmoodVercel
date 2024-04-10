@@ -131,6 +131,7 @@ export const ProductCard = () => {
       <div key={index} className={styles.swipItem}>
         <div className={styles.imgBox}>
           <img
+            className={styles.slider__slide}
             src={process.env.NEXT_PUBLIC_DB_HOST + item.attributes.url}
             alt="slides"
           />
