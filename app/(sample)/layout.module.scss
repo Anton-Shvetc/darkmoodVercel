@@ -15,3 +15,17 @@
         flex: 0 1 auto;
     }
 }
+
+.anim {
+    animation: opacityAll .7s ease-in-out;
+}
+
+@keyframes opacityAll {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
