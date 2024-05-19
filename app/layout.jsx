@@ -3,8 +3,8 @@ import Head from './head';
 import { Ubuntu } from 'next/font/google';
 
 export const metadata = {
-  title: 'Darkmode',
-  description: 'Darkmode shop',
+  title: 'Darkmood',
+  description: 'Darkmood shop',
 };
 
 export const ubuntuFont = Ubuntu({

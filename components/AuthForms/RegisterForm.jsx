@@ -114,7 +114,7 @@ export const RegisterForm = () => {
       <button className={styles.button} type="submit">
         Зарегистрироваться
       </button>
-      <button
+      {/* <button
         className={`${styles.button} ${styles.button_transparent}`}
         type="button"
         href="#"
@@ -123,7 +123,7 @@ export const RegisterForm = () => {
           <Image src={googleIcon} width={0} height={0} alt="google" />
         </span>
         Зарегистрироваться через Google
-      </button>
+      </button> */}
     </form>
   );
 };

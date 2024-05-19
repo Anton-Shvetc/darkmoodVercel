@@ -90,7 +90,7 @@ export const LoginForm = () => {
       <button className={styles.button} type="submit">
         Войти
       </button>
-      {/* <button
+      <button
         className={`${styles.button} ${styles.button_transparent}`}
         type="button"
         href="#"
@@ -98,8 +98,8 @@ export const LoginForm = () => {
         <span>
           <Image src={googleIcon} width={0} height={0} alt="google" />
         </span>
-        Зарегистрироваться через Google
-      </button> */}
+        Войти через Google
+      </button>
     </form>
   );
 };

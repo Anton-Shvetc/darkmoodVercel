@@ -130,6 +130,15 @@ export default function Order() {
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [isSelectPay, setIsSelectPay] = useState(null);
 
+  const [arrProduct, setArrProduct] = useState([]);
+  useEffect(() => {
+    setArrProduct(
+      localStorage?.getItem("cart") && typeof window !== "undefined"
+        ? JSON.parse(localStorage?.getItem("cart"))
+        : []
+    );
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -244,12 +253,21 @@ export default function Order() {
     orderData.data.isPay = false;
 
     // Отправка данных в бд
-      saveOrder(data);
+    saveOrder(data);
   };
+
+  if (arrProduct.length === 0) {
+    return (
+      <div className={styles.order}>
+        <h1 className={styles.order__title}>Оформление заказа</h1>
+        <h2>Корзина пуста</h2>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.order}>
-      <h1>Оформление заказа</h1>
+      <h1 className={styles.order__title}>Оформление заказа</h1>
       {/* <p>НОМЕР ЗАКАЗА: 95201</p> */}
 
       {isOrderComplete ? (
