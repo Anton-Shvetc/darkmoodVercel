@@ -2,9 +2,38 @@
 import { Card } from "@/components/Card/Card";
 import styles from "./Cards.module.scss";
 import { useEffect, useState } from "react";
+import { set } from "react-hook-form";
 
 export const Cards = () => {
   const [data, setData] = useState([]);
+
+  const [filterData, setFilterData] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("Все категории");
+
+  const filteringData = (filterValue) => {
+
+    if (filterValue === "Все категории") {
+      setFilterData(data);
+      return;
+    }
+
+    const newData = data.filter(
+      (el) => el?.attributes?.category === filterValue
+    );
+
+    setFilterData(newData);
+  };
+
+  const getCategories = async (data) => {
+    const categories = await data.map((el) => el.attributes.category);
+
+    const uniqueValues = Array.from(new Set(categories));
+
+    setCategories(["Все категории", ...uniqueValues]);
+
+    return;
+  };
 
   const getCardsData = async () => {
     const response = await fetch(
@@ -19,19 +48,40 @@ export const Cards = () => {
     );
 
     const json = await response.json();
+
+    const categories = await getCategories(json.data);
     setData(json.data);
+    setFilterData(json.data);
   };
 
   useEffect(() => {
     getCardsData();
   }, []);
 
+  if (!categories || !data) {
+    return <div className={styles.cards}>Загрузка страницы...</div>;
+  }
+
   return (
-    <div className={styles.cards}>
-      {data &&
-        data.map((card) => {
-          return <Card key={card.id} {...card} />;
-        })}
+    <div>
+      {categories && (
+        <ul className={styles.categories}>
+          {categories.map((el) => {
+            return (
+              <li onClick={() => filteringData(el)} key={el}>
+                {el}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+
+      <div className={styles.cards}>
+        {filterData &&
+          filterData.map((card) => {
+            return <Card key={card.id} {...card} />;
+          })}
+      </div>
     </div>
   );
 };
