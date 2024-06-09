@@ -6,31 +6,32 @@ import { set } from "react-hook-form";
 
 export const Cards = () => {
   const [data, setData] = useState([]);
-
   const [filterData, setFilterData] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [activeCategory, setActiveCategory] = useState("Все категории");
+  const [activeCategory, setActiveCategory] = useState("все категории");
 
   const filteringData = (filterValue) => {
-
-    if (filterValue === "Все категории") {
+    if (filterValue === "все категории") {
       setFilterData(data);
+      setActiveCategory("все категории");
       return;
     }
 
     const newData = data.filter(
-      (el) => el?.attributes?.category === filterValue
+      (el) => el?.attributes?.category.toLowerCase() === filterValue
     );
-
+    setActiveCategory(filterValue);
     setFilterData(newData);
   };
 
   const getCategories = async (data) => {
-    const categories = await data.map((el) => el.attributes.category);
+    const categories = await data.map((el) =>
+      el.attributes.category.toLowerCase()
+    );
 
     const uniqueValues = Array.from(new Set(categories));
 
-    setCategories(["Все категории", ...uniqueValues]);
+    setCategories(["все категории", ...uniqueValues]);
 
     return;
   };
@@ -68,7 +69,15 @@ export const Cards = () => {
         <ul className={styles.categories}>
           {categories.map((el) => {
             return (
-              <li onClick={() => filteringData(el)} key={el}>
+              <li
+                className={
+                  activeCategory !== el
+                    ? styles.category
+                    : styles.category__active
+                }
+                onClick={() => filteringData(el)}
+                key={el}
+              >
                 {el}
               </li>
             );
