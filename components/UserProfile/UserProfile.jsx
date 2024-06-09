@@ -108,7 +108,7 @@ export const UserProfile = () => {
       }
 
       const answer = await response.json();
-      console.log(answer)
+
       localStorage.setItem("userFormData", JSON.stringify(answer));
 
       setUserData(answer);
