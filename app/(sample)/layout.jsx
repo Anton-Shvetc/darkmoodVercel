@@ -35,7 +35,7 @@ export default function SampleLayout({ children }) {
     <div className={pathname === '/' ? 'theme' : ''}>
       <div className={styles.wrapper}>
         {showPreloader && <Preloader />}
-        <div class={showPreloader ? '' : styles.anim}>
+        <div className={showPreloader ? '' : styles.anim}>
           <Header />
           <main>{children}</main>
           <Footer />

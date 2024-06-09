@@ -4,17 +4,17 @@ import Image from "next/image";
 
 export const AdditionalSalesCard = ({ data }) => {
   const imageUrl =
-    process.env.NEXT_PUBLIC_DB_HOST + data.attributes.images.data[0].attributes.url;
+    data && data.attributes.images.data
+      ? process.env.NEXT_PUBLIC_DB_HOST +
+        data.attributes.images.data[0].attributes.url
+      : null;
 
   return (
     <Link href={`/catalog/${data.id}`} className={styles.additionalSalesCard}>
       <div className={styles.additionalSalesCard__image}>
-        <Image
-          src={imageUrl}
-          width={207}
-          height={244}
-          alt="image"
-        />
+        {imageUrl && (
+          <Image src={imageUrl} width={207} height={244} alt="image" />
+        )}
       </div>
       <p className={styles.additionalSalesCard__price}>
         {data.attributes.price} RUB

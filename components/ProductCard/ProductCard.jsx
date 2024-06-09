@@ -65,7 +65,8 @@ export const ProductCard = () => {
     }
 
     localStorage.setItem("cart", JSON.stringify(cartArray));
-    setOpenSuccessModal(true);
+    // setOpenSuccessModal(true);
+    alert("Товар успешно добавлен")
     // window.location.reload();
   };
 
@@ -280,7 +281,7 @@ export const ProductCard = () => {
                   <button className={styles.button} type="submit">
                     Добавить в корзину
                   </button>
-                  {openSuccessModal && <p>Товар успешно добавлен</p>}
+                  {/* {openSuccessModal && <p>Товар успешно добавлен</p>} */}
                 </div>
               </div>
             </div>

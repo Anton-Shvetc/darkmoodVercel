@@ -3,7 +3,7 @@ import styles from "./Form.module.scss";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-export default function Form({ arrInput, nameData, isEdit }) {
+export default function Form({ arrInput, nameData, isEdit, setIsEdit }) {
   const [previousData, setPreviousData] = useState({});
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -67,12 +67,17 @@ export default function Form({ arrInput, nameData, isEdit }) {
         {
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${process.envNEXT_PUBLIC_STRAPI_KEY}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_KEY}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(userData),
         }
       );
+
+      if (response.ok) {
+        alert("Успешно сохранено");
+        setIsEdit(!isEdit);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -81,16 +86,7 @@ export default function Form({ arrInput, nameData, isEdit }) {
   const onSubmit = (data) => {
     localStorage.setItem(nameData, JSON.stringify(data));
     setPreviousData(data);
-    // console.log("sub", data);
     savePersonalData(data);
-    // {
-    //   "data": {
-    //     "firstName": "222222"
-    //     "lastName": "222222"
-    //     "patronymic": "222222"
-    //     "phone": "222222"
-    //   }
-    // }
   };
 
   return (

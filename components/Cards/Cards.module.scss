@@ -1,11 +1,28 @@
 @import "../../app/style.scss";
 
+
+.categories {
+  font-family: Copperplate;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  .category {
+    font-size: 30px;
+
+    &__active {
+    border-bottom: 2px solid;
+ 
+        font-size: 30px;
+    }
+  }
+}
+
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 28px;
   row-gap: 50px;
-
+  font-family: Copperplate;
   @include tb-screen {
     grid-template-columns: 1fr 1fr;
   }

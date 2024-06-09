@@ -15,10 +15,10 @@ const arrMenu = [
     name: 'FAQ',
     link: '/questions',
   },
-  {
-    name: 'ВАШ ЗАКАЗ',
-    link: '/order',
-  },
+  // {
+  //   name: 'ВАШ ЗАКАЗ',
+  //   link: '/order',
+  // },
   {
     name: 'КАТАЛОГ',
     link: '/catalog',

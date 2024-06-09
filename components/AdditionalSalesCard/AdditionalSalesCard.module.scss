@@ -5,19 +5,24 @@
   padding: 15px;
   border: 1px solid transparent;
   transition: .3s;
-  &__image {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-    img{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
+    &__image {
+    margin: 0 auto;
+    height: 220px;
+    object-fit: contain;
   }
+  // &__image {
+  //   position: relative;
+  //   width: 100%;
+  //   height: 0;
+  //   padding-bottom: 100%;
+  //   img{
+  //     position: absolute;
+  //     width: 100%;
+  //     height: 100%;
+  //     object-fit: cover;
+  //     object-position: center;
+  //   }
+  // }
 
   &__price {
     margin: 0 auto;

@@ -42,9 +42,9 @@ export const Footer = () => {
             <li>
               <Link href="/questions">FAQ</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/order">ВАШ ЗАКАЗ</Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/catalog">КАТАЛОГ</Link>
             </li>
