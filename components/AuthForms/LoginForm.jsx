@@ -17,8 +17,6 @@ export const LoginForm = () => {
     // Установить время жизни куки при чеке - чужой компьютер
     // setCookie("user", jwt, { maxAge: 60 * 60 });
 
-
-
     const identifier = data.email;
     const password = data.password;
     try {
@@ -36,7 +34,7 @@ export const LoginForm = () => {
 
       if (result.user) {
         const jwt = result.jwt;
-        const userData = result.user
+        const userData = result.user;
         localStorage.setItem("user", JSON.stringify(userData));
         setCookie("user", jwt);
         alert("Авторизация прошла успешно");

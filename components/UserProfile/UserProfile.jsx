@@ -2,8 +2,7 @@
 import { useState, useEffect } from "react";
 import styles from "./UserProfile.module.scss";
 import Form from "@/components/Form/Form";
-
-
+import { redirect } from "next/navigation";
 
 const inputsUserData = [
   {
@@ -83,10 +82,14 @@ export const UserProfile = () => {
   const [isEditAddress, setIsEditAddress] = useState(false);
   const [userData, setUserData] = useState();
   const userId = localStorage.getItem("user")
-  ? JSON.parse(localStorage.getItem("user")).id
-  : null;
+    ? JSON.parse(localStorage.getItem("user"))?.id
+    : null;
 
   const getUserInfo = async () => {
+    if (!userId) {
+      redirect("/authorization");
+    }
+
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DB_HOST}/api/users/${userId}`,
@@ -101,9 +104,11 @@ export const UserProfile = () => {
 
       if (!response.ok) {
         console.log("Ошибка получения данных пользователя");
+        return
       }
 
       const answer = await response.json();
+      console.log(answer)
       localStorage.setItem("userFormData", JSON.stringify(answer));
 
       setUserData(answer);
@@ -128,6 +133,7 @@ export const UserProfile = () => {
             arrInput={inputsUserData}
             nameData={"userFormData"}
             isEdit={isEditUser}
+            setIsEdit={setIsEditUser}
           />
         )}
       </li>
@@ -143,6 +149,7 @@ export const UserProfile = () => {
             arrInput={inputsAdressData}
             nameData={"userFormData"}
             isEdit={isEditAddress}
+            setIsEdit={setIsEditAddress}
           />
         )}
       </li>

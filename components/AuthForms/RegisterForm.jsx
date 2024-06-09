@@ -16,8 +16,6 @@ export const RegisterForm = () => {
   } = useForm();
   const router = useRouter();
   const onSubmit = async (data) => {
-   
-
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_DB_HOST}/api/auth/local/register`,
@@ -40,9 +38,9 @@ export const RegisterForm = () => {
         alert("Регистрация прошла успешно");
         const jwt = result.jwt;
         setCookie("user", jwt);
+        localStorage.setItem("user", JSON.stringify(result.user));
 
         router.push("/profile/user");
-
       }
       if (result.errors) {
         alert(result.error.message);
