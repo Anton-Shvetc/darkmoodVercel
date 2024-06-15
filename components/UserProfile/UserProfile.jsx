@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+
 import styles from "./UserProfile.module.scss";
 import Form from "@/components/Form/Form";
 import { redirect } from "next/navigation";
@@ -85,6 +87,32 @@ export const UserProfile = () => {
     ? JSON.parse(localStorage.getItem("user"))?.id
     : null;
 
+  const searchParams = useSearchParams();
+  const getGoogleAuth = async () => {
+    const code = searchParams.get("code");
+
+    console.log(code);
+    if (code) {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_DB_HOST}/strapi-google-auth/user-profile`,
+        {
+          method: "POST",
+          // headers: {
+          //   Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_KEY}`,
+          //   "Content-Type": "application/json",
+          // },
+          data: { code: code },
+        }
+      );
+      if(response) {
+        const answer = await response.json()
+        console.log(response)
+      }
+    } else {
+      getUserInfo();
+    }
+  };
+
   const getUserInfo = async () => {
     if (!userId) {
       redirect("/authorization");
@@ -104,7 +132,7 @@ export const UserProfile = () => {
 
       if (!response.ok) {
         console.log("Ошибка получения данных пользователя");
-        return
+        return;
       }
 
       const answer = await response.json();
@@ -118,7 +146,8 @@ export const UserProfile = () => {
   };
 
   useEffect(() => {
-    getUserInfo();
+    // getUserInfo();
+    getGoogleAuth();
   }, []);
 
   return (
