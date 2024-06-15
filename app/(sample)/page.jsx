@@ -15,10 +15,10 @@ export default function Home() {
           `${process.env.NEXT_PUBLIC_DB_HOST}/strapi-google-auth/user-profile`,
           {
             method: "POST",
-            // headers: {
-            //   Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_KEY}`,
-            //   "Content-Type": "application/json",
-            // },
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_KEY}`,
+              "Content-Type": "application/json",
+            },
             data: { code: code },
           }
         );
