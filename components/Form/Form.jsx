@@ -2,6 +2,7 @@
 import styles from "./Form.module.scss";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { enqueueSnackbar } from "notistack";
 
 export default function Form({ arrInput, nameData, isEdit, setIsEdit }) {
   const [previousData, setPreviousData] = useState({});
@@ -75,7 +76,9 @@ export default function Form({ arrInput, nameData, isEdit, setIsEdit }) {
       );
 
       if (response.ok) {
-        alert("Успешно сохранено");
+        enqueueSnackbar("Успешно сохранено", {
+          variant: "success",
+        });
         setIsEdit(!isEdit);
       }
     } catch (e) {

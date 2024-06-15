@@ -2,7 +2,7 @@
 import { Card } from "@/components/Card/Card";
 import styles from "./Cards.module.scss";
 import { useEffect, useState } from "react";
-import { set } from "react-hook-form";
+// import { set } from "react-hook-form";
 
 export const Cards = () => {
   const [data, setData] = useState([]);

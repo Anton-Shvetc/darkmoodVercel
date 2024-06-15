@@ -4,6 +4,7 @@ import googleIcon from "@/public/icons/google.svg";
 import Image from "next/image";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import {enqueueSnackbar} from "notistack"
 export const LoginForm = () => {
   const {
     register,
@@ -30,18 +31,36 @@ export const LoginForm = () => {
           body: JSON.stringify({ identifier, password }),
         }
       );
-      let result = await response.json();
 
+      if (!response.ok) {
+        if (response.status === 400) {
+          enqueueSnackbar("Неверный логин или пароль", {
+            variant: "error",
+          });
+          return;
+        }
+        enqueueSnackbar("Произошла какая-то ошибка", {
+          variant: "error",
+        });
+        return;
+      }
+
+      let result = await response.json();
       if (result.user) {
         const jwt = result.jwt;
         const userData = result.user;
         localStorage.setItem("user", JSON.stringify(userData));
         setCookie("user", jwt);
-        alert("Авторизация прошла успешно");
+
+        enqueueSnackbar("Авторизация прошла успешно", {
+          variant: "success",
+        });
         router.push("/profile/user");
       }
       if (result.error) {
-        alert(result.error.message);
+        enqueueSnackbar(result.error.message, {
+          variant: "error",
+        });
       }
     } catch (err) {
       console.log(err);

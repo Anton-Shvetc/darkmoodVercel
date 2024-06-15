@@ -238,7 +238,9 @@ export default function Order() {
         throw new Error("Ошибка оформления заказа");
       }
     } catch (err) {
-      alert(err);
+      enqueueSnackbar(result.error.message, {
+        variant: "error",
+      });
     }
   };
 

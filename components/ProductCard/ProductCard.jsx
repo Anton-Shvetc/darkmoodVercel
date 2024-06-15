@@ -9,6 +9,8 @@ import { MdArrowForward } from "react-icons/md";
 import { MdArrowBack } from "react-icons/md";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+import { enqueueSnackbar } from 'notistack';
+
 
 // import imageUrl from "@/public/images/main-card-img.png";
 export const ProductCard = () => {
@@ -66,7 +68,8 @@ export const ProductCard = () => {
 
     localStorage.setItem("cart", JSON.stringify(cartArray));
     // setOpenSuccessModal(true);
-    alert("Товар успешно добавлен")
+    
+    enqueueSnackbar("Товар успешно добавлен", {variant: 'default'});
     // window.location.reload();
   };
 

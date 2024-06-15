@@ -5,6 +5,7 @@ import googleIcon from "@/public/icons/google.svg";
 import Image from "next/image";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import { enqueueSnackbar } from "notistack";
 
 export const RegisterForm = () => {
   const {
@@ -35,7 +36,9 @@ export const RegisterForm = () => {
       const result = await response.json();
 
       if (result.user) {
-        alert("Регистрация прошла успешно");
+        enqueueSnackbar("Регистрация прошла успешно", {
+          variant: "success",
+        });
         const jwt = result.jwt;
         setCookie("user", jwt);
         localStorage.setItem("user", JSON.stringify(result.user));
@@ -43,7 +46,9 @@ export const RegisterForm = () => {
         router.push("/profile/user");
       }
       if (result.errors) {
-        alert(result.error.message);
+        enqueueSnackbar(result.error.message, {
+          variant: "error",
+        });
       }
     } catch (err) {
       console.log(err);
