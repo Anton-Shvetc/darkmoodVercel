@@ -83,8 +83,8 @@ export const LoginForm = () => {
     if (response) {
       const answer = await response.json();
       console.log(answer);
-      // window.location.replace(answer.url);
-       window.open(location);
+      window.location.replace(answer.url);
+  
     }
     //4%2F0ATx3LY7-1JdCe3WdUZ8-3nbw8_-PKkmmjGgpC5xGeZ6F6tjqR9cOhoktUrrhKAi0Hbr57g&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=consent
   };
