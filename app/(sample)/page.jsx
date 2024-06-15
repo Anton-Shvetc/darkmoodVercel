@@ -24,7 +24,7 @@ export default function Home() {
         );
         if (response) {
           const answer = await response.json();
-          console.log(response);
+          console.log(answer);
         }
       }
     };
