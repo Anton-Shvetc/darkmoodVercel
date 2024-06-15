@@ -87,31 +87,31 @@ export const UserProfile = () => {
     ? JSON.parse(localStorage.getItem("user"))?.id
     : null;
 
-  const searchParams = useSearchParams();
-  const getGoogleAuth = async () => {
-    const code = searchParams.get("code");
+  // const searchParams = useSearchParams();
+  // const getGoogleAuth = async () => {
+  //   const code = searchParams.get("code");
 
-    console.log(code);
-    if (code) {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_DB_HOST}/strapi-google-auth/user-profile`,
-        {
-          method: "POST",
-          // headers: {
-          //   Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_KEY}`,
-          //   "Content-Type": "application/json",
-          // },
-          data: { code: code },
-        }
-      );
-      if(response) {
-        const answer = await response.json()
-        console.log(response)
-      }
-    } else {
-      getUserInfo();
-    }
-  };
+  //   console.log(code);
+  //   if (code) {
+  //     const response = await fetch(
+  //       `${process.env.NEXT_PUBLIC_DB_HOST}/strapi-google-auth/user-profile`,
+  //       {
+  //         method: "POST",
+  //         // headers: {
+  //         //   Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_KEY}`,
+  //         //   "Content-Type": "application/json",
+  //         // },
+  //         data: { code: code },
+  //       }
+  //     );
+  //     if(response) {
+  //       const answer = await response.json()
+  //       console.log(response)
+  //     }
+  //   } else {
+  //     getUserInfo();
+  //   }
+  // };
 
   const getUserInfo = async () => {
     if (!userId) {
@@ -146,8 +146,8 @@ export const UserProfile = () => {
   };
 
   useEffect(() => {
-    // getUserInfo();
-    getGoogleAuth();
+    getUserInfo();
+    // getGoogleAuth();
   }, []);
 
   return (
